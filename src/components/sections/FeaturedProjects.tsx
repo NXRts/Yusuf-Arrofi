@@ -30,28 +30,28 @@ export default function FeaturedProjects() {
       {/* Flagship Project Card (JapanApp) */}
       <div className="p-6 md:p-10 rounded-2xl bg-surface-elevated border border-surface-variant shadow-xl flex flex-col lg:flex-row gap-8 items-center relative overflow-hidden group hover:border-secondary/40 transition-all">
         {/* Visual Column */}
-        <div className="w-full lg:w-1/2 flex flex-col">
-          <div className="relative rounded-xl overflow-hidden shadow-2xl h-72 md:h-80 w-full border border-surface-variant/80">
+        <div className="w-full lg:w-1/2 flex flex-col gap-3">
+          {/* Screenshot Container - natural aspect ratio, no crop, no zoom */}
+          <div className="relative rounded-xl overflow-hidden shadow-2xl border border-surface-variant/80 bg-surface-container-lowest">
             <img
               src={flagship.image}
               alt={flagship.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-auto block"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-linear-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent" />
-            
-            {/* Overlay Status */}
-            <div className="absolute bottom-3 left-3 right-3 p-3 bg-surface-elevated/90 border border-surface-variant backdrop-blur-md rounded-lg flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
-                <span className="font-mono text-xs text-text-primary">
-                  Live SRS Engine v4.2
-                </span>
-              </div>
-              <span className="font-mono text-xs text-secondary font-semibold">
-                {flagship.metrics?.users || "10,480 Active Users"}
+          </div>
+          
+          {/* Status Bar (Moved Below Image) */}
+          <div className="p-3 bg-surface-container-low border border-surface-variant/70 rounded-xl flex items-center justify-between shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+              <span className="font-mono text-xs font-semibold text-text-primary">
+                Live SRS Engine v4.2
               </span>
             </div>
+            <span className="font-mono text-xs text-secondary font-semibold">
+              {flagship.metrics?.users || "10,480 Active Users"}
+            </span>
           </div>
         </div>
 
