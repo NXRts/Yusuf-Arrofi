@@ -31,26 +31,26 @@ export default function BlogPostView({ post }: Props) {
   };
 
   return (
-    <article className="w-full pt-28 pb-20 max-w-[900px] mx-auto px-4 md:px-8 flex flex-col gap-10">
+    <article className="w-full pt-28 pb-20 max-w-225 mx-auto px-4 md:px-8 flex flex-col gap-10">
       {/* Top Breadcrumb & Controls */}
       <div className="flex items-center justify-between">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs font-mono text-[#c7c4d8] hover:text-[#4cd7f6] transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-secondary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{language === "en" ? "Back to All Articles" : "Kembali ke Indeks Blog"}</span>
         </Link>
 
         {/* Language Switch */}
-        <div className="flex items-center gap-1 p-1 bg-[#172133] border border-[#2f3446] rounded-xl">
-          <Globe className="w-3.5 h-3.5 text-[#4cd7f6] ml-2 mr-1" />
+        <div className="flex items-center gap-1 p-1 bg-surface-elevated border border-surface-variant rounded-xl">
+          <Globe className="w-3.5 h-3.5 text-secondary ml-2 mr-1" />
           <button
             onClick={() => setLanguage("en")}
             className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
               language === "en"
-                ? "bg-[#4f46e5] text-white font-bold"
-                : "text-[#c7c4d8] hover:text-white"
+                ? "bg-primary-container text-white font-bold"
+                : "text-on-surface-variant hover:text-white"
             }`}
           >
             EN
@@ -59,8 +59,8 @@ export default function BlogPostView({ post }: Props) {
             onClick={() => setLanguage("id")}
             className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
               language === "id"
-                ? "bg-[#4f46e5] text-white font-bold"
-                : "text-[#c7c4d8] hover:text-white"
+                ? "bg-primary-container text-white font-bold"
+                : "text-on-surface-variant hover:text-white"
             }`}
           >
             ID
@@ -71,40 +71,40 @@ export default function BlogPostView({ post }: Props) {
       {/* Article Header */}
       <header className="flex flex-col gap-4">
         <div className="flex items-center gap-2.5">
-          <span className="px-3 py-1 rounded-full bg-[#4f46e5] text-white font-mono text-xs font-bold uppercase tracking-wider">
+          <span className="px-3 py-1 rounded-full bg-primary-container text-white font-mono text-xs font-bold uppercase tracking-wider">
             {post.category}
           </span>
-          <span className="font-mono text-xs text-[#918fa1]">•</span>
-          <span className="font-mono text-xs text-[#c3c0ff] flex items-center gap-1">
+          <span className="font-mono text-xs text-outline">•</span>
+          <span className="font-mono text-xs text-primary flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
             {post.date}
           </span>
-          <span className="font-mono text-xs text-[#918fa1]">•</span>
-          <span className="font-mono text-xs text-[#4cd7f6] flex items-center gap-1">
+          <span className="font-mono text-xs text-outline">•</span>
+          <span className="font-mono text-xs text-secondary flex items-center gap-1">
             <Clock className="w-3.5 h-3.5" />
             {post.readTime}
           </span>
         </div>
 
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.2]">
+        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.2]">
           {post.title[language]}
         </h1>
 
-        <p className="font-sans text-lg text-[#c7c4d8] italic leading-relaxed border-l-2 border-[#4cd7f6] pl-4">
+        <p className="font-sans text-lg text-on-surface-variant italic leading-relaxed border-l-2 border-secondary pl-4">
           {post.excerpt[language]}
         </p>
 
         {/* Author metadata strip */}
-        <div className="flex items-center justify-between pt-4 border-t border-[#2f3446]/60">
+        <div className="flex items-center justify-between pt-4 border-t border-surface-variant/60">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#172133] border border-[#4cd7f6] flex items-center justify-center font-mono text-xs font-bold text-[#4cd7f6]">
+            <div className="w-10 h-10 rounded-full bg-surface-elevated border border-secondary flex items-center justify-center font-mono text-xs font-bold text-secondary">
               NX
             </div>
             <div className="flex flex-col">
-              <span className="font-sans text-sm font-bold text-[#F8FAFC]">
+              <span className="font-sans text-sm font-bold text-text-primary">
                 {profileData.name}
               </span>
-              <span className="font-mono text-xs text-[#4cd7f6]">
+              <span className="font-mono text-xs text-secondary">
                 @{profileData.handle} // Software Engineer
               </span>
             </div>
@@ -112,12 +112,12 @@ export default function BlogPostView({ post }: Props) {
 
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#172133] hover:bg-[#24293b] border border-[#2f3446] text-xs font-mono text-[#c7c4d8] hover:text-white transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-container-high border border-surface-variant text-xs font-mono text-on-surface-variant hover:text-white transition-all"
           >
             {copied ? (
               <>
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#4cd7f6]" />
-                <span className="text-[#4cd7f6]">Copied!</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-secondary" />
+                <span className="text-secondary">Copied!</span>
               </>
             ) : (
               <>
@@ -130,7 +130,7 @@ export default function BlogPostView({ post }: Props) {
       </header>
 
       {/* Hero Image */}
-      <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden bg-[#080e1d] border border-[#2f3446] shadow-2xl relative">
+      <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-surface-variant shadow-2xl relative">
         <img
           src={post.image}
           alt={post.title[language]}
@@ -139,15 +139,15 @@ export default function BlogPostView({ post }: Props) {
       </div>
 
       {/* Article Markdown / Content Body */}
-      <div className="flex flex-col gap-6 text-[#c7c4d8] font-sans text-base sm:text-lg leading-relaxed pt-4">
+      <div className="flex flex-col gap-6 text-on-surface-variant font-sans text-base sm:text-lg leading-relaxed pt-4">
         {post.content[language].split("\n\n").map((block, idx) => {
           if (block.startsWith("### ")) {
             return (
               <h2
                 key={idx}
-                className="font-sans text-2xl font-bold text-[#F8FAFC] tracking-tight mt-6 pt-4 border-t border-[#2f3446]/40 flex items-center gap-2"
+                className="font-sans text-2xl font-bold text-text-primary tracking-tight mt-6 pt-4 border-t border-surface-variant/40 flex items-center gap-2"
               >
-                <span className="w-2 h-2 rounded-full bg-[#4cd7f6]" />
+                <span className="w-2 h-2 rounded-full bg-secondary" />
                 {block.replace("### ", "")}
               </h2>
             );
@@ -158,7 +158,7 @@ export default function BlogPostView({ post }: Props) {
               <ul key={idx} className="flex flex-col gap-2 pl-4">
                 {items.map((it, itIdx) => (
                   <li key={itIdx} className="flex items-start gap-2">
-                    <span className="text-[#4cd7f6] font-bold">•</span>
+                    <span className="text-secondary font-bold">•</span>
                     <span>{it.replace("- ", "")}</span>
                   </li>
                 ))}
@@ -166,7 +166,7 @@ export default function BlogPostView({ post }: Props) {
             );
           }
           return (
-            <p key={idx} className="text-[#c7c4d8] leading-relaxed">
+            <p key={idx} className="text-on-surface-variant leading-relaxed">
               {block}
             </p>
           );
@@ -174,12 +174,12 @@ export default function BlogPostView({ post }: Props) {
       </div>
 
       {/* Tags footer */}
-      <div className="flex flex-wrap items-center gap-2 pt-8 border-t border-[#2f3446]/60">
-        <Tag className="w-4 h-4 text-[#4cd7f6] mr-1" />
+      <div className="flex flex-wrap items-center gap-2 pt-8 border-t border-surface-variant/60">
+        <Tag className="w-4 h-4 text-secondary mr-1" />
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="px-3 py-1 rounded-lg bg-[#172133] border border-[#2f3446] font-mono text-xs text-[#CBD5E1]"
+            className="px-3 py-1 rounded-lg bg-surface-elevated border border-surface-variant font-mono text-xs text-text-secondary"
           >
             {tag}
           </span>
@@ -187,16 +187,16 @@ export default function BlogPostView({ post }: Props) {
       </div>
 
       {/* Next Article Navigation */}
-      <div className="p-6 rounded-2xl bg-[#172133] border border-[#2f3446] flex items-center justify-between gap-4 mt-6">
+      <div className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant flex items-center justify-between gap-4 mt-6">
         <div className="flex flex-col gap-1">
-          <span className="font-mono text-xs text-[#4cd7f6]">Explore More Knowledge</span>
-          <p className="font-sans text-sm font-semibold text-[#F8FAFC]">
+          <span className="font-mono text-xs text-secondary">Explore More Knowledge</span>
+          <p className="font-sans text-sm font-semibold text-text-primary">
             Continue reading our technology essays and architecture case studies.
           </p>
         </div>
         <Link
           href="/blog"
-          className="px-4 py-2 rounded-xl bg-[#4f46e5] hover:bg-[#4338ca] text-white font-mono text-xs font-bold shrink-0 transition-colors"
+          className="px-4 py-2 rounded-xl bg-primary-container hover:opacity-90 text-white font-mono text-xs font-bold shrink-0 transition-opacity"
         >
           View All Articles
         </Link>

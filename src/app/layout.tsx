@@ -56,8 +56,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
-      <body className="bg-[#0d1323] text-[#dde2f9] min-h-screen flex flex-col font-sans selection:bg-[#4f46e5] selection:text-white antialiased">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
+    >
+      <body className="bg-surface text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary-container selection:text-white antialiased">
         <Navbar />
         <main className="flex-1 w-full flex flex-col">{children}</main>
         <Footer />

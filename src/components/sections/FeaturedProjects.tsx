@@ -13,42 +13,42 @@ export default function FeaturedProjects() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-[#4cd7f6] tracking-wider">
+            <span className="font-mono text-xs font-bold text-secondary tracking-wider">
               02 // SHIPPED CODE
             </span>
-            <span className="w-12 h-0.5 bg-[#4f46e5]" />
+            <span className="w-12 h-0.5 bg-primary-container" />
           </div>
-          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-[#F8FAFC]">
+          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
             Featured Engineering Projects
           </h2>
         </div>
-        <span className="font-mono text-xs text-[#CBD5E1] tracking-wider uppercase">
+        <span className="font-mono text-xs text-text-secondary tracking-wider uppercase">
           PRODUCTION-TESTED ARTIFACTS
         </span>
       </div>
 
       {/* Flagship Project Card (JapanApp) */}
-      <div className="p-6 md:p-10 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-xl flex flex-col lg:flex-row gap-8 items-center relative overflow-hidden group hover:border-[#4cd7f6]/40 transition-all">
+      <div className="p-6 md:p-10 rounded-2xl bg-surface-elevated border border-surface-variant shadow-xl flex flex-col lg:flex-row gap-8 items-center relative overflow-hidden group hover:border-secondary/40 transition-all">
         {/* Visual Column */}
         <div className="w-full lg:w-1/2 flex flex-col">
-          <div className="relative rounded-xl overflow-hidden shadow-2xl h-72 md:h-80 w-full border border-[#2f3446]/80">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl h-72 md:h-80 w-full border border-surface-variant/80">
             <img
               src={flagship.image}
               alt={flagship.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080e1d] via-[#080e1d]/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent" />
             
             {/* Overlay Status */}
-            <div className="absolute bottom-3 left-3 right-3 p-3 bg-[#172133]/90 border border-[#2f3446] backdrop-blur-md rounded-lg flex items-center justify-between">
+            <div className="absolute bottom-3 left-3 right-3 p-3 bg-surface-elevated/90 border border-surface-variant backdrop-blur-md rounded-lg flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#4cd7f6] animate-pulse"></span>
-                <span className="font-mono text-xs text-[#F8FAFC]">
+                <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+                <span className="font-mono text-xs text-text-primary">
                   Live SRS Engine v4.2
                 </span>
               </div>
-              <span className="font-mono text-xs text-[#4cd7f6] font-semibold">
+              <span className="font-mono text-xs text-secondary font-semibold">
                 {flagship.metrics?.users || "10,480 Active Users"}
               </span>
             </div>
@@ -59,40 +59,40 @@ export default function FeaturedProjects() {
         <div className="w-full lg:w-1/2 flex flex-col gap-6">
           <div className="flex flex-col gap-2.5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-[#4f46e5] text-white font-mono text-[11px] font-bold uppercase tracking-wider">
+              <span className="px-3 py-1 rounded-full bg-primary-container text-white font-mono text-[11px] font-bold uppercase tracking-wider">
                 Flagship Application
               </span>
-              <span className="font-mono text-xs text-[#4cd7f6]">
+              <span className="font-mono text-xs text-secondary">
                 {flagship.subtitle}
               </span>
             </div>
 
-            <h3 className="font-sans text-2xl sm:text-3xl font-bold text-[#F8FAFC]">
+            <h3 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
               {flagship.title}
             </h3>
 
-            <p className="font-sans text-sm sm:text-base text-[#c7c4d8] leading-relaxed">
+            <p className="font-sans text-sm sm:text-base text-on-surface-variant leading-relaxed">
               {flagship.description}
             </p>
           </div>
 
           {/* 3 Metrics Column */}
-          <div className="grid grid-cols-3 gap-3 p-3 rounded-xl bg-[#151b2c] border border-[#2f3446]/60 text-center">
+          <div className="grid grid-cols-3 gap-3 p-3 rounded-xl bg-surface-container-low border border-surface-variant/60 text-center">
             <div className="flex flex-col">
-              <span className="font-mono text-[11px] text-[#CBD5E1]">Platform</span>
-              <span className="font-sans text-base font-bold text-[#4cd7f6]">
+              <span className="font-mono text-[11px] text-text-secondary">Platform</span>
+              <span className="font-sans text-base font-bold text-secondary">
                 {flagship.metrics?.platform || "Web App"}
               </span>
             </div>
-            <div className="flex flex-col border-x border-[#2f3446]/60">
-              <span className="font-mono text-[11px] text-[#CBD5E1]">Curriculum</span>
-              <span className="font-sans text-base font-bold text-[#c3c0ff]">
+            <div className="flex flex-col border-x border-surface-variant/60">
+              <span className="font-mono text-[11px] text-text-secondary">Curriculum</span>
+              <span className="font-sans text-base font-bold text-primary">
                 {flagship.metrics?.curriculum || "N5 - N1"}
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-mono text-[11px] text-[#CBD5E1]">Deployment</span>
-              <span className="font-sans text-base font-bold text-[#fbabff]">
+              <span className="font-mono text-[11px] text-text-secondary">Deployment</span>
+              <span className="font-sans text-base font-bold text-tertiary">
                 {flagship.metrics?.deployment || "Vercel Edge"}
               </span>
             </div>
@@ -103,7 +103,7 @@ export default function FeaturedProjects() {
             {flagship.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 bg-[#24293b] border border-[#2f3446] rounded text-[#CBD5E1] font-mono text-xs"
+                className="px-2.5 py-1 bg-surface-container-high border border-surface-variant rounded text-text-secondary font-mono text-xs"
               >
                 {tag}
               </span>
@@ -117,7 +117,7 @@ export default function FeaturedProjects() {
                 href={flagship.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-[#4cd7f6] hover:bg-[#acedff] text-[#003640] font-sans text-sm font-bold rounded-lg shadow-md transition-colors flex items-center gap-2"
+                className="px-5 py-2.5 bg-secondary hover:bg-secondary-fixed text-on-secondary font-sans text-sm font-bold rounded-lg shadow-md transition-colors flex items-center gap-2"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Launch App</span>
@@ -128,7 +128,7 @@ export default function FeaturedProjects() {
                 href={flagship.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-[#24293b] hover:bg-[#33394a] text-[#F8FAFC] border border-[#2f3446] font-sans text-sm font-semibold rounded-lg transition-colors flex items-center gap-2"
+                className="px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant font-sans text-sm font-semibold rounded-lg transition-colors flex items-center gap-2"
               >
                 <Code2 className="w-4 h-4" />
                 <span>GitHub Repo</span>
@@ -143,41 +143,41 @@ export default function FeaturedProjects() {
         {secondary.map((project) => (
           <div
             key={project.id}
-            className="p-6 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md flex flex-col justify-between group hover:border-[#4cd7f6]/40 transition-all"
+            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 transition-all"
           >
             <div className="flex flex-col gap-4">
-              <div className="h-44 w-full rounded-xl overflow-hidden bg-[#080e1d] border border-[#2f3446]/60 relative">
+              <div className="h-44 w-full rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute top-2 right-2 px-2.5 py-0.5 rounded bg-[#172133]/90 border border-[#2f3446] font-mono text-xs text-[#4cd7f6]">
+                <div className="absolute top-2 right-2 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary">
                   {project.metrics?.platform || project.category}
                 </div>
               </div>
 
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-[#4cd7f6] uppercase tracking-wider">
+                <span className="font-mono text-xs text-secondary uppercase tracking-wider">
                   {project.subtitle || project.category}
                 </span>
-                <h4 className="font-sans text-xl font-bold text-[#F8FAFC] mt-1">
+                <h4 className="font-sans text-xl font-bold text-text-primary mt-1">
                   {project.title}
                 </h4>
               </div>
 
-              <p className="font-sans text-sm text-[#c7c4d8] line-clamp-3">
+              <p className="font-sans text-sm text-on-surface-variant line-clamp-3">
                 {project.description}
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 pt-6 border-t border-[#2f3446]/50 mt-6">
+            <div className="flex flex-col gap-4 pt-6 border-t border-surface-variant/50 mt-6">
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.slice(0, 4).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 bg-[#191f30] border border-[#2f3446]/40 text-[#CBD5E1] font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-surface-container border border-surface-variant/40 text-text-secondary font-mono text-[11px] rounded"
                   >
                     {tag}
                   </span>
@@ -190,7 +190,7 @@ export default function FeaturedProjects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-[#4cd7f6] hover:text-[#c3c0ff] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-secondary hover:text-primary transition-colors"
                   >
                     <span>View Repository</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -201,7 +201,7 @@ export default function FeaturedProjects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-[#c3c0ff] hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-white transition-colors"
                   >
                     <span>Demo</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -217,10 +217,10 @@ export default function FeaturedProjects() {
       <div className="flex justify-center pt-4">
         <Link
           href="/projects"
-          className="px-6 py-3 rounded-xl bg-[#172133] hover:bg-[#24293b] border border-[#2f3446] hover:border-[#4cd7f6]/50 text-[#F8FAFC] font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
+          className="px-6 py-3 rounded-xl bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-primary font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
         >
           <span>Explore All 15+ Engineered Projects</span>
-          <ArrowRight className="w-4 h-4 text-[#4cd7f6] group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
     </section>

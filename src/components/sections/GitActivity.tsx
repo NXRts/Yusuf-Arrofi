@@ -22,14 +22,14 @@ export default function GitActivity() {
   const getCellColor = (level: number) => {
     switch (level) {
       case 3:
-        return "bg-[#4cd7f6] shadow-[0_0_6px_rgba(76,215,246,0.4)]";
+        return "bg-secondary shadow-[0_0_6px_rgba(76,215,246,0.4)]";
       case 2:
-        return "bg-[#A855F7]";
+        return "bg-glow-purple";
       case 1:
-        return "bg-[#4f46e5]";
+        return "bg-primary-container";
       case 0:
       default:
-        return "bg-[#191f30]";
+        return "bg-surface-container";
     }
   };
 
@@ -37,22 +37,22 @@ export default function GitActivity() {
     <section className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-16 flex flex-col gap-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Engineering Git Activity Preview */}
-        <div className="lg:col-span-7 p-6 md:p-8 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md flex flex-col justify-between gap-6 hover:border-[#4cd7f6]/40 transition-all">
+        <div className="lg:col-span-7 p-6 md:p-8 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-6 hover:border-secondary/40 transition-all">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <GitCommit className="w-5 h-5 text-[#4cd7f6]" />
-              <span className="font-sans text-lg md:text-xl font-bold text-[#F8FAFC]">
+              <GitCommit className="w-5 h-5 text-secondary" />
+              <span className="font-sans text-lg md:text-xl font-bold text-text-primary">
                 Engineering Activity
               </span>
             </div>
-            <span className="font-mono text-xs font-semibold text-[#4cd7f6] px-2.5 py-1 bg-[#4cd7f6]/10 border border-[#4cd7f6]/20 rounded-md">
+            <span className="font-mono text-xs font-semibold text-secondary px-2.5 py-1 bg-secondary/10 border border-secondary/20 rounded-md">
               840+ Commits (2024)
             </span>
           </div>
 
           {/* Git Contribution Heatmap */}
-          <div className="p-4 bg-[#080e1d] border border-[#191f30] rounded-xl flex flex-col gap-3 overflow-x-auto">
-            <div className="flex items-center justify-between font-mono text-[11px] text-[#CBD5E1] px-1">
+          <div className="p-4 bg-surface-container-lowest border border-surface-container rounded-xl flex flex-col gap-3 overflow-x-auto">
+            <div className="flex items-center justify-between font-mono text-[11px] text-text-secondary px-1">
               <span>Jan</span>
               <span>Mar</span>
               <span>May</span>
@@ -62,7 +62,7 @@ export default function GitActivity() {
               <span>Dec</span>
             </div>
 
-            <div className="grid grid-flow-col grid-rows-5 gap-1.5 min-w-[440px] py-1">
+            <div className="grid grid-flow-col grid-rows-5 gap-1.5 min-w-110 py-1">
               {activityPattern.flatMap((col, colIdx) =>
                 col.map((val, rowIdx) => (
                   <span
@@ -74,28 +74,28 @@ export default function GitActivity() {
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-2 text-[11px] font-mono text-[#CBD5E1] pt-1">
+            <div className="flex items-center justify-end gap-2 text-[11px] font-mono text-text-secondary pt-1">
               <span>Less</span>
               <div className="flex gap-1">
-                <span className="w-2.5 h-2.5 rounded-sm bg-[#191f30]" />
-                <span className="w-2.5 h-2.5 rounded-sm bg-[#4f46e5]" />
-                <span className="w-2.5 h-2.5 rounded-sm bg-[#A855F7]" />
-                <span className="w-2.5 h-2.5 rounded-sm bg-[#4cd7f6]" />
+                <span className="w-2.5 h-2.5 rounded-sm bg-surface-container" />
+                <span className="w-2.5 h-2.5 rounded-sm bg-primary-container" />
+                <span className="w-2.5 h-2.5 rounded-sm bg-glow-purple" />
+                <span className="w-2.5 h-2.5 rounded-sm bg-secondary" />
               </div>
               <span>More</span>
             </div>
           </div>
 
-          <p className="font-sans text-xs text-[#c7c4d8] leading-relaxed">
+          <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
             Active contributor to open-source kanji stroke recognition libraries, lightweight web tools, and reactive Next.js state utilities.
           </p>
         </div>
 
         {/* Right: Core Engineering Tenets */}
-        <div className="lg:col-span-5 p-6 md:p-8 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md flex flex-col justify-between gap-6 hover:border-[#fbabff]/40 transition-all">
+        <div className="lg:col-span-5 p-6 md:p-8 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-6 hover:border-tertiary/40 transition-all">
           <div className="flex items-center gap-2.5">
-            <Brain className="w-5 h-5 text-[#fbabff]" />
-            <h3 className="font-sans text-lg md:text-xl font-bold text-[#F8FAFC]">
+            <Brain className="w-5 h-5 text-tertiary" />
+            <h3 className="font-sans text-lg md:text-xl font-bold text-text-primary">
               Engineering Tenets
             </h3>
           </div>
@@ -104,12 +104,12 @@ export default function GitActivity() {
             {profileData.tenets.map((tenet) => (
               <div
                 key={tenet.number}
-                className="p-3.5 rounded-xl bg-[#151b2c] border border-[#2f3446]/50 flex flex-col hover:border-[#4cd7f6]/30 transition-colors"
+                className="p-3.5 rounded-xl bg-surface-container-low border border-surface-variant/50 flex flex-col hover:border-secondary/30 transition-colors"
               >
-                <span className="font-sans text-sm font-bold text-[#F8FAFC]">
+                <span className="font-sans text-sm font-bold text-text-primary">
                   {tenet.title}
                 </span>
-                <span className="font-sans text-xs text-[#c7c4d8] leading-relaxed mt-1">
+                <span className="font-sans text-xs text-on-surface-variant leading-relaxed mt-1">
                   {tenet.description}
                 </span>
               </div>

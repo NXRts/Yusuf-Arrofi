@@ -46,7 +46,7 @@ export default function ProjectsPage() {
       <div className="flex items-center gap-2">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-[#c7c4d8] hover:text-[#4cd7f6] transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-secondary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Overview</span>
@@ -56,21 +56,21 @@ export default function ProjectsPage() {
       {/* Page Header */}
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs font-bold text-[#4cd7f6] tracking-wider">
+          <span className="font-mono text-xs font-bold text-secondary tracking-wider">
             PORTFOLIO REPOSITORY
           </span>
-          <span className="w-12 h-0.5 bg-[#4f46e5]" />
+          <span className="w-12 h-0.5 bg-primary-container" />
         </div>
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8FAFC] tracking-tight">
+        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
           Engineered Projects & Software Artifacts
         </h1>
-        <p className="font-sans text-base text-[#c7c4d8] max-w-2xl leading-relaxed">
+        <p className="font-sans text-base text-on-surface-variant max-w-2xl leading-relaxed">
           A comprehensive archive of production web applications, backend APIs, command-line utilities, and open-source contributions created by Yusuf Arrofi.
         </p>
       </div>
 
       {/* Search & Category Filter Controls */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-[#172133] border border-[#2f3446]">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-surface-elevated border border-surface-variant">
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           {categories.map((cat) => (
@@ -79,8 +79,8 @@ export default function ProjectsPage() {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
                 selectedCategory === cat.id
-                  ? "bg-[#4f46e5] text-white font-bold shadow-md shadow-[#4f46e5]/25 border border-[#4f46e5]"
-                  : "bg-[#151b2c] text-[#c7c4d8] border border-[#2f3446] hover:bg-[#24293b]"
+                  ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25 border border-primary-container"
+                  : "bg-surface-container-low text-on-surface-variant border border-surface-variant hover:bg-surface-container-high"
               }`}
             >
               {cat.label}
@@ -89,14 +89,14 @@ export default function ProjectsPage() {
         </div>
 
         {/* Search Input */}
-        <div className="relative min-w-[260px] sm:min-w-[320px]">
-          <Search className="w-4 h-4 text-[#918fa1] absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <div className="relative min-w-65 sm:min-w-[320px]">
+          <Search className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, tag, or stack..."
-            className="w-full bg-[#151b2c] border border-[#2f3446] text-[#F8FAFC] pl-10 pr-4 py-2 rounded-xl text-xs font-mono focus:outline-none focus:border-[#4cd7f6] placeholder:text-[#918fa1] transition-colors"
+            className="cyber-input w-full pl-10 pr-4 py-2 rounded-xl text-xs font-mono"
           />
         </div>
       </div>
@@ -104,11 +104,11 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
         <div className="py-20 text-center flex flex-col items-center gap-3">
-          <Layers className="w-12 h-12 text-[#918fa1]" />
-          <h3 className="font-sans text-lg font-bold text-[#F8FAFC]">
+          <Layers className="w-12 h-12 text-outline" />
+          <h3 className="font-sans text-lg font-bold text-text-primary">
             No projects matched your filter criteria
           </h3>
-          <p className="font-sans text-xs text-[#c7c4d8]">
+          <p className="font-sans text-xs text-on-surface-variant">
             Try searching for another keyword or reset the category filter.
           </p>
           <button
@@ -116,7 +116,7 @@ export default function ProjectsPage() {
               setSearchQuery("");
               setSelectedCategory("all");
             }}
-            className="mt-2 px-4 py-2 rounded-lg bg-[#24293b] text-xs font-mono text-[#4cd7f6] border border-[#2f3446]"
+            className="mt-2 px-4 py-2 rounded-lg bg-surface-container-high text-xs font-mono text-secondary border border-surface-variant"
           >
             Reset Filters
           </button>
@@ -126,42 +126,42 @@ export default function ProjectsPage() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="p-6 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md flex flex-col justify-between group hover:border-[#4cd7f6]/50 hover:shadow-xl hover:shadow-[#4cd7f6]/5 transition-all"
+              className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5 transition-all"
             >
               <div className="flex flex-col gap-4">
-                <div className="h-48 w-full rounded-xl overflow-hidden bg-[#080e1d] border border-[#2f3446]/60 relative">
+                <div className="h-48 w-full rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-[#172133]/90 border border-[#2f3446] font-mono text-xs text-[#4cd7f6]">
+                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary">
                     {project.category}
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-[#4cd7f6] uppercase tracking-wider">
+                  <span className="font-mono text-xs text-secondary uppercase tracking-wider">
                     {project.subtitle || project.category}
                   </span>
-                  <h3 className="font-sans text-xl font-bold text-[#F8FAFC]">
+                  <h3 className="font-sans text-xl font-bold text-text-primary">
                     {project.title}
                   </h3>
                 </div>
 
-                <p className="font-sans text-sm text-[#c7c4d8] line-clamp-3 leading-relaxed">
+                <p className="font-sans text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4 pt-6 border-t border-[#2f3446]/50 mt-6">
+              <div className="flex flex-col gap-4 pt-6 border-t border-surface-variant/50 mt-6">
                 {/* Tech Pills */}
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 bg-[#151b2c] border border-[#2f3446]/60 text-[#CBD5E1] font-mono text-[11px] rounded"
+                      className="px-2 py-0.5 bg-surface-container-low border border-surface-variant/60 text-text-secondary font-mono text-[11px] rounded"
                     >
                       {tag}
                     </span>
@@ -175,13 +175,13 @@ export default function ProjectsPage() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[#CBD5E1] hover:text-[#4cd7f6] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-text-secondary hover:text-secondary transition-colors"
                     >
                       <Code2 className="w-3.5 h-3.5" />
                       <span>Source Code</span>
                     </a>
                   ) : (
-                    <span className="text-xs font-mono text-[#918fa1]">Private Repository</span>
+                    <span className="text-xs font-mono text-outline">Private Repository</span>
                   )}
 
                   {project.link ? (
@@ -189,7 +189,7 @@ export default function ProjectsPage() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#4cd7f6]/10 hover:bg-[#4cd7f6]/20 border border-[#4cd7f6]/30 text-xs font-mono font-bold text-[#4cd7f6] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary/10 hover:bg-secondary/20 border border-secondary/30 text-xs font-mono font-bold text-secondary transition-colors"
                     >
                       <span>Live App</span>
                       <ExternalLink className="w-3.5 h-3.5" />
