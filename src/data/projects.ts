@@ -26,7 +26,7 @@ export const projectsData: Project[] = [
     title: "JapanApp (japan-mee.vercel.app)",
     subtitle: "AI + Japanese Learning Platform",
     description: "Interactive web application engineered for mastering Japanese Kanji, Hiragana, Katakana, and JLPT vocabulary. Features stroke order recognition, mnemonic memory quizzes, SRS scheduling, and clean responsive UI tailored for Japanese language learners worldwide.",
-    image: "https://images.unsplash.com/photo-1528164344705-475426879c0d?q=80&w=1200&auto=format&fit=crop",
+    image: "/assets/website/JapanApp.png",
     category: "flagship",
     featured: true,
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Jisho API", "Vite", "Vercel"],
