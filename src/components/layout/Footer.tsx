@@ -7,20 +7,20 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#080e1d] border-t border-[#191f30] py-12 md:py-16 text-[#dde2f9]">
+    <footer className="w-full bg-surface-container-lowest border-t border-surface-container py-12 md:py-16 text-[#dde2f9]">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col gap-12">
         {/* Upper Column */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div className="flex flex-col gap-3 max-w-xl">
             <div className="flex items-center gap-3">
-              <div className="px-2.5 py-2 bg-[#172133] border border-[#2f3446] rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.2)] flex items-center justify-center">
-                <span className="font-mono text-sm font-bold text-[#4cd7f6]">NX</span>
+              <div className="px-2.5 py-2 bg-surface-elevated border border-surface-variant rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.2)] flex items-center justify-center">
+                <span className="font-mono text-sm font-bold text-secondary">NX</span>
               </div>
-              <span className="font-sans text-xl font-bold tracking-tight text-[#F8FAFC]">
+              <span className="font-sans text-xl font-bold tracking-tight text-text-primary">
                 MUHAMMAD YUSUF ARROFI
               </span>
             </div>
-            <p className="font-sans text-sm text-[#c7c4d8] leading-relaxed">
+            <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
               NXRts — 19 y/o Full-Stack & Go Developer. Creator of JapanApp, Aria2App, and active open-source contributor from Surakarta, Central Java, Indonesia.
             </p>
           </div>
@@ -30,7 +30,7 @@ export default function Footer() {
             {["Next.js / React", "Go (Golang)", "Python / PyQt6", "Arch Linux", "PostgreSQL", "Tailwind CSS"].map((skill) => (
               <span
                 key={skill}
-                className="px-3.5 py-1.5 bg-[#172133] border border-[#2f3446] rounded-full font-mono text-xs text-[#4cd7f6] shadow-[0_0_8px_rgba(76,215,246,0.1)] hover:border-[#4cd7f6]/50 transition-colors"
+                className="px-3.5 py-1.5 bg-surface-elevated border border-surface-variant rounded-full font-mono text-xs text-secondary shadow-[0_0_8px_rgba(76,215,246,0.1)] hover:border-secondary/50 transition-colors"
               >
                 {skill}
               </span>
@@ -39,11 +39,11 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px w-full bg-[#191f30]" />
+        <div className="h-px w-full bg-surface-container" />
 
         {/* Lower Column */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#918fa1]">
+          <div className="flex items-center gap-2 text-xs font-mono text-outline">
             <span>© {currentYear} Muhammad Yusuf Arrofi (NXRts). Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-[#fbabff] fill-current" />
             <span>in Surakarta, Indonesia.</span>
@@ -56,7 +56,7 @@ export default function Footer() {
                 href={profileData.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#172133] border border-[#2f3446] text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/50 transition-all"
+                className="p-2 rounded-lg bg-surface-elevated border border-surface-variant text-on-surface-variant hover:text-secondary hover:border-secondary/50 transition-all"
                 title="GitHub"
               >
                 <Terminal className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function Footer() {
                 href={profileData.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#172133] border border-[#2f3446] text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/50 transition-all"
+                className="p-2 rounded-lg bg-surface-elevated border border-surface-variant text-on-surface-variant hover:text-secondary hover:border-secondary/50 transition-all"
                 title="LinkedIn"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function Footer() {
                 href={profileData.socials.linksPortal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#172133] border border-[#2f3446] text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/50 transition-all"
+                className="p-2 rounded-lg bg-surface-elevated border border-surface-variant text-on-surface-variant hover:text-secondary hover:border-secondary/50 transition-all"
                 title="Links Portal"
               >
                 <Share2 className="w-4 h-4" />
@@ -88,7 +88,7 @@ export default function Footer() {
                 href={profileData.socials.portfolioLive}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#172133] border border-[#2f3446] text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/50 transition-all"
+                className="p-2 rounded-lg bg-surface-elevated border border-surface-variant text-on-surface-variant hover:text-secondary hover:border-secondary/50 transition-all"
                 title="Live Mirror"
               >
                 <ShieldCheck className="w-4 h-4" />
@@ -98,7 +98,7 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Back to top"
-              className="flex items-center gap-2 px-3 py-2 bg-[#172133] hover:bg-[#24293b] border border-[#2f3446] hover:border-[#4cd7f6]/50 text-[#c7c4d8] hover:text-[#F8FAFC] rounded-lg transition-all text-xs font-mono uppercase tracking-wider"
+              className="flex items-center gap-2 px-3 py-2 bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-on-surface-variant hover:text-text-primary rounded-lg transition-all text-xs font-mono uppercase tracking-wider"
             >
               <span>Top</span>
               <ArrowUp className="w-3.5 h-3.5" />

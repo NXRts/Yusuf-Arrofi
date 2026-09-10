@@ -23,16 +23,16 @@ export default function Capabilities() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-[#4cd7f6] tracking-wider">
+            <span className="font-mono text-xs font-bold text-secondary tracking-wider">
               01 // CAPABILITIES
             </span>
-            <span className="w-12 h-0.5 bg-[#4f46e5]" />
+            <span className="w-12 h-0.5 bg-primary-container" />
           </div>
-          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-[#F8FAFC]">
+          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
             Engineered for Precision & Resilience
           </h2>
         </div>
-        <p className="font-sans text-sm text-[#c7c4d8] max-w-md">
+        <p className="font-sans text-sm text-on-surface-variant max-w-md">
           A balanced toolchain designed to build lightning-fast web client layers backed by highly concurrent distributed services.
         </p>
       </div>
@@ -42,30 +42,30 @@ export default function Capabilities() {
         {profileData.capabilities.map((item) => (
           <div
             key={item.id}
-            className="p-6 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md flex flex-col justify-between group hover:border-[#4cd7f6]/40 hover:shadow-xl hover:shadow-[#4cd7f6]/5 transition-all"
+            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 hover:shadow-xl hover:shadow-secondary/5 transition-all"
           >
             <div className="flex flex-col gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#24293b] border border-[#2f3446] flex items-center justify-center shadow-inner">
+              <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-surface-variant flex items-center justify-center shadow-inner">
                 {getIcon(item.iconName, item.accentColor)}
               </div>
               <div className="flex flex-col">
-                <h3 className="font-sans text-xl font-bold text-[#F8FAFC]">
+                <h3 className="font-sans text-xl font-bold text-text-primary">
                   {item.title}
                 </h3>
-                <span className="font-mono text-xs text-[#CBD5E1]">
+                <span className="font-mono text-xs text-text-secondary">
                   {item.subtitle}
                 </span>
               </div>
-              <p className="font-sans text-sm text-[#c7c4d8] leading-relaxed">
+              <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
                 {item.description}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2 pt-6 border-t border-[#2f3446]/40 mt-6">
+            <div className="flex flex-wrap gap-2 pt-6 border-t border-surface-variant/40 mt-6">
               {item.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2.5 py-1 bg-[#151b2c] border border-[#2f3446]/60 rounded-md font-mono text-xs text-[#c3c0ff]"
+                  className="px-2.5 py-1 bg-surface-container-low border border-surface-variant/60 rounded-md font-mono text-xs text-primary"
                 >
                   {tag}
                 </span>

@@ -7,25 +7,25 @@ export default function StatsRow() {
       value: profileData.stats.publicRepos,
       label: "Public Repos",
       subtitle: "GitHub Open Source",
-      accent: "text-[#F8FAFC]",
+      accent: "text-text-primary",
     },
     {
       value: profileData.stats.shippedApps,
       label: "Shipped Apps",
       subtitle: "Web & Desktop GUI",
-      accent: "text-[#c3c0ff]",
+      accent: "text-primary",
     },
     {
       value: profileData.stats.passionate,
       label: "Passionate",
       subtitle: "Continuous Learner",
-      accent: "text-[#fbabff]",
+      accent: "text-tertiary",
     },
     {
       value: profileData.stats.appUsers,
       label: "App Users",
       subtitle: "JapanApp & Web Suites",
-      accent: "text-[#4cd7f6]",
+      accent: "text-secondary",
     },
   ];
 
@@ -35,15 +35,15 @@ export default function StatsRow() {
         {stats.map((stat, idx) => (
           <div
             key={idx}
-            className="p-6 rounded-2xl bg-[#172133] border border-[#2f3446] shadow-md hover:border-[#4cd7f6]/40 transition-all flex flex-col"
+            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md hover:border-secondary/40 transition-all flex flex-col"
           >
             <span className={`font-sans text-3xl sm:text-4xl font-extrabold tracking-tight ${stat.accent}`}>
               {stat.value}
             </span>
-            <span className="font-mono text-xs font-bold text-[#4cd7f6] uppercase tracking-wider mt-3">
+            <span className="font-mono text-xs font-bold text-secondary uppercase tracking-wider mt-3">
               {stat.label}
             </span>
-            <span className="font-sans text-xs text-[#CBD5E1] mt-0.5">
+            <span className="font-sans text-xs text-text-secondary mt-0.5">
               {stat.subtitle}
             </span>
           </div>

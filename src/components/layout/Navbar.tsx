@@ -43,30 +43,30 @@ export default function Navbar() {
         {/* Brand Logo & Handle */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="px-2.5 py-2 bg-[#172133] border border-[#2f3446] rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] flex items-center justify-center group-hover:border-[#4cd7f6]/50 transition-colors">
-              <span className="font-mono text-sm font-bold text-[#4cd7f6]">NX</span>
+            <div className="px-2.5 py-2 bg-surface-elevated border border-surface-variant rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] flex items-center justify-center group-hover:border-secondary/50 transition-colors">
+              <span className="font-mono text-sm font-bold text-secondary">NX</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-sans text-lg font-extrabold text-[#F8FAFC] tracking-tight group-hover:text-[#c3c0ff] transition-colors">
-                YUSUF<span className="text-[#4cd7f6]">.DEV</span>
+              <span className="font-sans text-lg font-extrabold text-text-primary tracking-tight group-hover:text-primary transition-colors">
+                YUSUF<span className="text-secondary">.DEV</span>
               </span>
-              <span className="font-mono text-[11px] font-semibold text-[#4cd7f6] uppercase tracking-wider">
+              <span className="font-mono text-[11px] font-semibold text-secondary uppercase tracking-wider">
                 NXRts // フルスタック
               </span>
             </div>
           </Link>
 
           {/* Status Badge */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 bg-[#172133]/90 border border-[#4cd7f6]/20 rounded-full shadow-[0_0_10px_rgba(76,215,246,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-[#4cd7f6] animate-pulse"></span>
-            <span className="font-mono text-xs font-semibold text-[#4cd7f6]">
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1 bg-surface-elevated/90 border border-secondary/20 rounded-full shadow-[0_0_10px_rgba(76,215,246,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span className="font-mono text-xs font-semibold text-secondary">
               AVAILABLE FOR HIRE
             </span>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 p-1.5 bg-[#172133]/60 border border-[#2f3446]/60 rounded-xl">
+        <nav className="hidden lg:flex items-center gap-1 p-1.5 bg-surface-elevated/60 border border-surface-variant/60 rounded-xl">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -75,8 +75,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`px-3.5 py-1.5 rounded-lg text-sm transition-all font-medium ${
                   active
-                    ? "bg-[#4f46e5] text-white font-bold shadow-md shadow-[#4f46e5]/25"
-                    : "text-[#c7c4d8] hover:bg-[#24293b] hover:text-[#F8FAFC]"
+                    ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25"
+                    : "text-on-surface-variant hover:bg-surface-container-high hover:text-text-primary"
                 }`}
               >
                 {link.name}
@@ -92,7 +92,7 @@ export default function Navbar() {
             href={profileData.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-lg bg-[#172133] border border-[#2f3446] flex items-center justify-center text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/40 hover:bg-[#24293b] transition-all"
+            className="w-10 h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-secondary hover:border-secondary/40 hover:bg-surface-container-high transition-all"
             title="GitHub Profile"
           >
             <Code2 className="w-5 h-5" />
@@ -102,14 +102,14 @@ export default function Navbar() {
             href={profileData.socials.linksPortal}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-lg bg-[#172133] border border-[#2f3446] flex items-center justify-center text-[#c7c4d8] hover:text-[#4cd7f6] hover:border-[#4cd7f6]/40 hover:bg-[#24293b] transition-all"
+            className="w-10 h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-secondary hover:border-secondary/40 hover:bg-surface-container-high transition-all"
             title="Links Portal"
           >
             <ExternalLink className="w-4 h-4" />
           </a>
           <Link
             href="/#contact"
-            className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-[#4f46e5] hover:bg-[#4338ca] text-white font-medium text-xs shadow-md shadow-[#4f46e5]/20 transition-all"
+            className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-primary-container hover:opacity-90 text-white font-medium text-xs shadow-md shadow-primary-container/20 transition-all"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Contact</span>
@@ -118,7 +118,7 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-10 h-10 rounded-lg bg-[#172133] border border-[#2f3446] flex items-center justify-center text-[#c7c4d8] hover:text-white"
+            className="lg:hidden w-10 h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -128,10 +128,10 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-[#2f3446] bg-[#0d1323]/98 px-6 py-5 flex flex-col gap-3 backdrop-blur-2xl">
-          <div className="flex items-center gap-2 pb-2 mb-2 border-b border-[#2f3446]/60">
-            <span className="w-2 h-2 rounded-full bg-[#4cd7f6] animate-pulse"></span>
-            <span className="font-mono text-xs text-[#4cd7f6]">
+        <div className="lg:hidden border-t border-surface-variant bg-surface/98 px-6 py-5 flex flex-col gap-3 backdrop-blur-2xl">
+          <div className="flex items-center gap-2 pb-2 mb-2 border-b border-surface-variant/60">
+            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span className="font-mono text-xs text-secondary">
               STATUS: {profileData.status.label}
             </span>
           </div>
@@ -142,20 +142,20 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive(link.href)
-                  ? "bg-[#4f46e5] text-white font-bold"
-                  : "text-[#c7c4d8] hover:bg-[#172133] hover:text-white"
+                  ? "bg-primary-container text-white font-bold"
+                  : "text-on-surface-variant hover:bg-surface-elevated hover:text-white"
               }`}
             >
               {link.name}
             </Link>
           ))}
-          <div className="pt-3 border-t border-[#2f3446]/60 flex items-center justify-between">
-            <span className="font-mono text-xs text-[#918fa1]">Muhammad Yusuf Arrofi</span>
+          <div className="pt-3 border-t border-surface-variant/60 flex items-center justify-between">
+            <span className="font-mono text-xs text-outline">Muhammad Yusuf Arrofi</span>
             <a
               href={profileData.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono text-[#4cd7f6] hover:underline flex items-center gap-1"
+              className="text-xs font-mono text-secondary hover:underline flex items-center gap-1"
             >
               <span>GitHub</span>
               <ExternalLink className="w-3 h-3" />

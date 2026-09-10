@@ -30,56 +30,56 @@ export default function ContactTerminal() {
 
   return (
     <section id="contact" className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-16 flex flex-col gap-8">
-      <div className="p-6 md:p-12 rounded-3xl bg-[#172133] border border-[#2f3446] shadow-2xl relative overflow-hidden backdrop-blur-xl">
+      <div className="p-6 md:p-12 rounded-3xl bg-surface-elevated border border-surface-variant shadow-2xl relative overflow-hidden backdrop-blur-xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Contact Left Column */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-8">
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-[#4cd7f6] tracking-wider">
+                <span className="font-mono text-xs font-bold text-secondary tracking-wider">
                   04 // COLLABORATE
                 </span>
-                <span className="w-10 h-0.5 bg-[#4cd7f6]" />
+                <span className="w-10 h-0.5 bg-secondary" />
               </div>
 
-              <h2 className="font-sans text-2xl sm:text-3xl font-bold text-[#F8FAFC]">
+              <h2 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
                 Let's Build Great Web & Software Products Together
               </h2>
 
-              <p className="font-sans text-sm text-[#c7c4d8] leading-relaxed">
+              <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
                 Open to full-stack engineering roles, contract development, and high-impact open source collaboration. Reach out directly or connect through my networks.
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
-              <div className="p-4 rounded-xl bg-[#151b2c] border border-[#2f3446]/60 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[#24293b] flex items-center justify-center text-[#4cd7f6] shrink-0">
+              <div className="p-4 rounded-xl bg-surface-container-low border border-surface-variant/60 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
                   <Globe className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="font-mono text-[11px] text-[#CBD5E1] uppercase">
+                  <span className="font-mono text-[11px] text-text-secondary uppercase">
                     Location & Status
                   </span>
-                  <span className="font-sans text-sm font-semibold text-[#F8FAFC] truncate">
+                  <span className="font-sans text-sm font-semibold text-text-primary truncate">
                     {profileData.location}
                   </span>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#151b2c] border border-[#2f3446]/60 flex items-center justify-between gap-3">
+              <div className="p-4 rounded-xl bg-surface-container-low border border-surface-variant/60 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-lg bg-[#24293b] flex items-center justify-center text-[#c3c0ff] shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
                     <Link2 className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="font-mono text-[11px] text-[#CBD5E1] uppercase">
+                    <span className="font-mono text-[11px] text-text-secondary uppercase">
                       Links Portal
                     </span>
                     <a
                       href={profileData.socials.linksPortal}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-[#4cd7f6] hover:underline truncate"
+                      className="font-mono text-xs text-secondary hover:underline truncate"
                     >
                       links-mee.vercel.app
                     </a>
@@ -89,7 +89,7 @@ export default function ContactTerminal() {
                   href={profileData.socials.linksPortal}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-[#24293b] hover:bg-[#33394a] rounded-lg text-[#F8FAFC] font-mono text-xs transition-colors shrink-0"
+                  className="px-3 py-1.5 bg-surface-container-high hover:bg-surface-bright rounded-lg text-text-primary font-mono text-xs transition-colors shrink-0"
                 >
                   Visit
                 </a>
@@ -98,41 +98,41 @@ export default function ContactTerminal() {
           </div>
 
           {/* Contact Right Column: Interactive Terminal Form */}
-          <div className="lg:col-span-7 bg-[#151b2c]/90 border border-[#2f3446] p-6 md:p-8 rounded-2xl shadow-inner flex flex-col gap-4">
+          <div className="lg:col-span-7 bg-surface-container-low/90 border border-surface-variant p-6 md:p-8 rounded-2xl shadow-inner flex flex-col gap-4">
             {/* Terminal Window Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#2f3446]/60">
+            <div className="flex items-center justify-between pb-3 border-b border-surface-variant/60">
               <div className="flex items-center gap-3">
                 <div className="flex gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-[#ffb4ab]/80" />
-                  <span className="w-3 h-3 rounded-full bg-[#acedff]/80" />
-                  <span className="w-3 h-3 rounded-full bg-[#4cd7f6]/80" />
+                  <span className="w-3 h-3 rounded-full bg-secondary-fixed/80" />
+                  <span className="w-3 h-3 rounded-full bg-secondary/80" />
                 </div>
-                <span className="font-mono text-xs text-[#CBD5E1] flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-[#4cd7f6]" />
+                <span className="font-mono text-xs text-text-secondary flex items-center gap-1.5">
+                  <Terminal className="w-3.5 h-3.5 text-secondary" />
                   dispatch-message.sh
                 </span>
               </div>
-              <span className="font-mono text-[11px] text-[#918fa1]">
+              <span className="font-mono text-[11px] text-outline">
                 UTF-8 / TLS Encrypted
               </span>
             </div>
 
             {submitted ? (
               <div className="py-12 flex flex-col items-center text-center gap-4 animate-in fade-in zoom-in-95">
-                <div className="w-14 h-14 rounded-full bg-[#4cd7f6]/10 border border-[#4cd7f6]/40 flex items-center justify-center text-[#4cd7f6]">
+                <div className="w-14 h-14 rounded-full bg-secondary/10 border border-secondary/40 flex items-center justify-center text-secondary">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="font-sans text-xl font-bold text-[#F8FAFC]">
+                  <h3 className="font-sans text-xl font-bold text-text-primary">
                     Message Transmitted Successfully!
                   </h3>
-                  <p className="font-sans text-sm text-[#c7c4d8] max-w-sm">
+                  <p className="font-sans text-sm text-on-surface-variant max-w-sm">
                     Thank you. Yusuf has received your transmission and typically responds within 24 hours.
                   </p>
                 </div>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-2 px-4 py-2 bg-[#24293b] hover:bg-[#33394a] rounded-lg text-xs font-mono text-[#4cd7f6] border border-[#2f3446] transition-colors"
+                  className="mt-2 px-4 py-2 bg-surface-container-high hover:bg-surface-bright rounded-lg text-xs font-mono text-secondary border border-surface-variant transition-colors"
                 >
                   Send Another Transmission
                 </button>
@@ -141,7 +141,7 @@ export default function ContactTerminal() {
               <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-[11px] font-bold text-[#CBD5E1] uppercase tracking-wider">
+                    <label className="font-mono text-[11px] font-bold text-text-secondary uppercase tracking-wider">
                       Your Name
                     </label>
                     <input
@@ -150,12 +150,12 @@ export default function ContactTerminal() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Kenjiro Sato"
-                      className="w-full bg-[#172133] border border-[#2f3446] text-[#F8FAFC] px-4 py-2.5 rounded-lg focus:outline-none focus:border-[#4cd7f6] font-sans text-sm placeholder:text-[#918fa1] transition-colors"
+                      className="cyber-input-elevated w-full px-4 py-2.5 rounded-lg font-sans text-sm"
                     />
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-[11px] font-bold text-[#CBD5E1] uppercase tracking-wider">
+                    <label className="font-mono text-[11px] font-bold text-text-secondary uppercase tracking-wider">
                       Email Address
                     </label>
                     <input
@@ -164,14 +164,14 @@ export default function ContactTerminal() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="w-full bg-[#172133] border border-[#2f3446] text-[#F8FAFC] px-4 py-2.5 rounded-lg focus:outline-none focus:border-[#4cd7f6] font-sans text-sm placeholder:text-[#918fa1] transition-colors"
+                      className="cyber-input-elevated w-full px-4 py-2.5 rounded-lg font-sans text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Project / Role Type Selector */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-mono text-[11px] font-bold text-[#CBD5E1] uppercase tracking-wider">
+                  <label className="font-mono text-[11px] font-bold text-text-secondary uppercase tracking-wider">
                     Project / Role Type
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -182,8 +182,8 @@ export default function ContactTerminal() {
                         onClick={() => setProjectType(type)}
                         className={`px-3 py-2 rounded-lg text-center font-mono text-xs transition-all ${
                           projectType === type
-                            ? "bg-[#4f46e5] text-white font-bold border border-[#4f46e5] shadow-md shadow-[#4f46e5]/25"
-                            : "bg-[#172133] text-[#c7c4d8] border border-[#2f3446] hover:bg-[#24293b]"
+                            ? "bg-primary-container text-white font-bold border border-primary-container shadow-md shadow-primary-container/25"
+                            : "bg-surface-elevated text-on-surface-variant border border-surface-variant hover:bg-surface-container-high"
                         }`}
                       >
                         {type}
@@ -193,7 +193,7 @@ export default function ContactTerminal() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-mono text-[11px] font-bold text-[#CBD5E1] uppercase tracking-wider">
+                  <label className="font-mono text-[11px] font-bold text-text-secondary uppercase tracking-wider">
                     Project Details & Objectives
                   </label>
                   <textarea
@@ -202,18 +202,18 @@ export default function ContactTerminal() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Describe your architecture goals, timelines, or role scope..."
-                    className="w-full bg-[#172133] border border-[#2f3446] text-[#F8FAFC] p-4 rounded-lg focus:outline-none focus:border-[#4cd7f6] font-sans text-sm placeholder:text-[#918fa1] resize-none transition-colors"
+                    className="cyber-input-elevated w-full p-4 rounded-lg font-sans text-sm resize-none"
                   />
                 </div>
 
                 <div className="flex items-center justify-between pt-2">
-                  <span className="font-mono text-[11px] text-[#CBD5E1]">
+                  <span className="font-mono text-[11px] text-text-secondary">
                     Typical response time: &lt; 24h
                   </span>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-2.5 bg-gradient-to-r from-[#4f46e5] to-[#A855F7] text-white font-sans text-sm font-bold rounded-lg shadow-lg shadow-[#A855F7]/25 hover:opacity-95 transition-all flex items-center gap-2 disabled:opacity-50"
+                    className="px-6 py-2.5 bg-linear-to-r from-primary-container to-glow-purple text-white font-sans text-sm font-bold rounded-lg shadow-lg shadow-glow-purple/25 hover:opacity-95 transition-all flex items-center gap-2 disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                     <span>{isSubmitting ? "Transmitting..." : "Transmit Message"}</span>
