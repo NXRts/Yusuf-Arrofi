@@ -12,53 +12,25 @@ export default function TelemetryCard() {
   const [reqSpeed, setReqSpeed] = useState(profileData.nodeStatus.reqSpeed);
   const [isLive, setIsLive] = useState(true);
 
-  // Realtime Live Latency Telemetry via /api/ping
+  // Pure Client-Side Simulation (Zero Network / Zero Server Load)
   useEffect(() => {
-    let isMounted = true;
+    const interval = setInterval(() => {
+      // Pause when tab is not active to save client CPU & battery
+      if (typeof document !== "undefined" && document.hidden) return;
 
-    const measureLatency = async () => {
-      const t0 = performance.now();
-      try {
-        const res = await fetch("/api/ping", {
-          method: "HEAD",
-          cache: "no-store",
-        });
-        const rtt = performance.now() - t0;
-        if (!isMounted) return;
+      // Realistic smooth kernel latency micro-fluctuation
+      const delta = (Math.random() - 0.48) * 1.6;
+      setLatency((prev) => {
+        const nextVal = +(Math.max(10.5, Math.min(16.8, prev + delta))).toFixed(1);
+        setHistory((hist) => [...hist.slice(1), nextVal]);
+        return nextVal;
+      });
 
-        let displayVal: number;
-        if (res.ok) {
-          if (rtt < 8) {
-            // Localhost fast response: simulate authentic low-latency kernel jitter
-            const jitter = ((t0 % 100) / 100) * 4.2;
-            displayVal = +(12.4 + jitter).toFixed(1);
-          } else {
-            displayVal = +rtt.toFixed(1);
-          }
-        } else {
-          displayVal = +(13.5 + Math.random() * 3.5).toFixed(1);
-        }
+      // Subtle req/sec throughput fluctuation
+      setReqSpeed((4.72 + Math.random() * 0.24).toFixed(2) + "k/sec");
+    }, 2400);
 
-        setLatency(displayVal);
-        setHistory((prev) => [...prev.slice(1), displayVal]);
-        setReqSpeed((4.75 + Math.random() * 0.22).toFixed(2) + "k/sec");
-        setIsLive(true);
-      } catch {
-        if (!isMounted) return;
-        const fallback = +(13.8 + (Math.random() - 0.5) * 2).toFixed(1);
-        setLatency(fallback);
-        setHistory((prev) => [...prev.slice(1), fallback]);
-      }
-    };
-
-    // Initial ping
-    measureLatency();
-    const interval = setInterval(measureLatency, 2000);
-
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   // Compute smooth dynamic bezier waveform that never clips
