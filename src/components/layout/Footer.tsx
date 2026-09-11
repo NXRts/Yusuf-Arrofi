@@ -34,6 +34,7 @@ export default function Footer() {
     { name: "JapanApp (Language LMS)", href: "https://japan-mee.vercel.app/", isExternal: true },
     { name: "FocEase (Zen Dashboard)", href: "https://github.com/NXRts/FocEase", isExternal: true },
     { name: "Aria2App (Downloader GUI)", href: "https://github.com/NXRts/Aria2App", isExternal: true },
+    { name: "Prameswari EO (Tour & Outbound)", href: "https://prameswari-eo.vercel.app/", isExternal: true },
     { name: "Periodik (Chemistry SPA)", href: "https://periodik-two.vercel.app/", isExternal: true },
     { name: "Smart Compressor", href: "https://kompres.vercel.app/", isExternal: true },
     { name: "RemoveBG (HD Isolation)", href: "https://remove-bg-ebon.vercel.app/", isExternal: true },
