@@ -1,21 +1,15 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
-import { 
-  Search, 
-  ExternalLink, 
-  Code2, 
-  ArrowLeft, 
-  Filter, 
-  Sparkles,
-  Layers
-} from "lucide-react";
 import { projectsData, Project } from "@/data/projects";
+import ProjectDetailModal from "@/components/projects/ProjectDetailModal";
+import { ArrowLeft, ArrowRight, Layers, Search } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories = [
     { id: "all", label: "All Projects" },
@@ -65,7 +59,9 @@ export default function ProjectsPage() {
           Engineered Projects & Software Artifacts
         </h1>
         <p className="font-sans text-base text-on-surface-variant max-w-2xl leading-relaxed">
-          A comprehensive archive of production web applications, backend APIs, command-line utilities, and open-source contributions created by Yusuf Arrofi.
+          A comprehensive archive of production web applications, backend APIs,
+          command-line utilities, and open-source contributions created by Yusuf
+          Arrofi.
         </p>
       </div>
 
@@ -129,20 +125,21 @@ export default function ProjectsPage() {
               className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5 transition-all"
             >
               <div className="flex flex-col gap-4">
-                <div className="h-48 w-full rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
+                {/* Image Display - Full edge-to-edge */}
+                <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary">
+                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary backdrop-blur-xs">
                     {project.category}
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-secondary uppercase tracking-wider">
+                  <span className="font-mono text-xs text-secondary uppercase tracking-wider font-semibold">
                     {project.subtitle || project.category}
                   </span>
                   <h3 className="font-sans text-xl font-bold text-text-primary">
@@ -168,39 +165,35 @@ export default function ProjectsPage() {
                   ))}
                 </div>
 
-                {/* Actions */}
+                {/* Card Action Footer */}
                 <div className="flex items-center justify-between pt-1">
-                  {project.github ? (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-text-secondary hover:text-secondary transition-colors"
-                    >
-                      <Code2 className="w-3.5 h-3.5" />
-                      <span>Source Code</span>
-                    </a>
-                  ) : (
-                    <span className="text-xs font-mono text-outline">Private Repository</span>
-                  )}
+                  <span className="text-[11px] font-mono text-outline uppercase tracking-wider">
+                    {project.metrics?.platform || project.category}
+                  </span>
 
-                  {project.link ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary/10 hover:bg-secondary/20 border border-secondary/30 text-xs font-mono font-bold text-secondary transition-colors"
-                    >
-                      <span>Live App</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  ) : null}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(project);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-surface text-secondary border border-surface-variant/80 hover:border-secondary text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer group/btn"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       )}
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 }

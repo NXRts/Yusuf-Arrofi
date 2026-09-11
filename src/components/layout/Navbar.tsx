@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -18,7 +18,21 @@ import { profileData } from "@/data/profile";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState("");
   const pathname = usePathname();
+
+  useEffect(() => {
+    setCurrentHash(window.location.hash);
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("popstate", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handleHashChange);
+    };
+  }, []);
 
   const navLinks = [
     { name: "About", href: "/#about" },
@@ -32,7 +46,7 @@ export default function Navbar() {
 
   const isActive = (href: string) => {
     if (href.startsWith("/#")) {
-      return pathname === "/" && typeof window !== "undefined" && window.location.hash === href.replace("/", "");
+      return pathname === "/" && currentHash === href.replace("/", "");
     }
     return pathname === href || (href !== "/" && pathname.startsWith(href));
   };
@@ -73,6 +87,11 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={() => {
+                  if (link.href.startsWith("/#")) {
+                    setCurrentHash(link.href.replace("/", ""));
+                  }
+                }}
                 className={`px-3.5 py-1.5 rounded-lg text-sm transition-all font-medium ${
                   active
                     ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25"
@@ -139,7 +158,12 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (link.href.startsWith("/#")) {
+                  setCurrentHash(link.href.replace("/", ""));
+                }
+              }}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                 isActive(link.href)
                   ? "bg-primary-container text-white font-bold"
