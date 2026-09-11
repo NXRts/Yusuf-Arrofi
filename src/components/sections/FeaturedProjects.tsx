@@ -235,7 +235,7 @@ export default function FeaturedProjects() {
           href="/projects"
           className="px-6 py-3 rounded-xl bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-primary font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
         >
-          <span>Explore All 15+ Engineered Projects</span>
+          <span>Explore All {projectsData.length} Engineered Projects</span>
           <ArrowRight className="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>

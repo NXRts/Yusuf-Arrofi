@@ -53,7 +53,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-[#0d1323]/85 backdrop-blur-xl border-b border-[#2f3446]/40 shadow-[0_1px_8px_rgba(0,0,0,0.2)]">
-      <div className="h-20 max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
+      <div className="h-20 w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex items-center justify-between gap-4">
         {/* Brand Logo & Handle */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3 group">
