@@ -40,7 +40,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-[#080e1d] border-t border-surface-variant/40 pt-16 pb-12 text-[#dde2f9]">
+    <footer className="w-full bg-surface-container-low border-t border-surface-variant/40 pt-16 pb-12 text-[#dde2f9]">
       <div className="w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex flex-col gap-14">
         {/* Main Multi-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 xl:gap-14">

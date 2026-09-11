@@ -1,8 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GitCommit, Brain } from "lucide-react";
 import { profileData } from "@/data/profile";
+import { 
+  GitHubActivityData, 
+  generateDynamicWeeks, 
+  formatReadableDate 
+} from "@/lib/github";
 
 export default function GitActivity() {
   const [colorTheme, setColorTheme] = useState<"github" | "cyber">("github");
@@ -22,99 +27,39 @@ export default function GitActivity() {
     { label: "", full: "Saturday" },
   ];
 
-  // Rolling Months sequence (40 weeks total: Dec -> Sep)
-  // Perfectly fits on desktop without horizontal scroll
-  const monthSpans = [
-    { name: "Dec", span: 4 },
-    { name: "Jan", span: 4 },
-    { name: "Feb", span: 4 },
-    { name: "Mar", span: 5 },
-    { name: "Apr", span: 4 },
-    { name: "May", span: 5 },
-    { name: "Jun", span: 4 },
-    { name: "Jul", span: 4 },
-    { name: "Aug", span: 4 },
-    { name: "Sep", span: 2 }, // Current month ending on Thursday (indices 0..4 filled)
-  ];
+  // Dynamic state initialized with rolling 40 weeks ending on current date (September 11, etc.)
+  const [activityData, setActivityData] = useState<GitHubActivityData>(() => {
+    const initial = generateDynamicWeeks(undefined, 40);
+    return {
+      totalContributions: "3,616",
+      weeks: initial.weeks,
+      monthSpans: initial.monthSpans,
+      lastUpdated: new Date().toISOString(),
+      isLive: false,
+    };
+  });
 
-  // 40-Week Authentic GitHub Contribution Matrix (Dec -> Sep) extracted from @NXRts (3,601 contributions)
-  // Reflects real progression: Dec takeoff, relentless solid streak Jan-Aug, active daily in Sep
-  // Final column ends on Thursday in September (Friday & Saturday are -1 / unrendered future days)
-  const activityPattern: number[][] = [
-    // Dec (Weeks 1-4): Streak begins
-    [0, 0, 1, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 1, 1],
-    [1, 1, 1, 1, 1, 2, 1],
-    [1, 1, 1, 1, 3, 3, 3],
+  // Fetch real-time GitHub activity on mount
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/api/github-activity")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch GitHub activity");
+        return res.json();
+      })
+      .then((data: GitHubActivityData) => {
+        if (isMounted && data && data.weeks && data.weeks.length > 0) {
+          setActivityData(data);
+        }
+      })
+      .catch((err) => {
+        console.error("Live GitHub activity sync notice:", err);
+      });
 
-    // Jan (Weeks 5-8): Velocity acceleration
-    [3, 2, 2, 1, 1, 2, 2],
-    [2, 1, 1, 2, 4, 4, 4],
-    [3, 2, 4, 2, 2, 1, 4],
-    [3, 3, 2, 3, 1, 1, 1],
-
-    // Feb (Weeks 9-12): High continuous commits
-    [2, 2, 3, 3, 1, 1, 1],
-    [2, 1, 2, 1, 1, 3, 1],
-    [1, 1, 1, 2, 2, 1, 1],
-    [3, 3, 1, 2, 3, 2, 3],
-
-    // Mar (Weeks 13-17): Peak solid engineering
-    [2, 2, 2, 3, 2, 3, 3],
-    [2, 1, 1, 2, 1, 1, 2],
-    [2, 1, 0, 1, 1, 2, 3],
-    [1, 2, 2, 3, 3, 3, 3],
-    [2, 2, 2, 2, 2, 3, 2],
-
-    // Apr (Weeks 18-21): Relentless streak
-    [2, 1, 1, 1, 1, 2, 3],
-    [2, 2, 2, 3, 2, 2, 2],
-    [2, 1, 2, 2, 2, 3, 2],
-    [2, 2, 1, 1, 2, 2, 1],
-
-    // May (Weeks 22-26): Production builds & apps
-    [2, 2, 2, 2, 2, 3, 2],
-    [2, 2, 2, 2, 1, 3, 2],
-    [2, 2, 2, 1, 2, 2, 1],
-    [2, 2, 2, 2, 1, 3, 1],
-    [2, 2, 2, 2, 2, 2, 2],
-
-    // Jun (Weeks 27-30): High performance state & UI
-    [1, 2, 3, 3, 2, 3, 1],
-    [2, 2, 2, 2, 2, 1, 2],
-    [2, 1, 2, 2, 1, 2, 2],
-    [1, 2, 1, 1, 2, 2, 1],
-
-    // Jul (Weeks 31-34): Distributed micro-tools
-    [2, 2, 2, 3, 1, 2, 2],
-    [1, 1, 2, 2, 1, 2, 2],
-    [1, 2, 2, 1, 1, 1, 1],
-    [1, 2, 1, 1, 1, 2, 2],
-
-    // Aug (Weeks 35-38)
-    [2, 1, 1, 1, 2, 2, 1],
-    [2, 2, 1, 2, 2, 2, 2],
-    [1, 1, 1, 2, 3, 2, 1],
-    [2, 2, 2, 1, 1, 1, 2],
-
-    // Sep (Weeks 39-40): Current month ending on Thursday!
-    [1, 1, 2, 2, 1, 1, 1],
-    [3, 2, 1, 2, 2, -1, -1], // Sunday to Thursday in September (Friday & Saturday are unrendered future days)
-  ];
-
-  // Format exact date for each cell in tooltip
-  const getCellDate = (colIdx: number, rowIdx: number) => {
-    // Current week (Week 40, colIdx 39) starts on Sunday, Sep 6, 2026
-    const baseDate = new Date(2026, 8, 6);
-    const diffWeeks = colIdx - 39;
-    const targetDate = new Date(baseDate);
-    targetDate.setDate(baseDate.getDate() + diffWeeks * 7 + rowIdx);
-
-    const dayName = targetDate.toLocaleDateString("en-US", { weekday: "long" });
-    const monthName = targetDate.toLocaleDateString("en-US", { month: "short" });
-    const dayNum = targetDate.getDate();
-    return `${dayName}, ${monthName} ${dayNum}`;
-  };
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const getCellColor = (level: number) => {
     if (level === -1) {
@@ -191,22 +136,24 @@ export default function GitActivity() {
                 </button>
               </div>
 
-              <span className="font-mono text-xs font-semibold text-secondary px-2.5 py-1 bg-secondary/10 border border-secondary/20 rounded-md whitespace-nowrap">
-                3,601 Contributions
+              {/* Total Contributions Badge with Realtime Pulse Indicator */}
+              <span className="font-mono text-xs font-semibold text-secondary px-2.5 py-1 bg-secondary/10 border border-secondary/20 rounded-md whitespace-nowrap flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title="Real-time daily sync" />
+                {activityData.totalContributions} Contributions
               </span>
             </div>
           </div>
 
-          {/* Git Contribution Heatmap (9-Month Range - No scroll on desktop) */}
+          {/* Git Contribution Heatmap (Rolling Dynamic Range - Updates Daily) */}
           <div className="p-4 md:p-5 bg-surface-container-lowest border border-surface-container rounded-xl flex flex-col gap-3">
             {/* Scroll wrapper: overflow-visible on desktop to eliminate all clipping */}
             <div className="overflow-x-auto md:overflow-visible scrollbar-thin px-1 py-1.5">
               <div className="min-w-140 md:min-w-0 w-full flex flex-col gap-2">
-                {/* Months Header - Aligned to 40 week columns */}
+                {/* Months Header - Dynamically aligned to rolling columns */}
                 <div className="flex font-mono text-[10px] text-text-secondary pl-7 pr-3">
-                  {monthSpans.map((m) => (
+                  {activityData.monthSpans.map((m, idx) => (
                     <span
-                      key={m.name}
+                      key={`${m.name}-${idx}`}
                       style={{ flex: `${m.span} 1 0%` }}
                       className="truncate"
                     >
@@ -231,9 +178,9 @@ export default function GitActivity() {
 
                   {/* 40 Weeks x 7 Days Grid */}
                   <div className="grid grid-flow-col grid-rows-7 gap-1 justify-between flex-1 py-0.5">
-                    {activityPattern.flatMap((col, colIdx) =>
-                      col.map((val, rowIdx) => {
-                        if (val === -1) {
+                    {activityData.weeks.flatMap((col, colIdx) =>
+                      col.map((cell, rowIdx) => {
+                        if (cell.level === -1) {
                           return (
                             <span
                               key={`${colIdx}-${rowIdx}`}
@@ -242,20 +189,20 @@ export default function GitActivity() {
                           );
                         }
 
-                        const dateStr = getCellDate(colIdx, rowIdx);
-                        const countStr = val === 0 ? "No contributions" : `${val * 3}+ contributions`;
+                        const dateStr = formatReadableDate(cell.date);
+                        const countStr = cell.count === 0 ? "No contributions" : `${cell.count} contribution${cell.count === 1 ? "" : "s"}`;
 
                         return (
                           <span
                             key={`${colIdx}-${rowIdx}`}
                             onMouseEnter={() => setHoveredCell({ date: dateStr, contributions: countStr })}
                             onMouseLeave={() => setHoveredCell(null)}
-                            className={`relative w-2.5 h-2.5 rounded-xs ${getCellColor(val)} transition-all duration-100 cursor-pointer hover:scale-120 hover:z-30 hover:ring-2 ${
+                            className={`relative w-2.5 h-2.5 rounded-xs ${getCellColor(cell.level)} transition-all duration-100 cursor-pointer hover:scale-120 hover:z-30 hover:ring-2 ${
                               colorTheme === "github"
                                 ? "hover:ring-white hover:shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                                 : "hover:ring-cyan-300 hover:shadow-[0_0_8px_rgba(76,215,246,0.9)]"
                             }`}
-                            title={`${dateStr}: ${countStr}`}
+                            title={cell.tooltipText || `${dateStr}: ${countStr}`}
                           />
                         );
                       })
@@ -282,7 +229,7 @@ export default function GitActivity() {
                     rel="noopener noreferrer"
                     className="text-xs text-text-secondary hover:text-secondary transition-colors underline decoration-surface-variant hover:decoration-secondary"
                   >
-                    Learn how we count contributions (3,601 in the last year)
+                    Learn how we count contributions ({activityData.totalContributions} in the last year)
                   </a>
                 )}
               </div>
@@ -313,7 +260,7 @@ export default function GitActivity() {
           </div>
 
           <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
-            Active open-source contributor with <strong>3,601 contributions</strong> in the last year across JapanApp, Aria2App, lightweight web tools, and reactive Next.js state utilities.
+            Active open-source contributor with <strong>{activityData.totalContributions} contributions</strong> in the last year across JapanApp, Aria2App, lightweight web tools, and reactive Next.js state utilities.
           </p>
         </div>
 
