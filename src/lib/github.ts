@@ -92,39 +92,46 @@ export function generateDynamicWeeks(
       } else {
         const found = dayMap ? dayMap.get(iso) : null;
         if (found) {
-          daysInWeek.push({
-            date: iso,
-            level: found.level,
-            count: found.count,
-            tooltipText: found.tooltipText || (found.count === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${found.count} contribution${found.count === 1 ? "" : "s"} on ${formatReadableDate(iso)}`),
-          });
-        } else if ((baselineDays as Record<string, number>)[iso] !== undefined) {
-          const level = (baselineDays as Record<string, number>)[iso];
-          const count = level === 0 ? 0 : level * 5;
+          const count = found.count;
+          const level = count === 0 ? 0 : found.level;
           daysInWeek.push({
             date: iso,
             level,
             count,
-            tooltipText: level === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${count} contributions on ${formatReadableDate(iso)}`,
+            tooltipText: found.tooltipText || (count === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${count} contribution${count === 1 ? "" : "s"} on ${formatReadableDate(iso)}`),
           });
         } else {
-          // Deterministic fallback based on date hash
-          const [yr, mo, da] = iso.split("-").map(Number);
-          const hash = (yr * 31 + mo * 17 + da * 23) % 100;
-          let level = 1;
-          if (hash < 12) level = 0;
-          else if (hash < 40) level = 1;
-          else if (hash < 72) level = 2;
-          else if (hash < 90) level = 3;
-          else level = 4;
-
-          const count = level === 0 ? 0 : level * 4 + (hash % 3);
-          daysInWeek.push({
-            date: iso,
-            level,
-            count,
-            tooltipText: level === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${count} contributions on ${formatReadableDate(iso)}`,
-          });
+          // Check static baseline
+          const baselineEntry = (baselineDays as Record<string, any>)[iso];
+          if (baselineEntry !== undefined) {
+            if (typeof baselineEntry === "number") {
+              const level = baselineEntry;
+              const count = level === 0 ? 0 : level * 4;
+              daysInWeek.push({
+                date: iso,
+                level,
+                count,
+                tooltipText: level === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${count} contributions on ${formatReadableDate(iso)}`,
+              });
+            } else {
+              const count = baselineEntry.count || 0;
+              const level = count === 0 ? 0 : (baselineEntry.level || 0);
+              daysInWeek.push({
+                date: iso,
+                level,
+                count,
+                tooltipText: baselineEntry.text || (count === 0 ? `No contributions on ${formatReadableDate(iso)}` : `${count} contribution${count === 1 ? "" : "s"} on ${formatReadableDate(iso)}`),
+              });
+            }
+          } else {
+            // STRICT DEFAULT: If not in live map and not in baseline, it MUST be 0 (never fabricate fake contributions!)
+            daysInWeek.push({
+              date: iso,
+              level: 0,
+              count: 0,
+              tooltipText: `No contributions on ${formatReadableDate(iso)}`,
+            });
+          }
         }
       }
     }
@@ -167,7 +174,7 @@ export async function fetchGitHubContributions(username = "NXRts"): Promise<GitH
       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     },
-    next: { revalidate: 1800 },
+    next: { revalidate: 120 },
   });
 
   if (!res.ok) {
@@ -178,7 +185,7 @@ export async function fetchGitHubContributions(username = "NXRts"): Promise<GitH
 
   // Total contributions
   const countMatch = html.match(/([\d,]+)\s+contributions\s+in the last year/i);
-  const totalContributions = countMatch ? countMatch[1] : "3,616";
+  const totalContributions = countMatch ? countMatch[1] : "3,625";
 
   // Tooltips
   const tooltips = new Map<string, { text: string; count: number }>();
@@ -205,9 +212,12 @@ export async function fetchGitHubContributions(username = "NXRts"): Promise<GitH
     const idMatch = attrs.match(/id="([^"]+)"/);
     const levelMatch = attrs.match(/data-level="(\d+)"/);
     const id = idMatch ? idMatch[1] : "";
-    const level = levelMatch ? parseInt(levelMatch[1], 10) : 0;
+    let level = levelMatch ? parseInt(levelMatch[1], 10) : 0;
     const tooltipInfo = tooltips.get(id);
-    const count = tooltipInfo ? tooltipInfo.count : (level > 0 ? level * 3 : 0);
+    const count = tooltipInfo ? tooltipInfo.count : 0;
+    if (count === 0) {
+      level = 0;
+    }
     const tooltipText = tooltipInfo ? tooltipInfo.text : (count === 0 ? `No contributions on ${formatReadableDate(date)}` : `${count} contributions on ${formatReadableDate(date)}`);
 
     dayMap.set(date, { level, count, tooltipText });
