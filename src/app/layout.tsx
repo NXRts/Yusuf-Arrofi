@@ -48,6 +48,14 @@ export const metadata: Metadata = {
     title: "Muhammad Yusuf Arrofi (NXRts)",
     description: "Full-Stack & Go Developer from Surakarta, Indonesia.",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
