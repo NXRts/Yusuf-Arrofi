@@ -27,11 +27,11 @@ export default function GitActivity() {
     { label: "", full: "Saturday" },
   ];
 
-  // Dynamic state initialized with rolling 40 weeks ending on current date (September 11, etc.)
+  // Dynamic state initialized with rolling 40 weeks ending on current date (September 12, etc.)
   const [activityData, setActivityData] = useState<GitHubActivityData>(() => {
     const initial = generateDynamicWeeks(undefined, 40);
     return {
-      totalContributions: "3,616",
+      totalContributions: "3,625",
       weeks: initial.weeks,
       monthSpans: initial.monthSpans,
       lastUpdated: new Date().toISOString(),
@@ -42,7 +42,7 @@ export default function GitActivity() {
   // Fetch real-time GitHub activity on mount
   useEffect(() => {
     let isMounted = true;
-    fetch("/api/github-activity")
+    fetch("/api/github-activity", { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch GitHub activity");
         return res.json();
