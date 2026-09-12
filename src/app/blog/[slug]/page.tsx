@@ -27,10 +27,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${post.title.en} — Muhammad Yusuf Arrofi`,
+    title: post.title.en,
     description: post.excerpt.en,
+    keywords: [post.category, "Muhammad Yusuf Arrofi", "Tech Blog", "Software Engineering"],
+    alternates: {
+      canonical: `https://yusufarrofi.my.id/blog/${post.slug}`,
+    },
     openGraph: {
-      title: post.title.en,
+      type: "article",
+      title: `${post.title.en} — Muhammad Yusuf Arrofi`,
+      description: post.excerpt.en,
+      url: `https://yusufarrofi.my.id/blog/${post.slug}`,
+      publishedTime: post.date,
+      authors: ["Muhammad Yusuf Arrofi"],
+      images: [
+        {
+          url: post.image,
+          alt: post.title.en,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title.en} — Muhammad Yusuf Arrofi`,
       description: post.excerpt.en,
       images: [post.image],
     },
