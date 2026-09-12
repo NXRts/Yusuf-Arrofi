@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import JsonLd from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,36 +18,70 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
-  description: "Official portfolio of Muhammad Yusuf Arrofi (NXRts), 19 y/o Software Engineer specializing in Go, Next.js, React, and Arch Linux desktop workflows. Creator of JapanApp and Aria2App.",
+  metadataBase: new URL("https://yusufarrofi.my.id"),
+  title: {
+    default: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
+    template: "%s | Muhammad Yusuf Arrofi",
+  },
+  description: "Official portfolio of Muhammad Yusuf Arrofi (NXRts), 19 y/o Software Engineer specializing in Go, Next.js, React, TypeScript, and Arch Linux desktop workflows. Creator of JapanApp, Aria2App, and Prameswari EO.",
   keywords: [
     "Muhammad Yusuf Arrofi",
-    "NXRts",
     "Yusuf Arrofi",
+    "NXRts",
+    "YUSUF.DEV",
+    "Portofolio Yusuf Arrofi",
     "Full-Stack Developer",
+    "Software Engineer Indonesia",
     "Go Developer",
     "Golang",
-    "Next.js",
-    "React",
-    "Surakarta",
-    "Indonesia",
+    "Next.js Developer",
+    "React Developer",
+    "TypeScript",
+    "Web Developer Surakarta",
+    "Programmer Solo",
+    "Arch Linux",
     "JapanApp",
     "Aria2App",
+    "Prameswari EO",
   ],
   authors: [{ name: "Muhammad Yusuf Arrofi", url: "https://github.com/NXRts" }],
   creator: "Muhammad Yusuf Arrofi",
+  publisher: "Muhammad Yusuf Arrofi",
+  alternates: {
+    canonical: "https://yusufarrofi.my.id",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yusufarrofi.vercel.app/",
+    url: "https://yusufarrofi.my.id",
     title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
     description: "Specialized in building performant web applications, responsive frontend architectures, and Go/Node services.",
     siteName: "Muhammad Yusuf Arrofi Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Yusuf Arrofi — Software Engineer & Full-Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Yusuf Arrofi (NXRts)",
-    description: "Full-Stack & Go Developer from Surakarta, Indonesia.",
+    title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
+    description: "Full-Stack & Go Developer from Surakarta, Indonesia. Creator of JapanApp and Aria2App.",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -55,6 +90,9 @@ export const metadata: Metadata = {
       { url: "/favicon.ico" },
     ],
     apple: "/apple-icon.png",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "googlef0cd77f63916e9da",
   },
 };
 
@@ -69,6 +107,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
     >
+      <head>
+        <JsonLd />
+      </head>
       <body className="bg-surface text-on-surface min-h-screen flex flex-col font-sans selection:bg-primary-container selection:text-white antialiased">
         <Navbar />
         <main className="flex-1 w-full flex flex-col">{children}</main>

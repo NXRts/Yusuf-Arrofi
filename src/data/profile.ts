@@ -84,7 +84,7 @@ export const profileData: ProfileData = {
     github: "https://github.com/NXRts",
     linkedin: "https://www.linkedin.com/in/muhammad-yusuf-arrofi-a26140299/",
     linksPortal: "https://links-mee.vercel.app",
-    portfolioLive: "https://yusufarrofi.vercel.app",
+    portfolioLive: "https://yusufarrofi.my.id",
   },
   stats: {
     publicRepos: "19+",

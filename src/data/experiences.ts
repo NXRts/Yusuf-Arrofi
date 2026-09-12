@@ -40,7 +40,7 @@ export const experiencesData: Experience[] = [
   },
   {
     id: "smkn2-karanganyar",
-    period: "2022 — 2024",
+    period: "2022 — 2025",
     role: "Web Development & Software Engineering Student",
     company: "SMK Negeri 2 Karanganyar",
     location: "Karanganyar / Surakarta, Indonesia",
