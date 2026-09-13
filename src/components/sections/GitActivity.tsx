@@ -102,11 +102,11 @@ export default function GitActivity() {
     <section className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-16 flex flex-col gap-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Engineering Git Activity Preview */}
-        <div className="lg:col-span-7 p-6 md:p-8 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-6 hover:border-secondary/40 transition-all">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="lg:col-span-7 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-5 sm:gap-6 hover:border-secondary/40 transition-all">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
             <div className="flex items-center gap-2.5">
               <GitCommit className="w-5 h-5 text-secondary" />
-              <span className="font-sans text-lg md:text-xl font-bold text-text-primary">
+              <span className="font-sans text-base sm:text-lg md:text-xl font-bold text-text-primary">
                 Engineering Activity
               </span>
             </div>
@@ -145,7 +145,16 @@ export default function GitActivity() {
           </div>
 
           {/* Git Contribution Heatmap (Rolling Dynamic Range - Updates Daily) */}
-          <div className="p-4 md:p-5 bg-surface-container-lowest border border-surface-container rounded-xl flex flex-col gap-3">
+          <div className="p-3 sm:p-4 md:p-5 bg-surface-container-lowest border border-surface-container rounded-xl flex flex-col gap-2.5 sm:gap-3">
+            {/* Mobile swipe and tap hint */}
+            <div className="flex md:hidden items-center justify-between text-[10px] font-mono text-outline px-1">
+              <span className="text-secondary flex items-center gap-1 font-semibold">
+                <span>Swipe history</span>
+                <span>&rarr;</span>
+              </span>
+              <span>Tap cell to view details</span>
+            </div>
+
             {/* Scroll wrapper: overflow-visible on desktop to eliminate all clipping */}
             <div className="overflow-x-auto md:overflow-visible scrollbar-thin px-1 py-1.5">
               <div className="min-w-140 md:min-w-0 w-full flex flex-col gap-2">
@@ -195,9 +204,10 @@ export default function GitActivity() {
                         return (
                           <span
                             key={`${colIdx}-${rowIdx}`}
+                            onClick={() => setHoveredCell({ date: dateStr, contributions: countStr })}
                             onMouseEnter={() => setHoveredCell({ date: dateStr, contributions: countStr })}
                             onMouseLeave={() => setHoveredCell(null)}
-                            className={`relative w-2.5 h-2.5 rounded-xs ${getCellColor(cell.level)} transition-all duration-100 cursor-pointer hover:scale-120 hover:z-30 hover:ring-2 ${
+                            className={`relative w-2.5 h-2.5 rounded-xs ${getCellColor(cell.level)} transition-all duration-100 cursor-pointer hover:scale-120 hover:z-30 hover:ring-2 active:scale-125 ${
                               colorTheme === "github"
                                 ? "hover:ring-white hover:shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                                 : "hover:ring-cyan-300 hover:shadow-[0_0_8px_rgba(76,215,246,0.9)]"
@@ -213,7 +223,7 @@ export default function GitActivity() {
             </div>
 
             {/* Bottom Legend & Link - Dynamic live hover info or GitHub link */}
-            <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-text-secondary pt-2 border-t border-surface-container/60 min-h-8.5">
+            <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] font-mono text-text-secondary pt-2 border-t border-surface-container/60 min-h-8.5">
               <div className="flex items-center gap-2">
                 {hoveredCell ? (
                   <div className="flex items-center gap-2 text-xs text-text-primary transition-all">
@@ -265,7 +275,7 @@ export default function GitActivity() {
         </div>
 
         {/* Right: Core Engineering Tenets */}
-        <div className="lg:col-span-5 p-6 md:p-8 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-6 hover:border-tertiary/40 transition-all">
+        <div className="lg:col-span-5 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between gap-5 sm:gap-6 hover:border-tertiary/40 transition-all">
           <div className="flex items-center gap-2.5">
             <Brain className="w-5 h-5 text-tertiary" />
             <h3 className="font-sans text-lg md:text-xl font-bold text-text-primary">
