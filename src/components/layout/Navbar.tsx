@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -19,7 +20,13 @@ import { profileData } from "@/data/profile";
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
+  const [mounted, setMounted] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     setCurrentHash(window.location.hash);
@@ -33,6 +40,44 @@ export default function Navbar() {
       window.removeEventListener("popstate", handleHashChange);
     };
   }, []);
+
+  // Prevent background scrolling and handle Escape key when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [mobileMenuOpen]);
+
+  // Handle tap / click outside the navbar to close mobile menu
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu automatically on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const navLinks = [
     { name: "About", href: "/#about" },
@@ -52,7 +97,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-[#0d1323]/90 backdrop-blur-xl border-b border-[#2f3446]/40 shadow-[0_1px_8px_rgba(0,0,0,0.2)]">
+    <header ref={navRef} className="fixed top-0 w-full z-50 bg-[#0d1323]/90 backdrop-blur-xl border-b border-[#2f3446]/40 shadow-[0_1px_8px_rgba(0,0,0,0.2)]">
       <div className="h-16 md:h-20 w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex items-center justify-between gap-3 sm:gap-4">
         {/* Brand Logo & Handle */}
         <div className="flex items-center gap-3 sm:gap-4">
@@ -146,9 +191,19 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop Portal - Rendered to document.body to cover full viewport */}
+      {mounted && mobileMenuOpen && createPortal(
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden cursor-pointer touch-none animate-in fade-in duration-200"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />,
+        document.body
+      )}
+
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-surface-variant bg-surface/98 px-5 py-4 flex flex-col gap-2 backdrop-blur-2xl max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div className="relative z-10 lg:hidden border-t border-surface-variant bg-surface/98 px-5 py-4 flex flex-col gap-2 backdrop-blur-2xl max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain shadow-2xl animate-in slide-in-from-top-2 duration-200">
           {/* Status bar */}
           <div className="flex items-center justify-between pb-2 mb-1 border-b border-surface-variant/60">
             <div className="flex items-center gap-2">
