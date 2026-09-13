@@ -19,6 +19,8 @@ import { profileData } from "@/data/profile";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const [mounted, setMounted] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -27,6 +29,33 @@ export default function Navbar() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Smooth opening & closing animation coordinator
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    let frame1: number;
+    let frame2: number;
+
+    if (mobileMenuOpen) {
+      setIsRendered(true);
+      frame1 = requestAnimationFrame(() => {
+        frame2 = requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
+      });
+    } else {
+      setIsVisible(false);
+      timer = setTimeout(() => {
+        setIsRendered(false);
+      }, 300);
+    }
+
+    return () => {
+      cancelAnimationFrame(frame1);
+      cancelAnimationFrame(frame2);
+      clearTimeout(timer);
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     setCurrentHash(window.location.hash);
@@ -182,19 +211,34 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white transition-colors"
+            className="lg:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white transition-all active:scale-95 overflow-hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-secondary" /> : <Menu className="w-5 h-5" />}
+            <Menu
+              className={`w-5 h-5 absolute transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                mobileMenuOpen
+                  ? "opacity-0 rotate-90 scale-75"
+                  : "opacity-100 rotate-0 scale-100"
+              }`}
+            />
+            <X
+              className={`w-5 h-5 absolute text-secondary transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                mobileMenuOpen
+                  ? "opacity-100 rotate-0 scale-100"
+                  : "opacity-0 -rotate-90 scale-75"
+              }`}
+            />
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Backdrop Portal - Rendered to document.body to cover full viewport */}
-      {mounted && mobileMenuOpen && createPortal(
+      {mounted && isRendered && createPortal(
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden cursor-pointer touch-none animate-in fade-in duration-200"
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden cursor-pointer touch-none transition-opacity duration-300 ease-out ${
+            isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         />,
@@ -202,8 +246,14 @@ export default function Navbar() {
       )}
 
       {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div className="relative z-10 lg:hidden border-t border-surface-variant bg-surface/98 px-5 py-4 flex flex-col gap-2 backdrop-blur-2xl max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain shadow-2xl animate-in slide-in-from-top-2 duration-200">
+      {isRendered && (
+        <div
+          className={`relative z-10 lg:hidden border-t border-surface-variant bg-surface/98 px-5 py-4 flex flex-col gap-2 backdrop-blur-2xl max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain shadow-2xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-3 pointer-events-none"
+          }`}
+        >
           {/* Status bar */}
           <div className="flex items-center justify-between pb-2 mb-1 border-b border-surface-variant/60">
             <div className="flex items-center gap-2">
