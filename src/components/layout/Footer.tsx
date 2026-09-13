@@ -41,10 +41,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-surface-container-low border-t border-surface-variant/40 pt-16 pb-12 text-[#dde2f9]">
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex flex-col gap-14">
+    <footer className="w-full bg-surface-container-low border-t border-surface-variant/40 pt-12 sm:pt-16 pb-8 sm:pb-12 text-[#dde2f9]">
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex flex-col gap-10 sm:gap-14">
         {/* Main Multi-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 xl:gap-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 xl:gap-14">
           
           {/* Column 1 & 2: Brand Identity, Bio & Status (span 2 on desktop) */}
           <div className="lg:col-span-2 flex flex-col gap-5 pr-0 lg:pr-8">
@@ -179,20 +179,20 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright, Tech Credit & Back-to-Top */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-outline">
-          <div className="flex items-center gap-2 text-center sm:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 text-center sm:text-left">
             <span>© {currentYear} Muhammad Yusuf Arrofi (NXRts). Built with</span>
-            <Heart className="w-3.5 h-3.5 text-[#fbabff] fill-current" />
+            <Heart className="w-3.5 h-3.5 text-[#fbabff] fill-current shrink-0" />
             <span>in Surakarta, Indonesia.</span>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
             <span className="hidden md:inline text-outline/80">
-              Next.js 14 • React • Tailwind CSS
+              Next.js 16 • React • Tailwind CSS
             </span>
 
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-secondary hover:text-secondary transition-all shadow-xs cursor-pointer group"
+              className="inline-flex items-center gap-1.5 min-h-9 px-3.5 py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-secondary hover:text-secondary transition-all shadow-xs cursor-pointer group"
               aria-label="Scroll back to top"
             >
               <span>Back to Top</span>

@@ -35,7 +35,7 @@ export default function ProjectsPage() {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="w-full pt-28 pb-20 max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col gap-10">
+    <div className="w-full pt-22 sm:pt-28 pb-16 sm:pb-20 max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col gap-6 sm:gap-10">
       {/* Top Breadcrumb */}
       <div className="flex items-center gap-2">
         <Link
@@ -48,17 +48,17 @@ export default function ProjectsPage() {
       </div>
 
       {/* Page Header */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2.5 sm:gap-3">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs font-bold text-secondary tracking-wider">
             PORTFOLIO REPOSITORY
           </span>
           <span className="w-12 h-0.5 bg-primary-container" />
         </div>
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
+        <h1 className="font-sans text-2xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
           Engineered Projects & Software Artifacts
         </h1>
-        <p className="font-sans text-base text-on-surface-variant max-w-2xl leading-relaxed">
+        <p className="font-sans text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">
           A comprehensive archive of production web applications, backend APIs,
           command-line utilities, and open-source contributions created by Yusuf
           Arrofi.
@@ -66,14 +66,14 @@ export default function ProjectsPage() {
       </div>
 
       {/* Search & Category Filter Controls */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-surface-elevated border border-surface-variant">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant">
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 md:pb-0 scrollbar-thin">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
+              className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
                 selectedCategory === cat.id
                   ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25 border border-primary-container"
                   : "bg-surface-container-low text-on-surface-variant border border-surface-variant hover:bg-surface-container-high"
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Search Input */}
-        <div className="relative min-w-65 sm:min-w-[320px]">
+        <div className="relative w-full md:w-auto md:min-w-65 lg:min-w-[320px]">
           <Search className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -99,9 +99,9 @@ export default function ProjectsPage() {
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
-        <div className="py-20 text-center flex flex-col items-center gap-3">
+        <div className="py-16 sm:py-20 text-center flex flex-col items-center gap-3">
           <Layers className="w-12 h-12 text-outline" />
-          <h3 className="font-sans text-lg font-bold text-text-primary">
+          <h3 className="font-sans text-base sm:text-lg font-bold text-text-primary">
             No projects matched your filter criteria
           </h3>
           <p className="font-sans text-xs text-on-surface-variant">
@@ -118,11 +118,11 @@ export default function ProjectsPage() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5 transition-all"
+              className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5 transition-all"
             >
               <div className="flex flex-col gap-4">
                 {/* Image Display - Full edge-to-edge */}

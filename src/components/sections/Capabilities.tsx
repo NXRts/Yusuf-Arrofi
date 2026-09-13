@@ -18,9 +18,9 @@ export default function Capabilities() {
   };
 
   return (
-    <section id="capabilities" className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-16 flex flex-col gap-8">
+    <section id="capabilities" className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-12 sm:py-16 flex flex-col gap-6 sm:gap-8">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-bold text-secondary tracking-wider">
@@ -38,18 +38,18 @@ export default function Capabilities() {
       </div>
 
       {/* 4-Card Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {profileData.capabilities.map((item) => (
           <div
             key={item.id}
-            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 hover:shadow-xl hover:shadow-secondary/5 transition-all"
+            className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 hover:shadow-xl hover:shadow-secondary/5 transition-all"
           >
-            <div className="flex flex-col gap-4">
-              <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-surface-variant flex items-center justify-center shadow-inner">
+            <div className="flex flex-col gap-3.5 sm:gap-4">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-surface-container-high border border-surface-variant flex items-center justify-center shadow-inner">
                 {getIcon(item.iconName, item.accentColor)}
               </div>
               <div className="flex flex-col">
-                <h3 className="font-sans text-xl font-bold text-text-primary">
+                <h3 className="font-sans text-lg sm:text-xl font-bold text-text-primary">
                   {item.title}
                 </h3>
                 <span className="font-mono text-xs text-text-secondary">
@@ -61,7 +61,7 @@ export default function Capabilities() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2 pt-6 border-t border-surface-variant/40 mt-6">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 sm:pt-6 border-t border-surface-variant/40 mt-5 sm:mt-6">
               {item.tags.map((tag) => (
                 <span
                   key={tag}

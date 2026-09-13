@@ -39,7 +39,7 @@ export default function FeaturedProjects() {
       </div>
 
       {/* Flagship Project Card (JapanApp) */}
-      <div className="p-6 md:p-10 rounded-2xl bg-surface-elevated border border-surface-variant shadow-xl flex flex-col lg:flex-row gap-8 items-center relative overflow-hidden group hover:border-secondary/40 transition-all">
+      <div className="p-4 sm:p-6 md:p-10 rounded-2xl bg-surface-elevated border border-surface-variant shadow-xl flex flex-col lg:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group hover:border-secondary/40 transition-all">
         {/* Visual Column */}
         <div className="w-full lg:w-1/2 flex flex-col gap-3">
           {/* Screenshot Container - natural aspect ratio, no crop, no zoom */}
@@ -53,7 +53,7 @@ export default function FeaturedProjects() {
           </div>
 
           {/* Status Bar (Below Image) */}
-          <div className="p-3 bg-surface-container-low border border-surface-variant/70 rounded-xl flex items-center justify-between shadow-sm">
+          <div className="p-2.5 sm:p-3 bg-surface-container-low border border-surface-variant/70 rounded-xl flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
               <span className="font-mono text-xs font-semibold text-text-primary">
@@ -67,8 +67,8 @@ export default function FeaturedProjects() {
         </div>
 
         {/* Description Column */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-6">
-          <div className="flex flex-col gap-2.5">
+        <div className="w-full lg:w-1/2 flex flex-col gap-5 sm:gap-6">
+          <div className="flex flex-col gap-2 sm:gap-2.5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-primary-container text-white font-mono text-[11px] font-bold uppercase tracking-wider">
                 Flagship Application
@@ -88,22 +88,22 @@ export default function FeaturedProjects() {
           </div>
 
           {/* 3 Metrics Column */}
-          <div className="grid grid-cols-3 gap-3 p-3 rounded-xl bg-surface-container-low border border-surface-variant/60 text-center">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-container-low border border-surface-variant/60 text-center">
             <div className="flex flex-col">
-              <span className="font-mono text-[11px] text-text-secondary">Platform</span>
-              <span className="font-sans text-base font-bold text-secondary">
+              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Platform</span>
+              <span className="font-sans text-xs sm:text-base font-bold text-secondary truncate">
                 {flagship.metrics?.platform || "Web App"}
               </span>
             </div>
-            <div className="flex flex-col border-x border-surface-variant/60">
-              <span className="font-mono text-[11px] text-text-secondary">Curriculum</span>
-              <span className="font-sans text-base font-bold text-primary">
+            <div className="flex flex-col border-x border-surface-variant/60 px-1">
+              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Curriculum</span>
+              <span className="font-sans text-xs sm:text-base font-bold text-primary truncate">
                 {flagship.metrics?.curriculum || "N5 - N1"}
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-mono text-[11px] text-text-secondary">Deployment</span>
-              <span className="font-sans text-base font-bold text-tertiary">
+              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Deployment</span>
+              <span className="font-sans text-xs sm:text-base font-bold text-tertiary truncate">
                 {flagship.metrics?.deployment || "Vercel Edge"}
               </span>
             </div>
@@ -114,7 +114,7 @@ export default function FeaturedProjects() {
             <span className="font-mono text-xs text-text-secondary">
               ENGINEERED WITH:
             </span>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {flagship.tags.map((t) => (
                 <span
                   key={t}
@@ -127,10 +127,10 @@ export default function FeaturedProjects() {
           </div>
 
           {/* Action Row */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2">
             <button
               onClick={() => setSelectedProject(flagship)}
-              className="px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant hover:border-secondary font-sans text-sm font-semibold rounded-lg transition-colors flex items-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant hover:border-secondary font-sans text-sm font-semibold rounded-xl sm:rounded-lg transition-colors flex items-center gap-2 cursor-pointer"
             >
               <span>View Full Details</span>
             </button>
@@ -139,7 +139,7 @@ export default function FeaturedProjects() {
                 href={flagship.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-secondary hover:bg-secondary-fixed text-on-secondary font-sans text-sm font-bold rounded-lg shadow-md transition-colors flex items-center gap-2"
+                className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-secondary hover:bg-secondary-fixed text-on-secondary font-sans text-sm font-bold rounded-xl sm:rounded-lg shadow-md transition-colors flex items-center gap-2"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Launch App</span>
@@ -150,7 +150,7 @@ export default function FeaturedProjects() {
                 href={flagship.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant font-sans text-sm font-semibold rounded-lg transition-colors flex items-center gap-2"
+                className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant font-sans text-sm font-semibold rounded-xl sm:rounded-lg transition-colors flex items-center gap-2"
               >
                 <Code2 className="w-4 h-4" />
                 <span>GitHub Repo</span>
@@ -161,13 +161,13 @@ export default function FeaturedProjects() {
       </div>
 
       {/* Secondary Projects Grid (3 Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
         {secondary.map((project) => (
           <div
             key={project.id}
-            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 transition-all"
+            className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 transition-all"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3.5 sm:gap-4">
               {/* Full Aspect-video Screenshot Container */}
               <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
                 <img
@@ -185,17 +185,17 @@ export default function FeaturedProjects() {
                 <span className="font-mono text-xs text-secondary uppercase tracking-wider">
                   {project.subtitle || project.category}
                 </span>
-                <h4 className="font-sans text-xl font-bold text-text-primary mt-1">
+                <h4 className="font-sans text-lg sm:text-xl font-bold text-text-primary mt-1">
                   {project.title}
                 </h4>
               </div>
 
-              <p className="font-sans text-sm text-on-surface-variant line-clamp-3">
+              <p className="font-sans text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
                 {project.description}
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 pt-6 border-t border-surface-variant/50 mt-6">
+            <div className="flex flex-col gap-3.5 sm:gap-4 pt-5 sm:pt-6 border-t border-surface-variant/50 mt-5 sm:mt-6">
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.slice(0, 4).map((tag) => (
                   <span
@@ -218,7 +218,7 @@ export default function FeaturedProjects() {
                     e.stopPropagation();
                     setSelectedProject(project);
                   }}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-secondary hover:text-white font-semibold transition-colors cursor-pointer group/btn"
+                  className="min-h-9 sm:min-h-0 inline-flex items-center gap-1.5 text-xs font-mono text-secondary hover:text-white font-semibold transition-colors cursor-pointer group/btn"
                 >
                   <span>Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -230,13 +230,13 @@ export default function FeaturedProjects() {
       </div>
 
       {/* View All Projects Link */}
-      <div className="flex justify-center pt-4">
+      <div className="flex justify-center pt-2 sm:pt-4">
         <Link
           href="/projects"
-          className="px-6 py-3 rounded-xl bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-primary font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
+          className="w-full sm:w-auto justify-center text-center px-5 sm:px-6 py-3 rounded-xl bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-primary font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
         >
           <span>Explore All {projectsData.length} Engineered Projects</span>
-          <ArrowRight className="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform shrink-0" />
         </Link>
       </div>
 
