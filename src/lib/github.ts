@@ -22,11 +22,21 @@ import baselineDays from "./github-baseline.json";
 
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function formatISODate(d: Date): string {
-  const year = d.getUTCFullYear();
-  const month = String(d.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(d.getUTCDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+function formatISODate(d: Date, timeZone = "Asia/Jakarta"): string {
+  try {
+    const formatter = new Intl.DateTimeFormat("en-CA", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    return formatter.format(d);
+  } catch {
+    const year = d.getUTCFullYear();
+    const month = String(d.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(d.getUTCDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
 }
 
 export function formatReadableDate(isoStr: string): string {
@@ -44,6 +54,7 @@ export function formatReadableDate(isoStr: string): string {
 
 /**
  * Builds a rolling N-week matrix ending on the current week of `referenceDate`.
+ * Uses Asia/Jakarta (GMT+7) timezone to ensure midnight roll-overs match Indonesia local time.
  * If dayMap is provided, pulls live counts and levels from GitHub.
  * Days strictly after `todayStr` in the current week receive `level: -1`.
  */
@@ -52,8 +63,8 @@ export function generateDynamicWeeks(
   numWeeks = 40,
   referenceDate = new Date()
 ): { weeks: ContributionDay[][]; monthSpans: MonthSpan[]; todayStr: string } {
-  // Determine reference date string (YYYY-MM-DD in UTC)
-  let todayStr = formatISODate(referenceDate);
+  // Determine reference date string in Surakarta/Jakarta time (GMT+7)
+  let todayStr = formatISODate(referenceDate, "Asia/Jakarta");
 
   // If dayMap has a more recent entry (e.g. GitHub UTC day is ahead), use that
   if (dayMap && dayMap.size > 0) {
@@ -79,7 +90,7 @@ export function generateDynamicWeeks(
     for (let d = 0; d < 7; d++) {
       const curDate = new Date(colSunday);
       curDate.setUTCDate(colSunday.getUTCDate() + d);
-      const iso = formatISODate(curDate);
+      const iso = formatISODate(curDate, "UTC");
 
       if (iso > todayStr) {
         // Future day

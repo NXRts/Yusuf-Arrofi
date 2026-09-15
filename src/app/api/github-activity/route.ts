@@ -10,7 +10,9 @@ export async function GET() {
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+        "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+        "CDN-Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+        "Vercel-CDN-Cache-Control": "s-maxage=60, stale-while-revalidate=120",
       },
     });
   } catch (error) {
@@ -24,7 +26,12 @@ export async function GET() {
         lastUpdated: new Date().toISOString(),
         isLive: false,
       },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+        },
+      }
     );
   }
 }

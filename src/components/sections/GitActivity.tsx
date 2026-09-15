@@ -42,7 +42,13 @@ export default function GitActivity() {
   // Fetch real-time GitHub activity on mount
   useEffect(() => {
     let isMounted = true;
-    fetch("/api/github-activity", { cache: "no-store" })
+    fetch(`/api/github-activity?t=${Date.now()}`, {
+      cache: "no-store",
+      headers: {
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache",
+      },
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch GitHub activity");
         return res.json();
