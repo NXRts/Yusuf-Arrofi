@@ -78,7 +78,7 @@ export const profileData: ProfileData = {
     environment: "Arch Linux",
   },
   tagline: "19 y/o Software Engineer — Next.js, React, Go, and Arch Linux enthusiast",
-  bio: "Specialized in building performant web applications, responsive frontend architectures, and Go/Node services. Creator of JapanApp and Aria2App. Focused on high-concurrency architectures, clean ergonomics, and lightweight digital experiences.",
+  bio: "Specialized in building performant web applications, responsive frontend architectures, and Go/Node services. Creator of JapanApp, DataScry, and Aria2App. Focused on high-concurrency architectures, clean ergonomics, and lightweight digital experiences.",
   quote: "Always eager to learn new things. If it ain't broke, don't fix it.",
   socials: {
     github: "https://github.com/NXRts",

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
     template: "%s | Muhammad Yusuf Arrofi",
   },
-  description: "Official portfolio of Muhammad Yusuf Arrofi (NXRts), 19 y/o Software Engineer specializing in Go, Next.js, React, TypeScript, and Arch Linux desktop workflows. Creator of JapanApp, Aria2App, and Prameswari EO.",
+  description: "Official portfolio of Muhammad Yusuf Arrofi (NXRts), 19 y/o Software Engineer specializing in Go, Next.js, React, TypeScript, and Arch Linux desktop workflows. Creator of JapanApp, DataScry, Aria2App, and Prameswari EO.",
   keywords: [
     "Muhammad Yusuf Arrofi",
     "Yusuf Arrofi",
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     "Programmer Solo",
     "Arch Linux",
     "JapanApp",
+    "DataScry",
     "Aria2App",
     "Prameswari EO",
   ],
@@ -80,7 +81,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
-    description: "Full-Stack & Go Developer from Surakarta, Indonesia. Creator of JapanApp and Aria2App.",
+    description: "Full-Stack & Go Developer from Surakarta, Indonesia. Creator of JapanApp, DataScry, and Aria2App.",
     images: ["/og-image.png"],
   },
   icons: {
