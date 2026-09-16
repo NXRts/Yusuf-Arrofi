@@ -32,6 +32,7 @@ export default function Footer() {
 
   const featuredProjects = [
     { name: "JapanApp (Language LMS)", href: "https://japan-mee.vercel.app/", isExternal: true },
+    { name: "DataScry (Offline Document Suite)", href: "https://datascry.vercel.app/", isExternal: true },
     { name: "FocEase (Zen Dashboard)", href: "https://github.com/NXRts/FocEase", isExternal: true },
     { name: "Aria2App (Downloader GUI)", href: "https://github.com/NXRts/Aria2App", isExternal: true },
     { name: "Prameswari EO (Tour & Outbound)", href: "https://prameswari-eo.vercel.app/", isExternal: true },

@@ -27,7 +27,7 @@ Repositori ini berisi kode sumber untuk website portofolio resmi **Muhammad Yusu
 
 - ⚡ **Hero & Telemetry Card**: Menampilkan status *node* interaktif (*region*, *latency*, *core stack*, dan lingkungan Arch Linux).
 - 📊 **Dynamic GitHub Activity Graph**: Peta kontribusi GitHub *real-time* yang di-scrape langsung dari profil publik dengan zona waktu Asia/Jakarta (GMT+7) serta *caching & fallback system*.
-- 💼 **Showcase Proyek Unggulan**: Daftar proyek (misal: *JapanApp*, *Prameswari EO*, *Aria2App*, dll.) lengkap dengan deskripsi, metrik, filter kategori, tautan demo, dan repositori.
+- 💼 **Showcase Proyek Unggulan**: Daftar proyek (misal: *JapanApp*, *DataScry*, *Prameswari EO*, *Aria2App*, dll.) lengkap dengan deskripsi, metrik, filter kategori, tautan demo, dan repositori.
 - 🛠️ **Capability & Tech Matrix**: Pengelompokan keahlian teknis (Frontend, Languages, Backend & DB, Tools & OS) dengan palet aksen visual khusus.
 - ⏳ **Experience Timeline**: Linimasa perjalanan karier, pengalaman kerja, serta proyek skala industri.
 - 🎓 **Halaman Sertifikat & Pencapaian**: Galeri sertifikasi dan kredensial profesional (`/certificates`).
