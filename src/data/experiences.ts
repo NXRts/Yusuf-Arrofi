@@ -11,6 +11,20 @@ export interface Experience {
 
 export const experiencesData: Experience[] = [
   {
+    id: "umuka-solo",
+    period: "2026 — Present",
+    role: "Undergraduate Student in Informatics (S1 Informatika)",
+    company: "Universitas Muhammadiyah Karanganyar (UMUKA SOLO)",
+    location: "Karanganyar, Surakarta, Jawa Tengah",
+    isCurrent: true,
+    points: [
+      "Pursuing Bachelor's Degree in Informatics (S1 Informatika), focusing on core computer science foundations, algorithms, and software engineering methodologies.",
+      "Synthesizing academic theoretical rigor with real-world industry practices across modern full-stack, distributed backend systems, and Go architectures.",
+      "Actively exploring advanced system design, relational database optimization, and high-concurrency computing paradigms.",
+    ],
+    tags: ["Informatics", "Computer Science", "Algorithms", "Software Engineering", "System Design", "Databases"],
+  },
+  {
     id: "nxrts-dev",
     period: "2023 — Present",
     role: "Full-Stack Developer & Open Sourcer",
