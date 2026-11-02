@@ -30,6 +30,7 @@ export default function Footer() {
     { name: "DataScry (Offline Document Suite)", href: "https://datascry.vercel.app/" },
     { name: "Aria2App (Desktop Downloader GUI)", href: "https://github.com/NXRts/Aria2App" },
     { name: "Prameswari EO (Tourism Platform)", href: "https://prameswari-eo.vercel.app/" },
+    { name: "Yusuf Expedition (DPSA)", href: "https://yuexp.vercel.app/" },
     { name: "Periodik (Chemistry SPA)", href: "https://periodik-two.vercel.app/" },
     { name: "Smart Compressor (Image Optimizer)", href: "https://kompres.vercel.app/" },
   ];
