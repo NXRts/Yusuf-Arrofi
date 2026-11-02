@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUp, Mail, MapPin } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons/BrandIcons";
+import BrandLogo from "@/components/icons/BrandLogo";
 import { profileData } from "@/data/profile";
 
 export default function Footer() {
@@ -138,8 +139,9 @@ export default function Footer() {
 
         {/* Bottom Legal & Back to Top Row */}
         <div className="pt-8 border-t border-[#232732]/60 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#6b7280]">
-          <div>
-            © {currentYear} {profileData.name}. All verified projects preserved.
+          <div className="flex items-center gap-3">
+            <BrandLogo size={22} className="shrink-0" />
+            <span>© {currentYear} {profileData.name}. All verified projects preserved.</span>
           </div>
 
           <button
