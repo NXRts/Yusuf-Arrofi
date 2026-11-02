@@ -187,6 +187,44 @@ export const projectsData: Project[] = [
     github: "https://github.com/NXRts/Prameswari-EO",
   },
   {
+    id: "yusuf-expedition",
+    slug: "yusuf-expedition",
+    title: "Yusuf Expedition (DPSA)",
+    subtitle: "Digital Peak-Scaling Archive & High-Altitude Ascent Logs",
+    category: "fullstack",
+    featured: false,
+    image: "/assets/website/Yusuf_Expedition.webp",
+    description:
+      "A dedicated mountaineering expedition archive documenting Indonesian alpine ascents, featuring interactive geospatial tracking maps, chronological ascent timelines, elevation gain profiles, and peak databases.",
+    fullDescription:
+      "DPSA (Digital Peak-Scaling Archive / Yusuf Expedition) is a comprehensive web portal engineered to immortalize and map high-altitude alpine expeditions across Indonesia (including Mount Semeru, Mount Lawu, Mount Merbabu, Mount Rinjani, and beyond). Built with Next.js, React, and TypeScript, the platform pairs interactive route maps with chronological ascent rails, waypoint elevation metrics, and comprehensive peak information for mountaineers and outdoor explorers.",
+    problem:
+      "High-altitude mountaineering logs and trail telemetry are typically scattered across disparate forum posts, unindexed social updates, or private GPS devices, making historical ascent verification and route planning difficult to analyze.",
+    contribution:
+      "Engineered the full-stack web archive: designed the peak database taxonomy, built the interactive chronological ascent timeline rail, integrated geospatial tracking map components, and optimized media delivery for outdoor mobile viewing.",
+    technicalDecisions: [
+      "Chronological ascent rail detailing milestone waypoints, summit altitudes, and expedition timestamps.",
+      "Geospatial route tracking map with custom elevation profile rendering.",
+      "Responsive editorial dark theme engineered for high legibility in outdoor bright-sunlight and low-battery field conditions.",
+      "Optimized WebP image delivery preserving alpine photography clarity while minimizing bandwidth consumption."
+    ],
+    features: [
+      "Interactive expedition tracking map with geographic waypoints and elevation profiles",
+      "Chronological ascent rail detailing multi-peak expedition timelines and summit logs",
+      "Comprehensive Indonesian mountain archive covering major peaks (Semeru, Lawu, etc.)",
+      "Expedition leader biography and alpine philosophy documentation",
+      "Fast, responsive layout optimized for mobile field viewing"
+    ],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Geospatial Maps", "Expedition Archive", "Vercel"],
+    metrics: {
+      platform: "Web Application",
+      architecture: "Next.js App Router",
+      deployment: "Vercel Edge",
+      stack: "TypeScript + Tailwind CSS"
+    },
+    link: "https://yuexp.vercel.app/",
+  },
+  {
     id: "periodik",
     slug: "periodik",
     title: "Periodik",
