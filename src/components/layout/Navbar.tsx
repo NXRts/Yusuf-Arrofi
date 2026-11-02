@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
 import { GitHubIcon } from "@/components/icons/BrandIcons";
+import BrandLogo from "@/components/icons/BrandLogo";
 import { profileData } from "@/data/profile";
 
 export default function Navbar() {
@@ -64,13 +65,16 @@ export default function Navbar() {
     >
       <div className="max-w-[1240px] mx-auto h-16 md:h-18 px-4 sm:px-6 md:px-8 flex items-center justify-between">
         {/* Brand / Name & Monospace Handle */}
-        <Link href="/" className="flex items-baseline gap-2.5 group">
-          <span className="font-sans font-semibold text-sm sm:text-base tracking-tight text-[#f4f4f6] group-hover:text-white transition-colors">
-            {profileData.name}
-          </span>
-          <span className="font-mono text-xs text-[#9ca3af] hidden sm:inline-block">
-            / {profileData.handle}
-          </span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <BrandLogo size={28} className="shrink-0 transition-transform group-hover:scale-105" />
+          <div className="flex items-baseline gap-2">
+            <span className="font-sans font-semibold text-sm sm:text-base tracking-tight text-[#f4f4f6] group-hover:text-white transition-colors">
+              {profileData.name}
+            </span>
+            <span className="font-mono text-xs text-[#9ca3af] hidden sm:inline-block">
+              / {profileData.handle}
+            </span>
+          </div>
         </Link>
 
         {/* Center/Desktop Navigation Links */}
