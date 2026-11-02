@@ -1,83 +1,35 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  Code2, 
-  ExternalLink, 
-  Send, 
-  Menu, 
-  X,
-  FileCode,
-  Award,
-  BookOpen,
-  Sparkles
-} from "lucide-react";
+import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
+import { GitHubIcon } from "@/components/icons/BrandIcons";
 import { profileData } from "@/data/profile";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isRendered, setIsRendered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
-  const [mounted, setMounted] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Smooth opening & closing animation coordinator
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    let frame1: number;
-    let frame2: number;
-
-    if (mobileMenuOpen) {
-      setIsRendered(true);
-      frame1 = requestAnimationFrame(() => {
-        frame2 = requestAnimationFrame(() => {
-          setIsVisible(true);
-        });
-      });
-    } else {
-      setIsVisible(false);
-      timer = setTimeout(() => {
-        setIsRendered(false);
-      }, 300);
-    }
-
-    return () => {
-      cancelAnimationFrame(frame1);
-      cancelAnimationFrame(frame2);
-      clearTimeout(timer);
-    };
-  }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    setCurrentHash(window.location.hash);
-    const handleHashChange = () => {
-      setCurrentHash(window.location.hash);
-    };
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    const frameId = requestAnimationFrame(handleHashChange);
     window.addEventListener("hashchange", handleHashChange);
     window.addEventListener("popstate", handleHashChange);
     return () => {
+      cancelAnimationFrame(frameId);
       window.removeEventListener("hashchange", handleHashChange);
       window.removeEventListener("popstate", handleHashChange);
     };
   }, []);
 
-  // Prevent background scrolling and handle Escape key when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          setMobileMenuOpen(false);
-        }
+        if (e.key === "Escape") setMobileMenuOpen(false);
       };
       window.addEventListener("keydown", handleKeyDown);
       return () => {
@@ -87,33 +39,13 @@ export default function Navbar() {
     }
   }, [mobileMenuOpen]);
 
-  // Handle tap / click outside the navbar to close mobile menu
-  useEffect(() => {
-    if (!mobileMenuOpen) return;
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("pointerdown", handlePointerDown);
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-    };
-  }, [mobileMenuOpen]);
-
-  // Close mobile menu automatically on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
   const navLinks = [
+    { name: "Projects", href: "/#projects" },
     { name: "About", href: "/#about" },
-    { name: "Capabilities", href: "/#capabilities" },
-    { name: "Projects", href: "/projects" },
-    { name: "Certificates", href: "/certificates" },
+    { name: "Skills", href: "/#skills" },
     { name: "Experience", href: "/#experience" },
+    { name: "Activity", href: "/#activity" },
+    { name: "All Projects", href: "/projects" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/#contact" },
   ];
@@ -126,36 +58,27 @@ export default function Navbar() {
   };
 
   return (
-    <header ref={navRef} className="fixed top-0 w-full z-50 bg-[#0d1323]/90 backdrop-blur-xl border-b border-[#2f3446]/40 shadow-[0_1px_8px_rgba(0,0,0,0.2)]">
-      <div className="h-16 md:h-20 w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 flex items-center justify-between gap-3 sm:gap-4">
-        {/* Brand Logo & Handle */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
-            <div className="px-2 py-1.5 sm:px-2.5 sm:py-2 bg-surface-elevated border border-surface-variant rounded-lg shadow-[0_0_12px_rgba(168,85,247,0.25)] flex items-center justify-center group-hover:border-secondary/50 transition-colors">
-              <span className="font-mono text-xs sm:text-sm font-bold text-secondary">NX</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-sans text-base sm:text-lg font-extrabold text-text-primary tracking-tight group-hover:text-primary transition-colors leading-tight">
-                YUSUF<span className="text-secondary">.DEV</span>
-              </span>
-              <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-secondary uppercase tracking-wider">
-                NXRts // フルスタック
-              </span>
-            </div>
-          </Link>
+    <header
+      ref={navRef}
+      className="fixed top-0 left-0 w-full z-50 bg-[#0c0d10]/92 backdrop-blur-md border-b border-[#232732] transition-colors"
+    >
+      <div className="max-w-[1240px] mx-auto h-16 md:h-18 px-4 sm:px-6 md:px-8 flex items-center justify-between">
+        {/* Brand / Name & Monospace Handle */}
+        <Link href="/" className="flex items-baseline gap-2.5 group">
+          <span className="font-sans font-semibold text-sm sm:text-base tracking-tight text-[#f4f4f6] group-hover:text-white transition-colors">
+            {profileData.name}
+          </span>
+          <span className="font-mono text-xs text-[#9ca3af] hidden sm:inline-block">
+            / {profileData.handle}
+          </span>
+        </Link>
 
-          {/* Status Badge */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 bg-surface-elevated/90 border border-secondary/20 rounded-full shadow-[0_0_10px_rgba(76,215,246,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span className="font-mono text-xs font-semibold text-secondary">
-              AVAILABLE FOR HIRE
-            </span>
-          </div>
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 p-1.5 bg-surface-elevated/60 border border-surface-variant/60 rounded-xl">
-          {navLinks.map((link) => {
+        {/* Center/Desktop Navigation Links */}
+        <nav
+          className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider"
+          aria-label="Main Navigation"
+        >
+          {navLinks.slice(0, 5).map((link) => {
             const active = isActive(link.href);
             return (
               <Link
@@ -166,161 +89,99 @@ export default function Navbar() {
                     setCurrentHash(link.href.replace("/", ""));
                   }
                 }}
-                className={`px-3.5 py-1.5 rounded-lg text-sm transition-all font-medium ${
+                className={`transition-colors py-1 relative ${
                   active
-                    ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25"
-                    : "text-on-surface-variant hover:bg-surface-container-high hover:text-text-primary"
+                    ? "text-[#f4f4f6] font-semibold"
+                    : "text-[#9ca3af] hover:text-[#f4f4f6]"
                 }`}
               >
                 {link.name}
+                {active && (
+                  <span className="absolute -bottom-1 left-0 w-full h-[1.5px] bg-[#3b82f6]" />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
+        {/* Right Action Items */}
+        <div className="flex items-center gap-3">
+          <Link
+            href="/#contact"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono tracking-wide text-[#f4f4f6] bg-[#14171d] hover:bg-[#1a1e26] border border-[#232732] hover:border-[#3b82f6]/60 rounded transition-all"
+          >
+            <span>Get in touch</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#9ca3af]" />
+          </Link>
+
           <a
-            aria-label="GitHub Repository"
             href={profileData.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-surface-elevated border border-surface-variant items-center justify-center text-on-surface-variant hover:text-secondary hover:border-secondary/40 hover:bg-surface-container-high transition-all"
-            title="GitHub Profile"
+            aria-label="GitHub Profile"
+            className="p-2 text-[#9ca3af] hover:text-[#f4f4f6] hover:bg-[#14171d] rounded transition-colors"
           >
-            <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
+            <GitHubIcon className="w-4 h-4" />
           </a>
-          <a
-            aria-label="Professional Links Hub"
-            href={profileData.socials.linksPortal}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-surface-elevated border border-surface-variant items-center justify-center text-on-surface-variant hover:text-secondary hover:border-secondary/40 hover:bg-surface-container-high transition-all"
-            title="Links Portal"
-          >
-            <ExternalLink className="w-4 h-4" />
-          </a>
-          <Link
-            href="/#contact"
-            className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-primary-container hover:opacity-90 text-white font-medium text-xs shadow-md shadow-primary-container/20 transition-all"
-          >
-            <Send className="w-3.5 h-3.5" />
-            <span>Contact</span>
-          </Link>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-surface-elevated border border-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white transition-all active:scale-95 overflow-hidden"
-            aria-label="Toggle navigation menu"
+            className="md:hidden p-2 text-[#9ca3af] hover:text-[#f4f4f6] hover:bg-[#14171d] rounded transition-colors"
+            aria-label={mobileMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
             aria-expanded={mobileMenuOpen}
           >
-            <Menu
-              className={`w-5 h-5 absolute transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                mobileMenuOpen
-                  ? "opacity-0 rotate-90 scale-75"
-                  : "opacity-100 rotate-0 scale-100"
-              }`}
-            />
-            <X
-              className={`w-5 h-5 absolute text-secondary transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                mobileMenuOpen
-                  ? "opacity-100 rotate-0 scale-100"
-                  : "opacity-0 -rotate-90 scale-75"
-              }`}
-            />
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Backdrop Portal - Rendered to document.body to cover full viewport */}
-      {mounted && isRendered && createPortal(
-        <div
-          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden cursor-pointer touch-none transition-opacity duration-300 ease-out ${
-            isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          }`}
-          onClick={() => setMobileMenuOpen(false)}
-          aria-hidden="true"
-        />,
-        document.body
-      )}
-
-      {/* Mobile Menu Dropdown */}
-      {isRendered && (
-        <div
-          className={`relative z-10 lg:hidden border-t border-surface-variant bg-surface/98 px-5 py-4 flex flex-col gap-2 backdrop-blur-2xl max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain shadow-2xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-3 pointer-events-none"
-          }`}
-        >
-          {/* Status bar */}
-          <div className="flex items-center justify-between pb-2 mb-1 border-b border-surface-variant/60">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-              <span className="font-mono text-xs text-secondary">
-                STATUS: {profileData.status.label}
-              </span>
-            </div>
-            <span className="font-mono text-[11px] text-outline">
-              Surakarta [GMT+7]
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-[#0c0d10] border-b border-[#232732] px-4 py-6 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 duration-150">
+          <div className="flex flex-col gap-1 border-b border-[#232732] pb-4">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+              Location & Availability
+            </span>
+            <span className="text-xs text-[#9ca3af] font-mono">
+              {profileData.location}
+            </span>
+            <span className="text-xs text-[#3b82f6] font-mono mt-1">
+              • {profileData.status.label}
             </span>
           </div>
 
-          {/* Navigation links */}
-          <div className="flex flex-col gap-1 py-1">
+          <nav className="flex flex-col gap-2 font-mono text-sm tracking-wide">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (link.href.startsWith("/#")) {
-                    setCurrentHash(link.href.replace("/", ""));
-                  }
-                }}
-                className={`min-h-11 flex items-center px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  isActive(link.href)
-                    ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/20"
-                    : "text-on-surface-variant hover:bg-surface-elevated hover:text-white"
-                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 px-2 text-[#f4f4f6] hover:bg-[#14171d] rounded transition-colors flex items-center justify-between"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <span className="text-xs text-[#6b7280]">→</span>
               </Link>
             ))}
-          </div>
+          </nav>
 
-          {/* Quick social links & contact within mobile drawer */}
-          <div className="pt-3 mt-1 border-t border-surface-variant/60 flex flex-col gap-2.5">
-            <div className="grid grid-cols-2 gap-2">
-              <a
-                href={profileData.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-10.5 px-3 py-2 rounded-xl bg-surface-container-low border border-surface-variant/70 text-xs font-mono text-text-secondary hover:text-white flex items-center justify-center gap-2 transition-colors"
-              >
-                <Code2 className="w-4 h-4 text-secondary" />
-                <span>GitHub</span>
-              </a>
-              <a
-                href={profileData.socials.linksPortal}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-10.5 px-3 py-2 rounded-xl bg-surface-container-low border border-surface-variant/70 text-xs font-mono text-text-secondary hover:text-white flex items-center justify-center gap-2 transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-primary" />
-                <span>Links Hub</span>
-              </a>
-            </div>
-
-            <Link
-              href="/#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="min-h-11 px-4 py-2.5 rounded-xl bg-primary-container hover:opacity-95 text-white text-xs font-mono font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary-container/20 transition-all"
+          <div className="pt-2 flex items-center justify-between border-t border-[#232732]">
+            <a
+              href={`mailto:${profileData.email}`}
+              className="text-xs font-mono text-[#9ca3af] hover:text-white flex items-center gap-1.5"
             >
-              <Send className="w-4 h-4" />
-              <span>Transmit Message</span>
-            </Link>
+              <Mail className="w-3.5 h-3.5" />
+              <span>{profileData.email}</span>
+            </a>
+            <a
+              href={profileData.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-[#9ca3af] hover:text-white flex items-center gap-1"
+            >
+              <span>GitHub</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
           </div>
         </div>
       )}

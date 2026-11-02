@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search, ArrowLeft, ArrowRight, BookOpen, Clock, Calendar, Globe } from "lucide-react";
-import { blogPostsData, BlogPost } from "@/data/blogPosts";
+import { Search, ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { blogPostsData } from "@/data/blogPosts";
 
 export default function BlogIndexPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,36 +25,35 @@ export default function BlogIndexPage() {
   }, [searchQuery, selectedCategory, language]);
 
   return (
-    <div className="w-full pt-28 pb-20 max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col gap-10">
+    <div className="w-full pt-28 sm:pt-36 pb-20 max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-14 bg-[#0c0d10] text-[#f4f4f6]">
       {/* Top Breadcrumb & Language Switch */}
       <div className="flex items-center justify-between">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-secondary transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Overview</span>
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Return to Overview</span>
         </Link>
 
-        {/* Language Pill Switcher */}
-        <div className="flex items-center gap-1 p-1 bg-surface-elevated border border-surface-variant rounded-xl">
-          <Globe className="w-3.5 h-3.5 text-secondary ml-2 mr-1" />
+        {/* Language Switcher */}
+        <div className="flex items-center gap-1 p-1 bg-[#111317] border border-[#232732] rounded font-mono text-xs">
           <button
             onClick={() => setLanguage("en")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
               language === "en"
-                ? "bg-primary-container text-white font-bold"
-                : "text-on-surface-variant hover:text-white"
+                ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                : "text-[#9ca3af] hover:text-[#f4f4f6]"
             }`}
           >
             EN
           </button>
           <button
             onClick={() => setLanguage("id")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
               language === "id"
-                ? "bg-primary-container text-white font-bold"
-                : "text-on-surface-variant hover:text-white"
+                ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                : "text-[#9ca3af] hover:text-[#f4f4f6]"
             }`}
           >
             ID
@@ -63,123 +62,134 @@ export default function BlogIndexPage() {
       </div>
 
       {/* Page Header */}
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-xs font-bold text-secondary tracking-wider">
-            TECHNICAL JOURNAL & ESSAYS
-          </span>
-          <span className="w-12 h-0.5 bg-primary-container" />
+      <div className="flex flex-col gap-3 pb-8 border-b border-[#232732]/60">
+        <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
+          <span>JOURNAL</span>
+          <span className="w-8 h-px bg-[#3b82f6]" />
+          <span>ENGINEERING NOTES & ESSAYS</span>
         </div>
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
-          {language === "en" ? "Engineering Insights & Articles" : "Artikel & Catatan Rekayasa Perangkat Lunak"}
+        <h1 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+          {language === "en" ? "Articles & Engineering Notes" : "Artikel & Catatan Rekayasa"}
         </h1>
-        <p className="font-sans text-base text-on-surface-variant max-w-2xl leading-relaxed">
+        <p className="font-sans text-sm sm:text-base text-[#9ca3af] max-w-2xl leading-relaxed">
           {language === "en"
-            ? "Deep dives into systems programming, machine learning anomaly detection, full-stack architecture, and zero-bloat web development."
-            : "Catatan mendalam seputar pemrograman sistem, deteksi anomali machine learning, arsitektur full-stack, dan pengembangan web modern."}
+            ? "Reflections on systems programming, machine learning anomaly detection, Spaced Repetition algorithms, and full-stack software architecture."
+            : "Refleksi seputar pemrograman sistem, deteksi anomali machine learning, algoritma Spaced Repetition, dan arsitektur software full-stack."}
         </p>
       </div>
 
-      {/* Search & Categories */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-surface-elevated border border-surface-variant">
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded border border-[#232732] bg-[#111317]">
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 font-mono text-xs">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded text-xs transition-colors whitespace-nowrap cursor-pointer ${
                 selectedCategory === cat
-                  ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25 border border-primary-container"
-                  : "bg-surface-container-low text-on-surface-variant border border-surface-variant hover:bg-surface-container-high"
+                  ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                  : "bg-[#14171d] text-[#9ca3af] hover:text-[#f4f4f6] border border-[#232732]"
               }`}
             >
-              {cat === "all" ? (language === "en" ? "All Categories" : "Semua Topik") : cat}
+              {cat === "all" ? (language === "en" ? "All Topics" : "Semua Topik") : cat}
             </button>
           ))}
         </div>
 
         {/* Search Input */}
-        <div className="relative min-w-65 sm:min-w-[320px]">
-          <Search className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <div className="relative w-full md:w-auto md:min-w-65 lg:min-w-[280px]">
+          <Search className="w-3.5 h-3.5 text-[#6b7280] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={language === "en" ? "Search articles..." : "Cari artikel..."}
-            className="cyber-input w-full pl-10 pr-4 py-2 rounded-xl text-xs font-mono"
+            className="w-full pl-9 pr-3 py-1.5 rounded bg-[#0c0d10] border border-[#232732] text-xs font-mono text-[#f4f4f6] focus:outline-none focus:border-[#3b82f6]"
           />
         </div>
       </div>
 
-      {/* Articles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredPosts.map((post) => (
-          <article
-            key={post.id}
-            className="p-6 rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl transition-all"
+      {/* Articles List / Grid */}
+      {filteredPosts.length === 0 ? (
+        <div className="py-20 text-center flex flex-col items-center gap-3 border border-[#232732] rounded bg-[#111317]">
+          <BookOpen className="w-8 h-8 text-[#6b7280]" />
+          <h3 className="font-sans text-base font-bold text-[#f4f4f6]">
+            {language === "en" ? "No articles match your query" : "Tidak ada artikel yang cocok"}
+          </h3>
+          <button
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("all");
+            }}
+            className="mt-2 px-3 py-1.5 rounded bg-[#14171d] text-xs font-mono text-[#3b82f6] border border-[#232732]"
           >
-            <div className="flex flex-col gap-4">
-              <div className="h-44 w-full rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
-                <img
-                  src={post.image}
-                  alt={post.title[language]}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary">
-                  {post.category}
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-3 font-mono text-[11px] text-outline">
-                  <span className="flex items-center gap-1 text-primary">
-                    <Calendar className="w-3 h-3" />
-                    {post.date}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {post.readTime}
-                  </span>
+            Reset Filters
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPosts.map((post) => (
+            <article
+              key={post.id}
+              className="p-5 rounded border border-[#232732] bg-[#111317] flex flex-col justify-between gap-5 group hover:border-[#3b82f6]/40 transition-colors"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-full h-44 rounded overflow-hidden bg-[#08090b] border border-[#232732] relative">
+                  <img
+                    src={post.image}
+                    alt={post.title[language]}
+                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[#0c0d10]/90 border border-[#232732] font-mono text-[10px] text-[#3b82f6] uppercase tracking-wider">
+                    {post.category}
+                  </div>
                 </div>
 
-                <h2 className="font-sans text-lg font-bold text-text-primary group-hover:text-secondary transition-colors mt-1">
-                  <Link href={`/blog/${post.slug}`}>
-                    {post.title[language]}
-                  </Link>
-                </h2>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2 font-mono text-xs text-[#6b7280]">
+                    <span>{post.date}</span>
+                    <span>•</span>
+                    <span>{post.readTime}</span>
+                  </div>
 
-                <p className="font-sans text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+                  <h2 className="font-sans text-lg font-bold text-[#f4f4f6] group-hover:text-white transition-colors leading-snug">
+                    <Link href={`/blog/${post.slug}`}>
+                      {post.title[language]}
+                    </Link>
+                  </h2>
+                </div>
+
+                <p className="font-sans text-xs text-[#9ca3af] line-clamp-3 leading-relaxed">
                   {post.excerpt[language]}
                 </p>
               </div>
-            </div>
 
-            <div className="pt-6 border-t border-surface-variant/50 mt-6 flex items-center justify-between">
-              <div className="flex flex-wrap gap-1">
-                {post.tags.slice(0, 2).map((t) => (
-                  <span
-                    key={t}
-                    className="px-2 py-0.5 rounded bg-surface-container-low border border-surface-variant/60 text-[11px] font-mono text-text-secondary"
-                  >
-                    {t}
-                  </span>
-                ))}
+              <div className="pt-4 border-t border-[#232732]/60 flex items-center justify-between font-mono text-xs">
+                <div className="flex flex-wrap gap-1">
+                  {post.tags.slice(0, 2).map((t) => (
+                    <span
+                      key={t}
+                      className="px-1.5 py-0.5 rounded bg-[#14171d] border border-[#232732] text-[#9ca3af] text-[10px]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-[#3b82f6] hover:underline flex items-center gap-1 shrink-0"
+                >
+                  <span>Read Article</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
-
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-secondary hover:text-secondary-fixed transition-colors group-hover:translate-x-1"
-              >
-                <span>{language === "en" ? "Read Article" : "Baca Artikel"}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

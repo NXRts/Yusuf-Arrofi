@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
@@ -8,6 +8,13 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -20,26 +27,24 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://yusufarrofi.my.id"),
   title: {
-    default: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
+    default: "Muhammad Yusuf Arrofi — Software Engineer & Full-Stack Developer",
     template: "%s | Muhammad Yusuf Arrofi",
   },
-  description: "Official portfolio of Muhammad Yusuf Arrofi (NXRts), 19 y/o Software Engineer specializing in Go, Next.js, React, TypeScript, and Arch Linux desktop workflows. Creator of JapanApp, DataScry, Aria2App, and Prameswari EO.",
+  description:
+    "Personal portfolio and engineering log of Muhammad Yusuf Arrofi (NXRts). Software engineer focused on Go, backend architectures, deliberate frontend engineering with Next.js & React, and offline-first tools.",
   keywords: [
     "Muhammad Yusuf Arrofi",
     "Yusuf Arrofi",
     "NXRts",
-    "YUSUF.DEV",
-    "Portofolio Yusuf Arrofi",
+    "Software Engineer",
     "Full-Stack Developer",
-    "Software Engineer Indonesia",
     "Go Developer",
     "Golang",
     "Next.js Developer",
     "React Developer",
     "TypeScript",
     "Web Developer Surakarta",
-    "Programmer Solo",
-    "Arch Linux",
+    "Programmer Indonesia",
     "JapanApp",
     "DataScry",
     "Aria2App",
@@ -66,9 +71,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://yusufarrofi.my.id",
-    title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
-    description: "Specialized in building performant web applications, responsive frontend architectures, and Go/Node services.",
-    siteName: "Muhammad Yusuf Arrofi Portfolio",
+    title: "Muhammad Yusuf Arrofi — Software Engineer & Full-Stack Developer",
+    description:
+      "Editorial developer portfolio of Muhammad Yusuf Arrofi (NXRts). Software engineering, backend architecture in Go, responsive frontend systems, and offline-first utilities.",
+    siteName: "Muhammad Yusuf Arrofi",
     images: [
       {
         url: "/og-image.png",
@@ -80,8 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Yusuf Arrofi (NXRts) — Full-Stack & Go Developer",
-    description: "Full-Stack & Go Developer from Surakarta, Indonesia. Creator of JapanApp, DataScry, and Aria2App.",
+    title: "Muhammad Yusuf Arrofi — Software Engineer & Full-Stack Developer",
+    description:
+      "Software Engineer based in Surakarta, Indonesia. Creator of JapanApp, DataScry, Aria2App, and Prameswari EO.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -111,7 +118,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
+      className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
     >
       <head>
         <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />

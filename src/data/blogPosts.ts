@@ -70,7 +70,7 @@ Setelah diidentifikasi, data scientist menghadapi keputusan kritis: haruskah out
     category: "Case Study",
     date: "July 2024",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1528164344705-475426879c0d?q=80&w=1200&auto=format&fit=crop",
+    image: "/assets/website/JapanApp.webp",
     excerpt: {
       en: "How I engineered JapanApp to help Japanese learners master Kanji stroke orders and vocabulary retention.",
       id: "Bagaimana saya merancang JapanApp untuk membantu pembelajar bahasa Jepang menguasai goresan Kanji dan daya ingat kosakata.",
@@ -107,7 +107,7 @@ Memanfaatkan Next.js bersama React dan TypeScript memungkinkan kamus kanji diren
     category: "Project",
     date: "June 2024",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop",
+    image: "/assets/website/WildStep.webp",
     excerpt: {
       en: "Designing and scaling a robust online store for outdoor enthusiasts with Next.js and Prisma.",
       id: "Merancang dan membangun toko online tangguh bagi pecinta alam dengan Next.js dan Prisma.",
@@ -132,7 +132,7 @@ Fokus utama mencakup implementasi filter inventaris multi-atribut (tingkat water
     category: "Technology",
     date: "May 2024",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1200&auto=format&fit=crop",
     excerpt: {
       en: "How AI agents and autonomous coding assistants are reshaping everyday software engineering workflows.",
       id: "Bagaimana agen AI dan asisten coding otonom mengubah alur kerja rekayasa perangkat lunak sehari-hari.",

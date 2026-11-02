@@ -7,7 +7,6 @@ import {
   Calendar, 
   Clock, 
   Share2, 
-  Globe, 
   Tag, 
   CheckCircle2 
 } from "lucide-react";
@@ -31,36 +30,35 @@ export default function BlogPostView({ post }: Props) {
   };
 
   return (
-    <article className="w-full pt-22 sm:pt-28 pb-16 sm:pb-20 max-w-225 mx-auto px-4 md:px-8 flex flex-col gap-6 sm:gap-10">
+    <article className="w-full pt-28 sm:pt-36 pb-20 max-w-3xl mx-auto px-4 md:px-8 flex flex-col gap-10 bg-[#0c0d10] text-[#f4f4f6]">
       {/* Top Breadcrumb & Controls */}
       <div className="flex items-center justify-between gap-2">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-secondary transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 shrink-0" />
+          <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
           <span className="truncate">{language === "en" ? "Back to All Articles" : "Kembali ke Indeks Blog"}</span>
         </Link>
 
         {/* Language Switch */}
-        <div className="flex items-center gap-1 p-1 bg-surface-elevated border border-surface-variant rounded-xl shrink-0">
-          <Globe className="w-3.5 h-3.5 text-secondary ml-2 mr-1" />
+        <div className="flex items-center gap-1 p-1 bg-[#111317] border border-[#232732] rounded font-mono text-xs">
           <button
             onClick={() => setLanguage("en")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
               language === "en"
-                ? "bg-primary-container text-white font-bold"
-                : "text-on-surface-variant hover:text-white"
+                ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                : "text-[#9ca3af] hover:text-[#f4f4f6]"
             }`}
           >
             EN
           </button>
           <button
             onClick={() => setLanguage("id")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
               language === "id"
-                ? "bg-primary-container text-white font-bold"
-                : "text-on-surface-variant hover:text-white"
+                ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                : "text-[#9ca3af] hover:text-[#f4f4f6]"
             }`}
           >
             ID
@@ -69,68 +67,68 @@ export default function BlogPostView({ post }: Props) {
       </div>
 
       {/* Article Header */}
-      <header className="flex flex-col gap-3.5 sm:gap-4">
-        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-          <span className="px-3 py-1 rounded-full bg-primary-container text-white font-mono text-xs font-bold uppercase tracking-wider">
+      <header className="flex flex-col gap-4">
+        <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs text-[#6b7280]">
+          <span className="px-2 py-0.5 rounded bg-[#14171d] border border-[#232732] text-[#3b82f6] uppercase tracking-wider text-[11px]">
             {post.category}
           </span>
-          <span className="font-mono text-xs text-outline">•</span>
-          <span className="font-mono text-xs text-primary flex items-center gap-1">
+          <span>•</span>
+          <span className="flex items-center gap-1 text-[#9ca3af]">
             <Calendar className="w-3.5 h-3.5" />
             {post.date}
           </span>
-          <span className="font-mono text-xs text-outline">•</span>
-          <span className="font-mono text-xs text-secondary flex items-center gap-1">
+          <span>•</span>
+          <span className="flex items-center gap-1 text-[#9ca3af]">
             <Clock className="w-3.5 h-3.5" />
             {post.readTime}
           </span>
         </div>
 
-        <h1 className="font-sans text-2xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-[1.2]">
+        <h1 className="font-sans text-3xl sm:text-5xl font-bold text-[#f4f4f6] tracking-tight leading-[1.15]">
           {post.title[language]}
         </h1>
 
-        <p className="font-sans text-base sm:text-lg text-on-surface-variant italic leading-relaxed border-l-2 border-secondary pl-3.5 sm:pl-4">
+        <p className="font-serif italic text-lg sm:text-xl text-[#d1d5db] leading-relaxed border-l-2 border-[#3b82f6] pl-4">
           {post.excerpt[language]}
         </p>
 
         {/* Author metadata strip */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-surface-variant/60">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-[#232732]/60">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-elevated border border-secondary flex items-center justify-center font-mono text-xs font-bold text-secondary shrink-0">
+            <div className="w-9 h-9 rounded bg-[#14171d] border border-[#232732] flex items-center justify-center font-mono text-xs font-bold text-[#3b82f6] shrink-0">
               NX
             </div>
             <div className="flex flex-col">
-              <span className="font-sans text-sm font-bold text-text-primary">
+              <span className="font-sans text-sm font-semibold text-[#f4f4f6]">
                 {profileData.name}
               </span>
-              <span className="font-mono text-xs text-secondary">
-                @{profileData.handle} // Software Engineer
+              <span className="font-mono text-xs text-[#6b7280]">
+                @{profileData.handle} · {profileData.title}
               </span>
             </div>
           </div>
 
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-container-high border border-surface-variant text-xs font-mono text-on-surface-variant hover:text-white transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#14171d] hover:bg-[#1a1e26] border border-[#232732] text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors cursor-pointer"
           >
             {copied ? (
               <>
-                <CheckCircle2 className="w-3.5 h-3.5 text-secondary" />
-                <span className="text-secondary">Copied!</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#3b82f6]" />
+                <span className="text-[#3b82f6]">Link Copied</span>
               </>
             ) : (
               <>
                 <Share2 className="w-3.5 h-3.5" />
-                <span>Share Link</span>
+                <span>Share Article</span>
               </>
             )}
           </button>
         </div>
       </header>
 
-      {/* Hero Image */}
-      <div className="w-full h-56 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden bg-surface-container-lowest border border-surface-variant shadow-2xl relative">
+      {/* Featured Image */}
+      <div className="w-full aspect-video rounded overflow-hidden bg-[#08090b] border border-[#232732] shadow-xl">
         <img
           src={post.image}
           alt={post.title[language]}
@@ -138,68 +136,59 @@ export default function BlogPostView({ post }: Props) {
         />
       </div>
 
-      {/* Article Markdown / Content Body */}
-      <div className="flex flex-col gap-5 sm:gap-6 text-on-surface-variant font-sans text-base sm:text-lg leading-relaxed pt-2 sm:pt-4">
-        {post.content[language].split("\n\n").map((block, idx) => {
-          if (block.startsWith("### ")) {
+      {/* Article Content */}
+      <div className="flex flex-col gap-6 text-[#9ca3af] font-sans text-base sm:text-lg leading-relaxed pt-2">
+        {post.content[language].split(/\n\s*\n/).map((block, idx) => {
+          const lines = block.trim().split("\n");
+          if (lines[0].startsWith("### ")) {
+            const heading = lines[0].replace("### ", "").trim();
+            const rest = lines.slice(1).join("\n").trim();
             return (
-              <h2
-                key={idx}
-                className="font-sans text-xl sm:text-2xl font-bold text-text-primary tracking-tight mt-4 sm:mt-6 pt-4 border-t border-surface-variant/40 flex items-center gap-2"
-              >
-                <span className="w-2 h-2 rounded-full bg-secondary shrink-0" />
-                <span>{block.replace("### ", "")}</span>
-              </h2>
+              <div key={idx} className="flex flex-col gap-4">
+                <h2 className="font-sans text-xl sm:text-2xl font-bold text-[#f4f4f6] tracking-tight mt-6 pt-4 border-t border-[#232732]/60 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6] shrink-0" />
+                  <span>{heading}</span>
+                </h2>
+                {rest && (
+                  <p className="text-[#d1d5db] leading-relaxed text-sm sm:text-base whitespace-pre-line">
+                    {rest}
+                  </p>
+                )}
+              </div>
             );
           }
-          if (block.startsWith("- ")) {
-            const items = block.split("\n- ");
+          if (block.startsWith("- ") || block.startsWith("1. ")) {
+            const items = lines.map((l) => l.replace(/^[-*]\s*|^\d+\.\s*/, "").trim());
             return (
-              <ul key={idx} className="flex flex-col gap-2 pl-3 sm:pl-4">
+              <ul key={idx} className="flex flex-col gap-2.5 pl-2 text-sm sm:text-base">
                 {items.map((it, itIdx) => (
-                  <li key={itIdx} className="flex items-start gap-2 text-sm sm:text-base">
-                    <span className="text-secondary font-bold">•</span>
-                    <span>{it.replace("- ", "")}</span>
+                  <li key={itIdx} className="flex items-start gap-2 text-[#d1d5db]">
+                    <span className="text-[#3b82f6] font-mono text-xs pt-1 shrink-0">•</span>
+                    <span className="leading-relaxed">{it}</span>
                   </li>
                 ))}
               </ul>
             );
           }
           return (
-            <p key={idx} className="text-on-surface-variant leading-relaxed text-sm sm:text-base md:text-lg">
+            <p key={idx} className="text-[#d1d5db] leading-relaxed text-sm sm:text-base whitespace-pre-line">
               {block}
             </p>
           );
         })}
       </div>
 
-      {/* Tags footer */}
-      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-6 sm:pt-8 border-t border-surface-variant/60">
-        <Tag className="w-4 h-4 text-secondary mr-1" />
+      {/* Tags Footer */}
+      <div className="flex flex-wrap items-center gap-1.5 pt-8 border-t border-[#232732]/60">
+        <Tag className="w-3.5 h-3.5 text-[#6b7280] mr-1" />
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="px-2.5 sm:px-3 py-1 rounded-lg bg-surface-elevated border border-surface-variant font-mono text-xs text-text-secondary"
+            className="px-2 py-0.5 rounded bg-[#14171d] border border-[#232732] text-xs font-mono text-[#9ca3af]"
           >
             {tag}
           </span>
         ))}
-      </div>
-
-      {/* Next Article Navigation */}
-      <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4 sm:mt-6">
-        <div className="flex flex-col gap-1">
-          <span className="font-mono text-xs text-secondary">Explore More Knowledge</span>
-          <p className="font-sans text-sm font-semibold text-text-primary">
-            Continue reading our technology essays and architecture case studies.
-          </p>
-        </div>
-        <Link
-          href="/blog"
-          className="w-full sm:w-auto text-center justify-center px-4 py-2 rounded-xl bg-primary-container hover:opacity-90 text-white font-mono text-xs font-bold shrink-0 transition-opacity"
-        >
-          View All Articles
-        </Link>
       </div>
     </article>
   );

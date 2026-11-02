@@ -2,7 +2,8 @@
 
 import { projectsData, Project } from "@/data/projects";
 import ProjectDetailModal from "@/components/projects/ProjectDetailModal";
-import { ArrowLeft, ArrowRight, Layers, Search } from "lucide-react";
+import { ArrowLeft, Search, Layers, ExternalLink } from "lucide-react";
+import { GitHubIcon } from "@/components/icons/BrandIcons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -12,12 +13,12 @@ export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories = [
-    { id: "all", label: "All Projects" },
+    { id: "all", label: "All Works" },
     { id: "flagship", label: "Flagship" },
     { id: "fullstack", label: "Fullstack" },
     { id: "frontend", label: "Frontend" },
     { id: "backend", label: "Backend" },
-    { id: "tools", label: "Tools & SaaS" },
+    { id: "tools", label: "Local Tools" },
     { id: "desktop", label: "Desktop GUI" },
   ];
 
@@ -35,48 +36,45 @@ export default function ProjectsPage() {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="w-full pt-22 sm:pt-28 pb-16 sm:pb-20 max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col gap-6 sm:gap-10">
+    <div className="w-full pt-28 sm:pt-36 pb-20 max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-14 bg-[#0c0d10] text-[#f4f4f6]">
       {/* Top Breadcrumb */}
-      <div className="flex items-center gap-2">
+      <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-secondary transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Overview</span>
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Return to Overview</span>
         </Link>
       </div>
 
       {/* Page Header */}
-      <div className="flex flex-col gap-2.5 sm:gap-3">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-xs font-bold text-secondary tracking-wider">
-            PORTFOLIO REPOSITORY
-          </span>
-          <span className="w-12 h-0.5 bg-primary-container" />
+      <div className="flex flex-col gap-3 pb-8 border-b border-[#232732]/60">
+        <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
+          <span>CATALOG</span>
+          <span className="w-8 h-px bg-[#3b82f6]" />
+          <span>INDEX OF VERIFIED WORKS</span>
         </div>
-        <h1 className="font-sans text-2xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
-          Engineered Projects & Software Artifacts
+        <h1 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+          Software Archive & Projects
         </h1>
-        <p className="font-sans text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">
-          A comprehensive archive of production web applications, backend APIs,
-          command-line utilities, and open-source contributions created by Yusuf
-          Arrofi.
+        <p className="font-sans text-sm sm:text-base text-[#9ca3af] max-w-2xl leading-relaxed">
+          Complete repository of web applications, backend services, desktop utilities, and open-source software engineered by Muhammad Yusuf Arrofi.
         </p>
       </div>
 
-      {/* Search & Category Filter Controls */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant">
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded border border-[#232732] bg-[#111317]">
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 md:pb-0 scrollbar-thin">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 font-mono text-xs">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded text-xs transition-colors whitespace-nowrap cursor-pointer ${
                 selectedCategory === cat.id
-                  ? "bg-primary-container text-white font-bold shadow-md shadow-primary-container/25 border border-primary-container"
-                  : "bg-surface-container-low text-on-surface-variant border border-surface-variant hover:bg-surface-container-high"
+                  ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
+                  : "bg-[#14171d] text-[#9ca3af] hover:text-[#f4f4f6] border border-[#232732]"
               }`}
             >
               {cat.label}
@@ -85,111 +83,125 @@ export default function ProjectsPage() {
         </div>
 
         {/* Search Input */}
-        <div className="relative w-full md:w-auto md:min-w-65 lg:min-w-[320px]">
-          <Search className="w-4 h-4 text-outline absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <div className="relative w-full md:w-auto md:min-w-65 lg:min-w-[280px]">
+          <Search className="w-3.5 h-3.5 text-[#6b7280] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by name, tag, or stack..."
-            className="cyber-input w-full pl-10 pr-4 py-2 rounded-xl text-xs font-mono"
+            placeholder="Search by title, stack, or tag..."
+            className="w-full pl-9 pr-3 py-1.5 rounded bg-[#0c0d10] border border-[#232732] text-xs font-mono text-[#f4f4f6] focus:outline-none focus:border-[#3b82f6]"
           />
         </div>
       </div>
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
-        <div className="py-16 sm:py-20 text-center flex flex-col items-center gap-3">
-          <Layers className="w-12 h-12 text-outline" />
-          <h3 className="font-sans text-base sm:text-lg font-bold text-text-primary">
-            No projects matched your filter criteria
+        <div className="py-20 text-center flex flex-col items-center gap-3 border border-[#232732] rounded bg-[#111317]">
+          <Layers className="w-8 h-8 text-[#6b7280]" />
+          <h3 className="font-sans text-base font-bold text-[#f4f4f6]">
+            No projects matched your criteria
           </h3>
-          <p className="font-sans text-xs text-on-surface-variant">
-            Try searching for another keyword or reset the category filter.
+          <p className="font-sans text-xs text-[#9ca3af]">
+            Try a different search query or reset the category filter.
           </p>
           <button
             onClick={() => {
               setSearchQuery("");
               setSelectedCategory("all");
             }}
-            className="mt-2 px-4 py-2 rounded-lg bg-surface-container-high text-xs font-mono text-secondary border border-surface-variant"
+            className="mt-2 px-3 py-1.5 rounded bg-[#14171d] text-xs font-mono text-[#3b82f6] border border-[#232732]"
           >
             Reset Filters
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <div
+            <article
               key={project.id}
-              className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/5 transition-all"
+              className="p-5 rounded border border-[#232732] bg-[#111317] flex flex-col justify-between gap-5 group hover:border-[#3b82f6]/40 transition-colors"
             >
               <div className="flex flex-col gap-4">
-                {/* Image Display - Full edge-to-edge */}
-                <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
+                {/* Real screenshot */}
+                <div className="w-full aspect-video rounded overflow-hidden bg-[#08090b] border border-[#232732] relative">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     loading="lazy"
                   />
-                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary backdrop-blur-xs">
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-[#0c0d10]/90 border border-[#232732] font-mono text-[10px] text-[#3b82f6] uppercase tracking-wider">
                     {project.category}
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-secondary uppercase tracking-wider font-semibold">
-                    {project.subtitle || project.category}
+                  <span className="font-mono text-[11px] text-[#6b7280] uppercase tracking-wider">
+                    {project.subtitle}
                   </span>
-                  <h3 className="font-sans text-xl font-bold text-text-primary">
+                  <h2 className="font-sans text-lg font-bold text-[#f4f4f6] group-hover:text-white transition-colors">
                     {project.title}
-                  </h3>
+                  </h2>
                 </div>
 
-                <p className="font-sans text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+                <p className="font-sans text-xs text-[#9ca3af] line-clamp-3 leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4 pt-6 border-t border-surface-variant/50 mt-6">
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
+              <div className="flex flex-col gap-3.5 pt-4 border-t border-[#232732]/60">
+                <div className="flex flex-wrap gap-1">
+                  {project.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 bg-surface-container-low border border-surface-variant/60 text-text-secondary font-mono text-[11px] rounded"
+                      className="px-1.5 py-0.5 rounded bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[10px]"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Card Action Footer */}
-                <div className="flex items-center justify-between pt-1">
-                  <span className="text-[11px] font-mono text-outline uppercase tracking-wider">
-                    {project.metrics?.platform || project.category}
-                  </span>
-
+                <div className="flex items-center justify-between pt-1 font-mono text-xs">
                   <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-surface text-secondary border border-surface-variant/80 hover:border-secondary text-xs font-mono font-semibold transition-all shadow-xs cursor-pointer group/btn"
+                    onClick={() => setSelectedProject(project)}
+                    className="text-[#3b82f6] hover:underline cursor-pointer"
                   >
-                    <span>View Details</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                    Inspect Spec →
                   </button>
+
+                  <div className="flex items-center gap-2">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#9ca3af] hover:text-white"
+                        aria-label={`Live demo of ${project.title}`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#9ca3af] hover:text-white"
+                        aria-label={`Source code of ${project.title}`}
+                      >
+                        <GitHubIcon className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       )}
 
-      {/* Project Detail Modal */}
+      {/* Modal */}
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
