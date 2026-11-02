@@ -5,6 +5,8 @@ export interface Experience {
   company: string;
   location: string;
   isCurrent?: boolean;
+  category: "education" | "work" | "independent";
+  summary: string;
   points: string[];
   tags: string[];
 }
@@ -13,56 +15,71 @@ export const experiencesData: Experience[] = [
   {
     id: "umuka-solo",
     period: "2026 — Present",
-    role: "Undergraduate Student in Informatics (S1 Informatika)",
+    role: "Undergraduate Student in Informatics",
     company: "Universitas Muhammadiyah Karanganyar (UMUKA SOLO)",
-    location: "Karanganyar, Surakarta, Jawa Tengah",
+    location: "Karanganyar, Surakarta, Indonesia",
     isCurrent: true,
+    category: "education",
+    summary:
+      "Pursuing a Bachelor's Degree in Informatics (S1), bridging foundational computer science theory with modern systems engineering.",
     points: [
-      "Pursuing Bachelor's Degree in Informatics (S1 Informatika), focusing on core computer science foundations, algorithms, and software engineering methodologies.",
-      "Synthesizing academic theoretical rigor with real-world industry practices across modern full-stack, distributed backend systems, and Go architectures.",
-      "Actively exploring advanced system design, relational database optimization, and high-concurrency computing paradigms.",
+      "Core studies in algorithms, data structures, relational database management, and discrete mathematics.",
+      "Synthesizing academic computer science foundations with practical production software development.",
+      "Researching distributed systems, concurrent programming models in Go, and modern web application architectures."
     ],
-    tags: ["Informatics", "Computer Science", "Algorithms", "Software Engineering", "System Design", "Databases"],
+    tags: ["Informatics", "Algorithms", "Data Structures", "Database Systems", "Software Engineering"],
   },
   {
-    id: "nxrts-dev",
+    id: "nxrts-independent",
     period: "2023 — Present",
-    role: "Full-Stack Developer & Open Sourcer",
-    company: "Independent Projects / NXRts Dev",
-    location: "Surakarta, Jawa Tengah / Remote",
+    role: "Independent Software Developer & Open Source Contributor",
+    company: "Personal Software Projects / NXRts",
+    location: "Surakarta, Indonesia",
     isCurrent: true,
+    category: "independent",
+    summary:
+      "Designing, building, and maintaining independent web applications, desktop utilities, and open-source software.",
     points: [
-      "Created and shipped JapanApp (japan-mee.vercel.app), an interactive web platform for Japanese language learners featuring stroke order animations and spaced repetition (SRS).",
-      "Developed Aria2App, a modern cross-platform desktop GUI written in Python and PyQt6 for efficient management of multi-connection aria2 download queues via JSON-RPC.",
-      "Engineered full-stack and SaaS applications such as Smart Compressor (FileKompres), RemoveBG, and GhostData with Next.js App Router and Tailwind CSS.",
-      "Maintained custom Linux developer desktop workflow with CachyOS / Arch Linux, writing custom Bash automation scripts and lightweight web tools.",
+      "Engineered JapanApp (japan-mee.vercel.app), an interactive Japanese language learning ecosystem with Spaced Repetition (SRS) and Kanji canvas stroke recognition.",
+      "Developed DataScry (datascry.vercel.app), a privacy-first offline document and image manipulation suite utilizing browser Web Workers for 100% local processing.",
+      "Built Aria2App, a cross-platform desktop GUI for aria2c written in Python and PyQt6 with asynchronous JSON-RPC socket management.",
+      "Maintained an Arch Linux development environment, authoring custom automation scripts and minimalist developer workflows."
     ],
-    tags: ["Go", "Next.js", "React", "Python", "PyQt6", "PostgreSQL", "Arch Linux", "Vercel"],
+    tags: ["Go", "Next.js", "React", "TypeScript", "Python", "PyQt6", "PostgreSQL", "Arch Linux"],
   },
   {
     id: "digidreams-intern",
-    period: "Oktober 2024 — Intern",
+    period: "October 2024",
     role: "Backend Developer Intern",
     company: "Digidreams Space",
-    location: "Remote / Hybrid",
+    location: "Hybrid / Remote",
+    isCurrent: false,
+    category: "work",
+    summary:
+      "Engineered backend microservices in Go, implementing Clean Architecture and relational schema optimizations.",
     points: [
-      "Learned and applied backend engineering principles with Golang, implementing Clean Architecture and domain-driven design.",
-      "Designed and optimized PostgreSQL relational database schemas, query indexing, and migration pipelines for production services.",
-      "Created robust RESTful API endpoints with structured middleware authentication, logging, and comprehensive unit tests.",
+      "Implemented Clean Architecture and Domain-Driven Design patterns in Go for maintainable service decoupling.",
+      "Designed PostgreSQL relational schemas with foreign key indexing, connection pooling, and migration scripts.",
+      "Built authenticated RESTful endpoints using JWT token validation and structured logging middleware.",
+      "Authored unit tests verifying business logic across repository and use-case boundaries."
     ],
-    tags: ["Golang", "REST API", "PostgreSQL", "Clean Architecture", "Git", "Docker"],
+    tags: ["Go (Golang)", "Clean Architecture", "REST API", "PostgreSQL", "JWT", "Docker", "Git"],
   },
   {
     id: "smkn2-karanganyar",
     period: "2022 — 2025",
-    role: "Web Development & Software Engineering Student",
+    role: "Software Engineering & Web Development Foundations",
     company: "SMK Negeri 2 Karanganyar",
-    location: "Karanganyar / Surakarta, Indonesia",
+    location: "Karanganyar, Surakarta, Indonesia",
+    isCurrent: false,
+    category: "education",
+    summary:
+      "Foundational vocational education in software engineering, database design, and web programming.",
     points: [
-      "Mastered fundamentals of full-stack web development: PHP (Laravel/CI3), MySQL, HTML5, CSS3, and JavaScript.",
-      "Engineered Periodik, an interactive Chemistry Periodic Table Single-Page Application (SPA) with real-time property searching.",
-      "Built mobile prototypes using Flutter & Dart, emphasizing database relational design, responsive layouts, and seamless UI/UX integration.",
+      "Mastered web fundamentals: PHP (Laravel, CodeIgniter), MySQL, JavaScript, HTML5, and CSS3.",
+      "Built Periodik (periodik-two.vercel.app), an interactive periodic table Single-Page Application with real-time property searching.",
+      "Prototyped cross-platform mobile interfaces in Flutter & Dart, focusing on relational data modeling and responsive UI layout."
     ],
-    tags: ["JavaScript", "PHP", "Laravel", "MySQL", "Flutter", "Dart", "Tailwind CSS", "Figma"],
+    tags: ["PHP", "Laravel", "MySQL", "JavaScript", "HTML5", "CSS3", "Flutter", "Figma"],
   },
 ];

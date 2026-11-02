@@ -1,246 +1,476 @@
 "use client";
 
+import React, { useState } from "react";
+import Link from "next/link";
+import { ExternalLink, ArrowRight } from "lucide-react";
+import { GitHubIcon } from "@/components/icons/BrandIcons";
 import { projectsData, Project } from "@/data/projects";
 import ProjectDetailModal from "@/components/projects/ProjectDetailModal";
-import { ArrowRight, Code2, ExternalLink } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 
 export default function FeaturedProjects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const flagship =
-    projectsData.find((p) => p.category === "flagship") || projectsData[0];
-  const secondary = projectsData
-    .filter((p) => p.featured && p.id !== flagship.id)
-    .slice(0, 3);
+  const japanApp = projectsData.find((p) => p.id === "japan-app")!;
+  const dataScry = projectsData.find((p) => p.id === "datascry")!;
+  const aria2App = projectsData.find((p) => p.id === "aria2-app")!;
+  const prameswariEO = projectsData.find((p) => p.id === "prameswari-eo")!;
+
+  // Additional projects for the curated index
+  const archiveProjects = projectsData.filter(
+    (p) => !["japan-app", "datascry", "aria2-app", "prameswari-eo"].includes(p.id)
+  ).slice(0, 6);
 
   return (
-    <section
-      id="projects"
-      className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-16 flex flex-col gap-8"
-    >
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-secondary tracking-wider">
-              02 // SHIPPED CODE
-            </span>
-            <span className="w-12 h-0.5 bg-primary-container" />
-          </div>
-          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
-            Featured Engineering Projects
-          </h2>
-        </div>
-        <span className="font-mono text-xs text-text-secondary tracking-wider uppercase">
-          PRODUCTION-TESTED ARTIFACTS
-        </span>
-      </div>
-
-      {/* Flagship Project Card (JapanApp) */}
-      <div className="p-4 sm:p-6 md:p-10 rounded-2xl bg-surface-elevated border border-surface-variant shadow-xl flex flex-col lg:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group hover:border-secondary/40 transition-all">
-        {/* Visual Column */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-3">
-          {/* Screenshot Container - natural aspect ratio, no crop, no zoom */}
-          <div className="relative rounded-xl overflow-hidden shadow-2xl border border-surface-variant/80 bg-surface-container-lowest">
-            <img
-              src={flagship.image}
-              alt={flagship.title}
-              className="w-full h-auto block"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Status Bar (Below Image) */}
-          <div className="p-2.5 sm:p-3 bg-surface-container-low border border-surface-variant/70 rounded-xl flex items-center justify-between shadow-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
-              <span className="font-mono text-xs font-semibold text-text-primary">
-                Live SRS Engine v4.2
-              </span>
-            </div>
-            <span className="font-mono text-xs text-secondary font-semibold">
-              {flagship.metrics?.users || "10,480 Active Users"}
-            </span>
-          </div>
-        </div>
-
-        {/* Description Column */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-5 sm:gap-6">
-          <div className="flex flex-col gap-2 sm:gap-2.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-primary-container text-white font-mono text-[11px] font-bold uppercase tracking-wider">
-                Flagship Application
-              </span>
-              <span className="font-mono text-xs text-secondary">
-                {flagship.subtitle}
-              </span>
-            </div>
-
-            <h3 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
-              {flagship.title}
-            </h3>
-
-            <p className="font-sans text-sm sm:text-base text-on-surface-variant leading-relaxed">
-              {flagship.description}
-            </p>
-          </div>
-
-          {/* 3 Metrics Column */}
-          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-container-low border border-surface-variant/60 text-center">
-            <div className="flex flex-col">
-              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Platform</span>
-              <span className="font-sans text-xs sm:text-base font-bold text-secondary truncate">
-                {flagship.metrics?.platform || "Web App"}
-              </span>
-            </div>
-            <div className="flex flex-col border-x border-surface-variant/60 px-1">
-              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Curriculum</span>
-              <span className="font-sans text-xs sm:text-base font-bold text-primary truncate">
-                {flagship.metrics?.curriculum || "N5 - N1"}
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-mono text-[10px] sm:text-[11px] text-text-secondary">Deployment</span>
-              <span className="font-sans text-xs sm:text-base font-bold text-tertiary truncate">
-                {flagship.metrics?.deployment || "Vercel Edge"}
-              </span>
-            </div>
-          </div>
-
-          {/* Core Tech Stack */}
+    <section id="projects" className="w-full py-20 sm:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-16 sm:gap-24">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
           <div className="flex flex-col gap-2">
-            <span className="font-mono text-xs text-text-secondary">
-              ENGINEERED WITH:
-            </span>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {flagship.tags.map((t) => (
-                <span
-                  key={t}
-                  className="px-2.5 py-1 bg-surface-container-high border border-surface-variant rounded-md text-xs font-mono text-primary"
-                >
-                  {t}
-                </span>
-              ))}
+            <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
+              <span>02</span>
+              <span className="w-8 h-px bg-[#3b82f6]" />
+              <span>Selected Work</span>
             </div>
+            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+              Featured Projects
+            </h2>
           </div>
-
-          {/* Action Row */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2">
-            <button
-              onClick={() => setSelectedProject(flagship)}
-              className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant hover:border-secondary font-sans text-sm font-semibold rounded-xl sm:rounded-lg transition-colors flex items-center gap-2 cursor-pointer"
-            >
-              <span>View Full Details</span>
-            </button>
-            {flagship.link && (
-              <a
-                href={flagship.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-secondary hover:bg-secondary-fixed text-on-secondary font-sans text-sm font-bold rounded-xl sm:rounded-lg shadow-md transition-colors flex items-center gap-2"
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span>Launch App</span>
-              </a>
-            )}
-            {flagship.github && (
-              <a
-                href={flagship.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto justify-center min-h-11 px-5 py-2.5 bg-surface-container-high hover:bg-surface-bright text-text-primary border border-surface-variant font-sans text-sm font-semibold rounded-xl sm:rounded-lg transition-colors flex items-center gap-2"
-              >
-                <Code2 className="w-4 h-4" />
-                <span>GitHub Repo</span>
-              </a>
-            )}
-          </div>
+          <p className="font-sans text-sm sm:text-base text-[#9ca3af] max-w-md leading-relaxed">
+            Case studies of software engineered with clean architectures, local-first computing, and practical user utility.
+          </p>
         </div>
-      </div>
 
-      {/* Secondary Projects Grid (3 Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-        {secondary.map((project) => (
-          <div
-            key={project.id}
-            className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 transition-all"
-          >
-            <div className="flex flex-col gap-3.5 sm:gap-4">
-              {/* Full Aspect-video Screenshot Container */}
-              <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest border border-surface-variant/60 relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute top-2 right-2 px-2.5 py-0.5 rounded bg-surface-elevated/90 border border-surface-variant font-mono text-xs text-secondary backdrop-blur-xs">
-                  {project.metrics?.platform || project.category}
-                </div>
-              </div>
-
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-secondary uppercase tracking-wider">
-                  {project.subtitle || project.category}
-                </span>
-                <h4 className="font-sans text-lg sm:text-xl font-bold text-text-primary mt-1">
-                  {project.title}
-                </h4>
-              </div>
-
-              <p className="font-sans text-sm text-on-surface-variant line-clamp-3 leading-relaxed">
-                {project.description}
-              </p>
+        {/* =========================================================================
+            FEATURED PROJECT 01: JAPANAPP (Flagship Showcase)
+           ========================================================================= */}
+        <article className="border border-[#232732] bg-[#111317] rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
+          {/* Left / Visual Showcase */}
+          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#232732]">
+            <div className="flex items-center justify-between pb-4 font-mono text-xs text-[#6b7280]">
+              <span>PROJECT 01 / FLAGSHIP</span>
+              <span className="text-[#3b82f6]">japan-mee.vercel.app</span>
             </div>
 
-            <div className="flex flex-col gap-3.5 sm:gap-4 pt-5 sm:pt-6 border-t border-surface-variant/50 mt-5 sm:mt-6">
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.slice(0, 4).map((tag) => (
+            <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
+              <img
+                src={japanApp.image}
+                alt="JapanApp Interface Screenshot"
+                className="w-full h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9ca3af]">
+              <span>Curriculum: JLPT N5 → N1</span>
+              <span>Algorithm: Spaced Repetition (SRS)</span>
+            </div>
+          </div>
+
+          {/* Right / Technical Case Study */}
+          <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6 bg-[#111317]">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#3b82f6]">
+                  Language Learning Platform
+                </span>
+              </div>
+
+              <h3 className="font-sans text-2xl sm:text-3xl font-bold text-[#f4f4f6]">
+                {japanApp.title}
+              </h3>
+
+              <p className="font-sans text-sm text-[#9ca3af] leading-relaxed">
+                {japanApp.description}
+              </p>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  The Engineering Problem
+                </span>
+                <p className="font-sans text-xs text-[#d1d5db] leading-relaxed">
+                  {japanApp.problem}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Key Technical Decisions
+                </span>
+                <ul className="flex flex-col gap-1.5 text-xs text-[#9ca3af]">
+                  {japanApp.technicalDecisions.slice(0, 3).map((decision, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#3b82f6] mt-0.5">•</span>
+                      <span>{decision}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {japanApp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 bg-surface-container border border-surface-variant/40 text-text-secondary font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
+            </div>
 
-              <div className="flex items-center justify-between pt-1">
-                <span className="text-[11px] font-mono text-outline uppercase tracking-wider">
-                  {project.category}
-                </span>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedProject(project);
-                  }}
-                  className="min-h-9 sm:min-h-0 inline-flex items-center gap-1.5 text-xs font-mono text-secondary hover:text-white font-semibold transition-colors cursor-pointer group/btn"
+            {/* Actions */}
+            <div className="pt-6 border-t border-[#232732] flex flex-wrap items-center gap-3">
+              {japanApp.link && (
+                <a
+                  href={japanApp.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
                 >
-                  <span>Details</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                </button>
-              </div>
+                  <span>Launch Live Platform</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+
+              {japanApp.github && (
+                <a
+                  href={japanApp.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
+                >
+                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <span>Source Code</span>
+                </a>
+              )}
+
+              <button
+                onClick={() => setSelectedProject(japanApp)}
+                className="inline-flex items-center gap-1 px-3 py-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+              >
+                <span>Read Full Spec</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
             </div>
           </div>
-        ))}
+        </article>
+
+        {/* =========================================================================
+            FEATURED PROJECT 02: DATASCRY (Reversed Rhythm / Privacy-First)
+           ========================================================================= */}
+        <article className="border border-[#232732] bg-[#111317] rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
+          {/* Left / Context & Details */}
+          <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6 bg-[#111317] order-2 lg:order-1 border-t lg:border-t-0 lg:border-r border-[#232732]">
+            <div className="flex flex-col gap-4">
+              <span className="font-mono text-xs uppercase tracking-wider text-[#3b82f6]">
+                Offline-First Document Suite
+              </span>
+
+              <h3 className="font-sans text-2xl sm:text-3xl font-bold text-[#f4f4f6]">
+                {dataScry.title}
+              </h3>
+
+              <p className="font-sans text-sm text-[#9ca3af] leading-relaxed">
+                {dataScry.description}
+              </p>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Core Philosophy & Privacy
+                </span>
+                <p className="font-sans text-xs text-[#d1d5db] leading-relaxed">
+                  {dataScry.problem}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Architecture Highlight
+                </span>
+                <ul className="flex flex-col gap-1.5 text-xs text-[#9ca3af]">
+                  {dataScry.technicalDecisions.slice(0, 3).map((decision, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#3b82f6] mt-0.5">•</span>
+                      <span>{decision}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {dataScry.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="pt-6 border-t border-[#232732] flex flex-wrap items-center gap-3">
+              {dataScry.link && (
+                <a
+                  href={dataScry.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
+                >
+                  <span>Open Application</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+
+              {dataScry.github && (
+                <a
+                  href={dataScry.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
+                >
+                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <span>GitHub</span>
+                </a>
+              )}
+
+              <button
+                onClick={() => setSelectedProject(dataScry)}
+                className="inline-flex items-center gap-1 px-3 py-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+              >
+                <span>Details</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right / Visual Showcase */}
+          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between order-1 lg:order-2">
+            <div className="flex items-center justify-between pb-4 font-mono text-xs text-[#6b7280]">
+              <span>PROJECT 02 / PRIVACY SUITE</span>
+              <span className="text-[#3b82f6]">100% Client-Side Processing</span>
+            </div>
+
+            <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
+              <img
+                src={dataScry.image}
+                alt="DataScry Interface Screenshot"
+                className="w-full h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9ca3af]">
+              <span>Runtime: Web Workers</span>
+              <span>Network: Zero Server Uploads</span>
+            </div>
+          </div>
+        </article>
+
+        {/* =========================================================================
+            FEATURED PROJECTS 03 & 04: ARIA2APP & PRAMESWARI EO (2-Column Grid)
+           ========================================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Project 03: Aria2App */}
+          <article className="border border-[#232732] bg-[#111317] rounded-sm p-6 sm:p-8 flex flex-col justify-between gap-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
+                <span>PROJECT 03 / DESKTOP GUI</span>
+                <span className="text-[#3b82f6]">Python + PyQt6</span>
+              </div>
+
+              <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b]">
+                <img
+                  src={aria2App.image}
+                  alt="Aria2App Desktop Interface"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <h3 className="font-sans text-xl sm:text-2xl font-bold text-[#f4f4f6]">
+                  {aria2App.title}
+                </h3>
+                <span className="font-mono text-xs text-[#9ca3af]">
+                  {aria2App.subtitle}
+                </span>
+                <p className="font-sans text-xs sm:text-sm text-[#9ca3af] leading-relaxed">
+                  {aria2App.description}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-1.5 text-xs text-[#9ca3af]">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Engineering Highlight
+                </span>
+                <p className="text-[#d1d5db]">
+                  Asynchronous JSON-RPC socket communication with the aria2 daemon, allowing multi-connection segmented downloads without blocking the Qt event loop.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {aria2App.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#232732] flex items-center justify-between">
+              {aria2App.github && (
+                <a
+                  href={aria2App.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
+                >
+                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <span>github/NXRts/Aria2App</span>
+                </a>
+              )}
+              <button
+                onClick={() => setSelectedProject(aria2App)}
+                className="text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+              >
+                Inspect Spec →
+              </button>
+            </div>
+          </article>
+
+          {/* Project 04: Prameswari EO */}
+          <article className="border border-[#232732] bg-[#111317] rounded-sm p-6 sm:p-8 flex flex-col justify-between gap-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
+                <span>PROJECT 04 / CLIENT PLATFORM</span>
+                <span className="text-[#3b82f6]">Next.js + WhatsApp API</span>
+              </div>
+
+              <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b]">
+                <img
+                  src={prameswariEO.image}
+                  alt="Prameswari EO Website Screenshot"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <h3 className="font-sans text-xl sm:text-2xl font-bold text-[#f4f4f6]">
+                  {prameswariEO.title}
+                </h3>
+                <span className="font-mono text-xs text-[#9ca3af]">
+                  {prameswariEO.subtitle}
+                </span>
+                <p className="font-sans text-xs sm:text-sm text-[#9ca3af] leading-relaxed">
+                  {prameswariEO.description}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-1.5 text-xs text-[#9ca3af]">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Practical Business Impact
+                </span>
+                <p className="text-[#d1d5db]">
+                  Dynamic WhatsApp booking dispatch formatting pre-filled packages and itineraries, reducing administrative consultation overhead for Kemuning tour operations.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {prameswariEO.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#232732] flex items-center justify-between">
+              {prameswariEO.link && (
+                <a
+                  href={prameswariEO.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>prameswari-eo.vercel.app</span>
+                </a>
+              )}
+              <button
+                onClick={() => setSelectedProject(prameswariEO)}
+                className="text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+              >
+                Inspect Spec →
+              </button>
+            </div>
+          </article>
+        </div>
+
+        {/* =========================================================================
+            ADDITIONAL VERIFIED PROJECTS INDEX (Curated Archive)
+           ========================================================================= */}
+        <div className="pt-8 border-t border-[#232732]/60 flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#6b7280]">
+              Selected Archive & Tools
+            </span>
+            <Link
+              href="/projects"
+              className="font-mono text-xs text-[#3b82f6] hover:underline flex items-center gap-1"
+            >
+              <span>View full software catalog ({projectsData.length} projects)</span>
+              <span>→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {archiveProjects.map((p) => (
+              <div
+                key={p.id}
+                onClick={() => setSelectedProject(p)}
+                className="p-4 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 transition-all cursor-pointer flex flex-col justify-between gap-3 group"
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between font-mono text-[11px] text-[#6b7280]">
+                    <span className="uppercase">{p.category}</span>
+                    <span className="text-[#3b82f6] group-hover:translate-x-0.5 transition-transform">
+                      ↗
+                    </span>
+                  </div>
+                  <h4 className="font-sans font-semibold text-sm text-[#f4f4f6] group-hover:text-white transition-colors">
+                    {p.title}
+                  </h4>
+                  <p className="font-sans text-xs text-[#9ca3af] line-clamp-2 leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1 pt-2 border-t border-[#232732]/60">
+                  {p.tags.slice(0, 3).map((t) => (
+                    <span
+                      key={t}
+                      className="px-1.5 py-0.5 bg-[#14171d] text-[#6b7280] font-mono text-[10px] rounded"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* View All Projects Link */}
-      <div className="flex justify-center pt-2 sm:pt-4">
-        <Link
-          href="/projects"
-          className="w-full sm:w-auto justify-center text-center px-5 sm:px-6 py-3 rounded-xl bg-surface-elevated hover:bg-surface-container-high border border-surface-variant hover:border-secondary/50 text-text-primary font-sans text-sm font-semibold flex items-center gap-3 transition-all shadow-md group"
-        >
-          <span>Explore All {projectsData.length} Engineered Projects</span>
-          <ArrowRight className="w-4 h-4 text-secondary group-hover:translate-x-1 transition-transform shrink-0" />
-        </Link>
-      </div>
-
-      {/* Project Detail Modal */}
+      {/* Project Spec Modal */}
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}

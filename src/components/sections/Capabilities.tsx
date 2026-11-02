@@ -1,78 +1,125 @@
 import React from "react";
-import { Terminal, Code2, Database, Cpu } from "lucide-react";
-import { profileData } from "@/data/profile";
 
 export default function Capabilities() {
-  const getIcon = (name: string, color: string) => {
-    switch (name) {
-      case "Terminal":
-        return <Terminal className="w-6 h-6" style={{ color }} />;
-      case "Code2":
-        return <Code2 className="w-6 h-6" style={{ color }} />;
-      case "Database":
-        return <Database className="w-6 h-6" style={{ color }} />;
-      case "Cpu":
-      default:
-        return <Cpu className="w-6 h-6" style={{ color }} />;
-    }
-  };
+  const categories = [
+    {
+      id: "frontend",
+      title: "Frontend Engineering",
+      role: "Client Architecture & User Interface",
+      description:
+        "Building fast, accessible interfaces with disciplined typography, semantic HTML, and zero bloat. Focused on Next.js App Router and type-safe component design.",
+      primary: ["Next.js", "React", "TypeScript"],
+      secondary: ["JavaScript (ESNext)", "Tailwind CSS", "Vue", "Astro", "HTML5 / CSS3"],
+    },
+    {
+      id: "backend",
+      title: "Backend Architecture",
+      role: "APIs & Distributed Microservices",
+      description:
+        "Engineering high-concurrency HTTP services in Go. Structuring systems with Clean Architecture, Domain-Driven Design, secure JWT middleware, and structured routing.",
+      primary: ["Go (Golang)", "REST APIs", "Clean Architecture"],
+      secondary: ["Node.js", "PHP", "Laravel", "Middleware & Auth"],
+    },
+    {
+      id: "database",
+      title: "Data & Persistence",
+      role: "Relational Modeling & Schema Design",
+      description:
+        "Designing normalized relational schemas with foreign key integrity, query indexing, and connection pool tuning to maintain low query latency under load.",
+      primary: ["PostgreSQL", "Relational Modeling", "Database Indexing"],
+      secondary: ["MySQL", "Prisma ORM", "Firebase", "SQL Optimization"],
+    },
+    {
+      id: "systems",
+      title: "Desktop & Systems",
+      role: "Native GUIs & Developer Tooling",
+      description:
+        "Developing cross-platform desktop GUIs with Python and PyQt6 over JSON-RPC. Operating within a customized Arch Linux environment with Bash automation.",
+      primary: ["Linux (Arch / CachyOS)", "Python", "PyQt6"],
+      secondary: ["Bash Scripting", "Git & GitHub", "Docker", "aria2 RPC"],
+    },
+  ];
 
   return (
-    <section id="capabilities" className="max-w-[1280px] mx-auto w-full px-4 md:px-8 py-12 sm:py-16 flex flex-col gap-6 sm:gap-8">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-bold text-secondary tracking-wider">
-              01 // CAPABILITIES
-            </span>
-            <span className="w-12 h-0.5 bg-primary-container" />
+    <section id="skills" className="w-full py-20 sm:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-12 sm:gap-16">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
+              <span>03</span>
+              <span className="w-8 h-px bg-[#3b82f6]" />
+              <span>Technical Skills</span>
+            </div>
+            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+              Toolchain & Competencies
+            </h2>
           </div>
-          <h2 className="font-sans text-2xl sm:text-3xl font-bold text-text-primary">
-            Engineered for Precision & Resilience
-          </h2>
+          <p className="font-sans text-sm sm:text-base text-[#9ca3af] max-w-md leading-relaxed">
+            Technologies selected for dependability, performance, and long-term maintainability.
+          </p>
         </div>
-        <p className="font-sans text-sm text-on-surface-variant max-w-md">
-          A balanced toolchain designed to build lightning-fast web client layers backed by highly concurrent distributed services.
-        </p>
-      </div>
 
-      {/* 4-Card Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {profileData.capabilities.map((item) => (
-          <div
-            key={item.id}
-            className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-elevated border border-surface-variant shadow-md flex flex-col justify-between group hover:border-secondary/40 hover:shadow-xl hover:shadow-secondary/5 transition-all"
-          >
-            <div className="flex flex-col gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-surface-container-high border border-surface-variant flex items-center justify-center shadow-inner">
-                {getIcon(item.iconName, item.accentColor)}
-              </div>
-              <div className="flex flex-col">
-                <h3 className="font-sans text-lg sm:text-xl font-bold text-text-primary">
-                  {item.title}
+        {/* 4-Block Editorial Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {categories.map((cat, idx) => (
+            <div
+              key={cat.id}
+              className="p-6 sm:p-8 rounded border border-[#232732] bg-[#111317] flex flex-col justify-between gap-6"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
+                  <span>CATEGORY 0{idx + 1}</span>
+                  <span className="text-[#3b82f6]">{cat.role}</span>
+                </div>
+
+                <h3 className="font-sans text-xl sm:text-2xl font-bold text-[#f4f4f6]">
+                  {cat.title}
                 </h3>
-                <span className="font-mono text-xs text-text-secondary">
-                  {item.subtitle}
-                </span>
-              </div>
-              <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
-                {item.description}
-              </p>
-            </div>
 
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 sm:pt-6 border-t border-surface-variant/40 mt-5 sm:mt-6">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 bg-surface-container-low border border-surface-variant/60 rounded-md font-mono text-xs text-primary"
-                >
-                  {tag}
-                </span>
-              ))}
+                <p className="font-sans text-sm text-[#9ca3af] leading-relaxed">
+                  {cat.description}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4 pt-4 border-t border-[#232732]/60">
+                {/* Primary / Core */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                    Core Specialization
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 font-mono text-xs">
+                    {cat.primary.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded bg-[#14171d] border border-[#3b82f6]/40 text-[#f4f4f6] font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Secondary / Supporting */}
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                    Working Knowledge & Supporting Tools
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 font-mono text-xs text-[#9ca3af]">
+                    {cat.secondary.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded bg-[#0c0d10] border border-[#232732] text-[#9ca3af]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

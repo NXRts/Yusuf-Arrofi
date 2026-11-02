@@ -20,7 +20,7 @@ export async function GET() {
     const fallback = generateDynamicWeeks(undefined, 40);
     return NextResponse.json(
       {
-        totalContributions: "3,625",
+        totalContributions: "GitHub Activity",
         weeks: fallback.weeks,
         monthSpans: fallback.monthSpans,
         lastUpdated: new Date().toISOString(),

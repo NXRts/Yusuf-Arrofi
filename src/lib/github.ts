@@ -113,7 +113,12 @@ export function generateDynamicWeeks(
           });
         } else {
           // Check static baseline
-          const baselineEntry = (baselineDays as Record<string, any>)[iso];
+          interface BaselineItem {
+            count?: number;
+            level?: number;
+            text?: string;
+          }
+          const baselineEntry = (baselineDays as Record<string, number | BaselineItem>)[iso];
           if (baselineEntry !== undefined) {
             if (typeof baselineEntry === "number") {
               const level = baselineEntry;
