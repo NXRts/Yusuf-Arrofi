@@ -23,6 +23,7 @@ export default function Footer() {
     { name: "All Projects Catalog", href: "/projects" },
     { name: "Technical Blog", href: "/blog" },
     { name: "Contact", href: "/#contact" },
+    { name: "Support & Patronage", href: "/#support" },
   ];
 
   const featuredProjects = [
@@ -108,32 +109,57 @@ export default function Footer() {
               ))}
             </ul>
 
-            <div className="pt-4 mt-2 border-t border-[#232732]/60 flex items-center gap-4 text-xs font-mono text-[#9ca3af]">
-              <a
-                href={profileData.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors flex items-center gap-1"
-              >
-                <GitHubIcon className="w-3.5 h-3.5" />
-                <span>GitHub</span>
-              </a>
-              <a
-                href={profileData.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors flex items-center gap-1"
-              >
-                <LinkedInIcon className="w-3.5 h-3.5" />
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href={`mailto:${profileData.email}`}
-                className="hover:text-white transition-colors flex items-center gap-1"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email</span>
-              </a>
+            <div className="pt-4 mt-2 border-t border-[#232732]/60 flex flex-col gap-3">
+              <div className="flex items-center gap-4 text-xs font-mono text-[#9ca3af]">
+                <a
+                  href={profileData.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors flex items-center gap-1"
+                >
+                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href={profileData.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors flex items-center gap-1"
+                >
+                  <LinkedInIcon className="w-3.5 h-3.5" />
+                  <span>LinkedIn</span>
+                </a>
+                <a
+                  href={`mailto:${profileData.email}`}
+                  className="hover:text-white transition-colors flex items-center gap-1"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Email</span>
+                </a>
+              </div>
+
+              {/* Sponsorship & Patronage Row */}
+              <div className="pt-2 border-t border-[#232732]/40 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-mono">
+                <span className="text-[#3b82f6] text-[11px] uppercase tracking-wider font-semibold">
+                  Patronage:
+                </span>
+                {profileData.sponsorship.map((sponsor) => (
+                  <a
+                    key={sponsor.name}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#f4f4f6] transition-colors flex items-center gap-1.5 text-[11px] text-[#9ca3af]"
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ backgroundColor: sponsor.color }}
+                    />
+                    <span>{sponsor.name}</span>
+                    <span className="text-[#6b7280]">↗</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
