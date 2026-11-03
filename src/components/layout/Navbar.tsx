@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
+import { Menu, X, ArrowUpRight, Mail, Heart } from "lucide-react";
 import { GitHubIcon } from "@/components/icons/BrandIcons";
 import BrandLogo from "@/components/icons/BrandLogo";
 import { profileData } from "@/data/profile";
@@ -48,6 +48,7 @@ export default function Navbar() {
     { name: "Activity", href: "/#activity" },
     { name: "All Projects", href: "/projects" },
     { name: "Blog", href: "/blog" },
+    { name: "Support", href: "/#support" },
     { name: "Contact", href: "/#contact" },
   ];
 
@@ -109,7 +110,15 @@ export default function Navbar() {
         </nav>
 
         {/* Right Action Items */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <Link
+            href="/#support"
+            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono tracking-wide text-[#9ca3af] hover:text-[#f4f4f6] hover:bg-[#14171d] rounded border border-transparent hover:border-[#232732] transition-all"
+          >
+            <Heart className="w-3.5 h-3.5 text-[#3b82f6]" />
+            <span>Sponsor</span>
+          </Link>
+
           <Link
             href="/#contact"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono tracking-wide text-[#f4f4f6] bg-[#14171d] hover:bg-[#1a1e26] border border-[#232732] hover:border-[#3b82f6]/60 rounded transition-all"

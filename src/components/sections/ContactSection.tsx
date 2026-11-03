@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, ExternalLink, ArrowUpRight, Check, AlertCircle, Send } from "lucide-react";
+import { MapPin, ExternalLink, ArrowUpRight, Check, AlertCircle, Send, Heart } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons/BrandIcons";
 import { profileData } from "@/data/profile";
 
@@ -179,6 +179,52 @@ export default function ContactSection() {
                   </div>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280]" />
                 </a>
+              </div>
+            </div>
+
+            {/* Independent Sponsorship & Patronage */}
+            <div id="support" className="flex flex-col gap-3 pt-3 border-t border-[#232732]/60">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2 font-mono text-xs text-[#3b82f6] uppercase tracking-wider">
+                  <Heart className="w-3.5 h-3.5 text-[#3b82f6]" />
+                  <span>Support My Work</span>
+                </div>
+                <p className="font-sans text-xs text-[#9ca3af] leading-relaxed">
+                  If you appreciate my open-source tools (DataScry, JapanApp, Aria2App) and wish to back their independent maintenance:
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 text-xs font-mono">
+                {profileData.sponsorship.map((sponsor) => (
+                  <a
+                    key={sponsor.name}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 hover:bg-[#14171d] flex items-center justify-between text-[#f4f4f6] transition-all group"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className="w-2 h-2 rounded-full shrink-0 group-hover:scale-125 transition-transform"
+                        style={{ backgroundColor: sponsor.color }}
+                      />
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-xs text-[#f4f4f6]">
+                          {sponsor.name}
+                        </span>
+                        <span className="text-[10px] text-[#6b7280]">
+                          {sponsor.method}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[#9ca3af] group-hover:text-[#3b82f6] transition-colors">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#161922] border border-[#232732] text-[#9ca3af]">
+                        {sponsor.currency}
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280] group-hover:text-[#3b82f6]" />
+                    </div>
+                  </a>
+                ))}
               </div>
             </div>
 

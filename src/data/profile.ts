@@ -35,6 +35,13 @@ export interface ProfileData {
     linksPortal: string;
     portfolioLive: string;
   };
+  sponsorship: {
+    name: string;
+    url: string;
+    method: string;
+    currency: string;
+    color: string;
+  }[];
   stats: {
     repos: string;
     shipped: string;
@@ -90,6 +97,29 @@ export const profileData: ProfileData = {
     linksPortal: "https://links-mee.vercel.app",
     portfolioLive: "https://yusufarrofi.my.id",
   },
+  sponsorship: [
+    {
+      name: "Saweria",
+      url: "https://saweria.co/yusufarrofi",
+      method: "QRIS, GoPay, OVO, Dana",
+      currency: "IDR",
+      color: "#f59e0b",
+    },
+    {
+      name: "Ko-fi",
+      url: "https://ko-fi.com/yusufarrofi/",
+      method: "Global Cards & PayPal",
+      currency: "USD",
+      color: "#3b82f6",
+    },
+    {
+      name: "Yap!",
+      url: "https://yapp.ink/yusufarrofi21",
+      method: "Direct Creator Support",
+      currency: "Direct",
+      color: "#10b981",
+    },
+  ],
   stats: {
     repos: "19+",
     shipped: "12+",
