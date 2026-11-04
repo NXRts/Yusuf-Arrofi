@@ -78,17 +78,17 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full py-20 sm:py-28 bg-[#0c0d10] text-[#f4f4f6]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-12 sm:gap-16">
+    <section id="contact" className="w-full py-16 sm:py-22 lg:py-28 bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-14 lg:gap-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 border-b border-[#232732]/60">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
               <span>06</span>
               <span className="w-8 h-px bg-[#3b82f6]" />
               <span>Direct Inquiries</span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+            <h2 className="font-sans editorial-h1 font-bold tracking-tight text-[#f4f4f6]">
               Get in Touch
             </h2>
           </div>
@@ -98,9 +98,9 @@ export default function ContactSection() {
         </div>
 
         {/* 2-Column Editorial Contact Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
           {/* Left Column: Direct Contact & Location Coordinates */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
+          <div className="lg:col-span-5 flex flex-col gap-7 sm:gap-8 min-w-0">
             <div className="flex flex-col gap-3">
               <span className="font-mono text-xs uppercase tracking-widest text-[#6b7280]">
                 Direct Communication
@@ -111,20 +111,20 @@ export default function ContactSection() {
             </div>
 
             {/* Email Card */}
-            <div className="p-5 rounded border border-[#232732] bg-[#111317] flex flex-col gap-3">
+            <div className="p-4 sm:p-5 rounded border border-[#232732] bg-surface-container-low flex flex-col gap-3 min-w-0">
               <span className="font-mono text-xs text-[#6b7280] uppercase tracking-wider">
                 Primary Email
               </span>
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2.5">
                 <a
                   href={`mailto:${profileData.email}`}
-                  className="font-mono text-sm text-[#f4f4f6] hover:text-[#3b82f6] transition-colors truncate"
+                  className="py-1 font-mono text-xs sm:text-sm text-[#f4f4f6] hover:text-[#3b82f6] transition-colors break-all"
                 >
                   {profileData.email}
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="px-2.5 py-1 text-[11px] font-mono text-[#9ca3af] hover:text-[#f4f4f6] bg-[#14171d] border border-[#232732] rounded transition-colors shrink-0 cursor-pointer"
+                  className="px-3 py-1.5 text-[11px] font-mono text-[#9ca3af] hover:text-[#f4f4f6] bg-surface-container border border-[#232732] rounded transition-colors shrink-0 cursor-pointer"
                 >
                   {copiedEmail ? "Copied ✓" : "Copy"}
                 </button>
@@ -145,39 +145,39 @@ export default function ContactSection() {
                   href={profileData.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 flex items-center justify-between text-[#f4f4f6] transition-colors"
+                  className="p-3 rounded border border-[#232732] bg-surface-container-low hover:border-[#3b82f6]/50 flex items-center justify-between gap-2 text-[#f4f4f6] transition-colors"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <GitHubIcon className="w-4 h-4 text-[#9ca3af]" />
-                    <span>GitHub · @NXRts</span>
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <GitHubIcon className="w-4 h-4 text-[#9ca3af] shrink-0" />
+                    <span className="truncate">GitHub · @NXRts</span>
                   </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280]" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280] shrink-0" />
                 </a>
 
                 <a
                   href={profileData.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 flex items-center justify-between text-[#f4f4f6] transition-colors"
+                  className="p-3 rounded border border-[#232732] bg-surface-container-low hover:border-[#3b82f6]/50 flex items-center justify-between gap-2 text-[#f4f4f6] transition-colors"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <LinkedInIcon className="w-4 h-4 text-[#9ca3af]" />
-                    <span>LinkedIn · Muhammad Yusuf Arrofi</span>
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <LinkedInIcon className="w-4 h-4 text-[#9ca3af] shrink-0" />
+                    <span className="truncate">LinkedIn · Muhammad Yusuf Arrofi</span>
                   </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280]" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280] shrink-0" />
                 </a>
 
                 <a
                   href={profileData.socials.linksPortal}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 flex items-center justify-between text-[#f4f4f6] transition-colors"
+                  className="p-3 rounded border border-[#232732] bg-surface-container-low hover:border-[#3b82f6]/50 flex items-center justify-between gap-2 text-[#f4f4f6] transition-colors"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <ExternalLink className="w-4 h-4 text-[#9ca3af]" />
-                    <span>Links Hub · links-mee.vercel.app</span>
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <ExternalLink className="w-4 h-4 text-[#9ca3af] shrink-0" />
+                    <span className="truncate">Links Hub · links-mee.vercel.app</span>
                   </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280]" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6b7280] shrink-0" />
                 </a>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function ContactSection() {
             <div id="support" className="flex flex-col gap-3 pt-3 border-t border-[#232732]/60">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2 font-mono text-xs text-[#3b82f6] uppercase tracking-wider">
-                  <Heart className="w-3.5 h-3.5 text-[#3b82f6]" />
+                  <Heart className="w-3.5 h-3.5 text-[#3b82f6] shrink-0" />
                   <span>Support My Work</span>
                 </div>
                 <p className="font-sans text-xs text-[#9ca3af] leading-relaxed">
@@ -201,23 +201,23 @@ export default function ContactSection() {
                     href={sponsor.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 hover:bg-[#14171d] flex items-center justify-between text-[#f4f4f6] transition-all group"
+                    className="p-3 rounded border border-[#232732] bg-surface-container-low hover:border-[#3b82f6]/50 hover:bg-surface-container flex items-center justify-between gap-2 text-[#f4f4f6] transition-all group"
                   >
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       <span
                         className="w-2 h-2 rounded-full shrink-0 group-hover:scale-125 transition-transform"
                         style={{ backgroundColor: sponsor.color }}
                       />
-                      <div className="flex flex-col">
-                        <span className="font-semibold text-xs text-[#f4f4f6]">
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-semibold text-xs text-[#f4f4f6] truncate">
                           {sponsor.name}
                         </span>
-                        <span className="text-[10px] text-[#6b7280]">
+                        <span className="text-[10px] text-[#6b7280] truncate">
                           {sponsor.method}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[#9ca3af] group-hover:text-[#3b82f6] transition-colors">
+                    <div className="flex items-center gap-1.5 text-[#9ca3af] group-hover:text-[#3b82f6] transition-colors shrink-0">
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#161922] border border-[#232732] text-[#9ca3af]">
                         {sponsor.currency}
                       </span>
@@ -230,13 +230,13 @@ export default function ContactSection() {
 
             {/* Geographical Base */}
             <div className="flex items-center gap-2 text-xs font-mono text-[#6b7280] pt-2">
-              <MapPin className="w-3.5 h-3.5 text-[#3b82f6]" />
+              <MapPin className="w-3.5 h-3.5 text-[#3b82f6] shrink-0" />
               <span>{profileData.location} [{profileData.timezone}]</span>
             </div>
           </div>
 
           {/* Right Column: Accessible, Functional Contact Form */}
-          <div className="lg:col-span-7 p-6 sm:p-8 rounded border border-[#232732] bg-[#111317]">
+          <div className="lg:col-span-7 p-5 sm:p-8 rounded border border-[#232732] bg-surface-container-low min-w-0">
             <div className="flex flex-col gap-1 pb-6 border-b border-[#232732]/60">
               <span className="font-mono text-xs uppercase tracking-widest text-[#6b7280]">
                 Send a Message
@@ -259,7 +259,7 @@ export default function ContactSection() {
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-4 px-4 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] border border-[#232732] text-xs font-mono text-[#f4f4f6] transition-colors cursor-pointer"
+                  className="mt-4 px-4 py-2 rounded bg-surface-container hover:bg-surface-container-high border border-[#232732] text-xs font-mono text-[#f4f4f6] transition-colors cursor-pointer"
                 >
                   Send another message
                 </button>

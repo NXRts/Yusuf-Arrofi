@@ -44,13 +44,13 @@ export default function ProjectDetailModal({
       aria-labelledby="modal-project-title"
     >
       <div 
-        className="bg-[#111317] border border-[#232732] rounded max-w-3xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative shadow-2xl animate-in zoom-in-95 duration-150 text-[#f4f4f6]"
+        className="bg-surface-container-low border border-[#232732] rounded max-w-3xl w-full max-h-[90dvh] overflow-y-auto overscroll-contain flex flex-col relative shadow-2xl animate-in zoom-in-95 duration-150 text-[#f4f4f6]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#9ca3af] hover:text-[#f4f4f6] border border-[#232732] transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 p-2 rounded bg-surface-container hover:bg-surface-container-high text-[#9ca3af] hover:text-[#f4f4f6] border border-[#232732] transition-colors cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-4 h-4" />
@@ -64,22 +64,22 @@ export default function ProjectDetailModal({
               alt={project.title}
               className="w-full h-full object-cover object-top"
             />
-            <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-[#0c0d10]/90 border border-[#232732] font-mono text-[11px] text-[#3b82f6] uppercase tracking-wider">
+            <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2.5 py-1 rounded bg-[#0c0d10]/90 border border-[#232732] font-mono text-[10px] sm:text-[11px] text-[#3b82f6] uppercase tracking-wider">
               {project.category}
             </div>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div className="p-4 sm:p-6 sm:pt-4 flex flex-col gap-6">
+        <div className="p-4 sm:p-6 sm:pt-4 flex flex-col gap-5 sm:gap-6">
           {/* Header Title & Subtitle */}
-          <div className="flex flex-col gap-1 pr-10">
+          <div className="flex flex-col gap-1 pr-8 sm:pr-10">
             <span className="font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
               {project.subtitle || project.category}
             </span>
             <h2 
               id="modal-project-title"
-              className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-[#f4f4f6]"
+              className="font-sans text-xl sm:text-3xl font-bold tracking-tight text-[#f4f4f6]"
             >
               {project.title}
             </h2>
@@ -87,7 +87,7 @@ export default function ProjectDetailModal({
 
           {/* Metrics bar */}
           {project.metrics && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded bg-[#0c0d10] border border-[#232732] font-mono text-xs">
+            <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded bg-[#0c0d10] border border-[#232732] font-mono text-xs">
               {project.metrics.platform && (
                 <div>
                   <span className="text-[#6b7280] block text-[10px] uppercase">Platform</span>
@@ -184,7 +184,7 @@ export default function ProjectDetailModal({
             {project.tags.map((t) => (
               <span
                 key={t}
-                className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
               >
                 {t}
               </span>
@@ -193,7 +193,7 @@ export default function ProjectDetailModal({
 
           {/* Footer Actions */}
           <div className="pt-4 border-t border-[#232732] flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
               {project.link && (
                 <a
                   href={project.link}
@@ -202,7 +202,7 @@ export default function ProjectDetailModal({
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
                 >
                   <span>Open Live Application</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                 </a>
               )}
               {project.github && (
@@ -210,9 +210,9 @@ export default function ProjectDetailModal({
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
                 >
-                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <GitHubIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>GitHub Repository</span>
                 </a>
               )}
@@ -220,7 +220,7 @@ export default function ProjectDetailModal({
 
             <button
               onClick={onClose}
-              className="text-xs font-mono text-[#6b7280] hover:text-[#f4f4f6] cursor-pointer"
+              className="py-1.5 px-2 text-xs font-mono text-[#6b7280] hover:text-[#f4f4f6] cursor-pointer"
             >
               Close Spec ✕
             </button>

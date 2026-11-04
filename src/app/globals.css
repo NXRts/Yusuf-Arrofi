@@ -66,8 +66,34 @@ body {
   background-color: #0c0d10;
   color: #f4f4f6;
   font-family: var(--font-sans);
-  overflow-x: hidden;
   line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+/* Targeted typographic wrapping per modern web best practices */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, li, blockquote {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* Fluid editorial typography scales */
+.editorial-display {
+  font-size: clamp(2.25rem, 1.35rem + 4.2vw, 4.5rem);
+  line-height: 1.08;
+}
+
+.editorial-h1 {
+  font-size: clamp(1.875rem, 1.25rem + 2.8vw, 3.25rem);
+  line-height: 1.12;
+}
+
+.editorial-h2 {
+  font-size: clamp(1.625rem, 1.15rem + 2.2vw, 2.75rem);
+  line-height: 1.15;
 }
 
 /* Subtle, refined scrollbars */
@@ -119,6 +145,7 @@ body {
   border: 1px solid #232732;
   border-radius: 4px;
   padding: 0.65rem 0.85rem;
+  min-height: 2.625rem;
   font-size: 0.875rem;
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }

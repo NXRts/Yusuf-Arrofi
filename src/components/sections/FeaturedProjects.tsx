@@ -21,17 +21,17 @@ export default function FeaturedProjects() {
   ).slice(0, 6);
 
   return (
-    <section id="projects" className="w-full py-20 sm:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-16 sm:gap-24">
+    <section id="projects" className="w-full py-16 sm:py-22 lg:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-12 sm:gap-20 lg:gap-24">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 border-b border-[#232732]/60">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
               <span>02</span>
               <span className="w-8 h-px bg-[#3b82f6]" />
               <span>Selected Work</span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+            <h2 className="font-sans editorial-h1 font-bold tracking-tight text-[#f4f4f6]">
               Featured Projects
             </h2>
           </div>
@@ -43,31 +43,31 @@ export default function FeaturedProjects() {
         {/* =========================================================================
             FEATURED PROJECT 01: JAPANAPP (Flagship Showcase)
            ========================================================================= */}
-        <article className="border border-[#232732] bg-[#111317] rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
+        <article className="border border-[#232732] bg-surface-container-low rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
           {/* Left / Visual Showcase */}
-          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#232732]">
-            <div className="flex items-center justify-between pb-4 font-mono text-xs text-[#6b7280]">
+          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#232732] min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pb-4 font-mono text-xs text-[#6b7280]">
               <span>PROJECT 01 / FLAGSHIP</span>
               <span className="text-[#3b82f6]">japan-mee.vercel.app</span>
             </div>
 
-            <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
+            <div className="relative w-full aspect-16/10 rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
               <img
                 src={japanApp.image}
                 alt="JapanApp Interface Screenshot"
-                className="w-full h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
                 loading="lazy"
               />
             </div>
 
-            <div className="pt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9ca3af]">
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#9ca3af]">
               <span>Curriculum: JLPT N5 → N1</span>
               <span>Algorithm: Spaced Repetition (SRS)</span>
             </div>
           </div>
 
           {/* Right / Technical Case Study */}
-          <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6 bg-[#111317]">
+          <div className="lg:col-span-5 p-5 sm:p-8 lg:p-10 flex flex-col justify-between gap-6 bg-surface-container-low min-w-0">
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-xs uppercase tracking-wider text-[#3b82f6]">
@@ -99,7 +99,7 @@ export default function FeaturedProjects() {
                 <ul className="flex flex-col gap-1.5 text-xs text-[#9ca3af]">
                   {japanApp.technicalDecisions.slice(0, 3).map((decision, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#3b82f6] mt-0.5">•</span>
+                      <span className="text-[#3b82f6] mt-0.5 shrink-0">•</span>
                       <span>{decision}</span>
                     </li>
                   ))}
@@ -110,7 +110,7 @@ export default function FeaturedProjects() {
                 {japanApp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
                   >
                     {tag}
                   </span>
@@ -119,7 +119,7 @@ export default function FeaturedProjects() {
             </div>
 
             {/* Actions */}
-            <div className="pt-6 border-t border-[#232732] flex flex-wrap items-center gap-3">
+            <div className="pt-5 sm:pt-6 border-t border-[#232732] flex flex-wrap items-center gap-2.5 sm:gap-3">
               {japanApp.link && (
                 <a
                   href={japanApp.link}
@@ -128,7 +128,7 @@ export default function FeaturedProjects() {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
                 >
                   <span>Launch Live Platform</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                 </a>
               )}
 
@@ -137,9 +137,9 @@ export default function FeaturedProjects() {
                   href={japanApp.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
                 >
-                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <GitHubIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>Source Code</span>
                 </a>
               )}
@@ -149,7 +149,7 @@ export default function FeaturedProjects() {
                 className="inline-flex items-center gap-1 px-3 py-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
               >
                 <span>Read Full Spec</span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3 shrink-0" />
               </button>
             </div>
           </div>
@@ -158,9 +158,9 @@ export default function FeaturedProjects() {
         {/* =========================================================================
             FEATURED PROJECT 02: DATASCRY (Reversed Rhythm / Privacy-First)
            ========================================================================= */}
-        <article className="border border-[#232732] bg-[#111317] rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
+        <article className="border border-[#232732] bg-surface-container-low rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
           {/* Left / Context & Details */}
-          <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6 bg-[#111317] order-2 lg:order-1 border-t lg:border-t-0 lg:border-r border-[#232732]">
+          <div className="lg:col-span-5 p-5 sm:p-8 lg:p-10 flex flex-col justify-between gap-6 bg-surface-container-low order-2 lg:order-1 border-t lg:border-t-0 lg:border-r border-[#232732] min-w-0">
             <div className="flex flex-col gap-4">
               <span className="font-mono text-xs uppercase tracking-wider text-[#3b82f6]">
                 Offline-First Document Suite
@@ -190,7 +190,7 @@ export default function FeaturedProjects() {
                 <ul className="flex flex-col gap-1.5 text-xs text-[#9ca3af]">
                   {dataScry.technicalDecisions.slice(0, 3).map((decision, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#3b82f6] mt-0.5">•</span>
+                      <span className="text-[#3b82f6] mt-0.5 shrink-0">•</span>
                       <span>{decision}</span>
                     </li>
                   ))}
@@ -201,7 +201,7 @@ export default function FeaturedProjects() {
                 {dataScry.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
                   >
                     {tag}
                   </span>
@@ -210,7 +210,7 @@ export default function FeaturedProjects() {
             </div>
 
             {/* Actions */}
-            <div className="pt-6 border-t border-[#232732] flex flex-wrap items-center gap-3">
+            <div className="pt-5 sm:pt-6 border-t border-[#232732] flex flex-wrap items-center gap-2.5 sm:gap-3">
               {dataScry.link && (
                 <a
                   href={dataScry.link}
@@ -219,7 +219,7 @@ export default function FeaturedProjects() {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
                 >
                   <span>Open Application</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                 </a>
               )}
 
@@ -228,9 +228,9 @@ export default function FeaturedProjects() {
                   href={dataScry.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high text-[#f4f4f6] border border-[#232732] font-mono text-xs transition-colors"
                 >
-                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <GitHubIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>GitHub</span>
                 </a>
               )}
@@ -240,28 +240,28 @@ export default function FeaturedProjects() {
                 className="inline-flex items-center gap-1 px-3 py-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
               >
                 <span>Details</span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3 shrink-0" />
               </button>
             </div>
           </div>
 
           {/* Right / Visual Showcase */}
-          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between order-1 lg:order-2">
-            <div className="flex items-center justify-between pb-4 font-mono text-xs text-[#6b7280]">
+          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between order-1 lg:order-2 min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pb-4 font-mono text-xs text-[#6b7280]">
               <span>PROJECT 02 / PRIVACY SUITE</span>
               <span className="text-[#3b82f6]">100% Client-Side Processing</span>
             </div>
 
-            <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
+            <div className="relative w-full aspect-16/10 rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
               <img
                 src={dataScry.image}
                 alt="DataScry Interface Screenshot"
-                className="w-full h-auto object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
                 loading="lazy"
               />
             </div>
 
-            <div className="pt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9ca3af]">
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#9ca3af]">
               <span>Runtime: Web Workers</span>
               <span>Network: Zero Server Uploads</span>
             </div>
@@ -271,20 +271,20 @@ export default function FeaturedProjects() {
         {/* =========================================================================
             FEATURED PROJECTS 03 & 04: ARIA2APP & PRAMESWARI EO (2-Column Grid)
            ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* Project 03: Aria2App */}
-          <article className="border border-[#232732] bg-[#111317] rounded-sm p-6 sm:p-8 flex flex-col justify-between gap-6">
+          <article className="border border-[#232732] bg-surface-container-low rounded-sm p-5 sm:p-7 lg:p-8 flex flex-col justify-between gap-6 min-w-0">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#6b7280]">
                 <span>PROJECT 03 / DESKTOP GUI</span>
                 <span className="text-[#3b82f6]">Python + PyQt6</span>
               </div>
 
-              <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b]">
+              <div className="relative w-full aspect-16/10 rounded border border-[#232732] overflow-hidden bg-[#08090b]">
                 <img
                   src={aria2App.image}
                   alt="Aria2App Desktop Interface"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>
@@ -314,7 +314,7 @@ export default function FeaturedProjects() {
                 {aria2App.tags.map((t) => (
                   <span
                     key={t}
-                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
                   >
                     {t}
                   </span>
@@ -322,21 +322,21 @@ export default function FeaturedProjects() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#232732] flex items-center justify-between">
+            <div className="pt-4 border-t border-[#232732] flex flex-wrap items-center justify-between gap-3">
               {aria2App.github && (
                 <a
                   href={aria2App.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
+                  className="py-1.5 inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
                 >
-                  <GitHubIcon className="w-3.5 h-3.5" />
+                  <GitHubIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>github/NXRts/Aria2App</span>
                 </a>
               )}
               <button
                 onClick={() => setSelectedProject(aria2App)}
-                className="text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+                className="py-1.5 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
               >
                 Inspect Spec →
               </button>
@@ -344,18 +344,18 @@ export default function FeaturedProjects() {
           </article>
 
           {/* Project 04: Prameswari EO */}
-          <article className="border border-[#232732] bg-[#111317] rounded-sm p-6 sm:p-8 flex flex-col justify-between gap-6">
+          <article className="border border-[#232732] bg-surface-container-low rounded-sm p-5 sm:p-7 lg:p-8 flex flex-col justify-between gap-6 min-w-0">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#6b7280]">
                 <span>PROJECT 04 / CLIENT PLATFORM</span>
                 <span className="text-[#3b82f6]">Next.js + WhatsApp API</span>
               </div>
 
-              <div className="relative w-full rounded border border-[#232732] overflow-hidden bg-[#08090b]">
+              <div className="relative w-full aspect-16/10 rounded border border-[#232732] overflow-hidden bg-[#08090b]">
                 <img
                   src={prameswariEO.image}
                   alt="Prameswari EO Website Screenshot"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>
@@ -385,7 +385,7 @@ export default function FeaturedProjects() {
                 {prameswariEO.tags.map((t) => (
                   <span
                     key={t}
-                    className="px-2 py-0.5 bg-[#14171d] border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                    className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
                   >
                     {t}
                   </span>
@@ -393,21 +393,21 @@ export default function FeaturedProjects() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#232732] flex items-center justify-between">
+            <div className="pt-4 border-t border-[#232732] flex flex-wrap items-center justify-between gap-3">
               {prameswariEO.link && (
                 <a
                   href={prameswariEO.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
+                  className="py-1.5 inline-flex items-center gap-1.5 text-xs font-mono text-[#f4f4f6] hover:text-[#3b82f6] transition-colors"
                 >
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                   <span>prameswari-eo.vercel.app</span>
                 </a>
               )}
               <button
                 onClick={() => setSelectedProject(prameswariEO)}
-                className="text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+                className="py-1.5 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
               >
                 Inspect Spec →
               </button>
@@ -418,14 +418,14 @@ export default function FeaturedProjects() {
         {/* =========================================================================
             ADDITIONAL VERIFIED PROJECTS INDEX (Curated Archive)
            ========================================================================= */}
-        <div className="pt-8 border-t border-[#232732]/60 flex flex-col gap-6">
+        <div className="pt-6 sm:pt-8 border-t border-[#232732]/60 flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <span className="font-mono text-xs uppercase tracking-widest text-[#6b7280]">
               Selected Archive & Tools
             </span>
             <Link
               href="/projects"
-              className="font-mono text-xs text-[#3b82f6] hover:underline flex items-center gap-1"
+              className="py-1 font-mono text-xs text-[#3b82f6] hover:underline inline-flex items-center gap-1"
             >
               <span>View full software catalog ({projectsData.length} projects)</span>
               <span>→</span>
@@ -437,7 +437,7 @@ export default function FeaturedProjects() {
               <div
                 key={p.id}
                 onClick={() => setSelectedProject(p)}
-                className="p-4 rounded border border-[#232732] bg-[#111317] hover:border-[#3b82f6]/50 transition-all cursor-pointer flex flex-col justify-between gap-3 group"
+                className="p-4 rounded border border-[#232732] bg-surface-container-low hover:border-[#3b82f6]/50 transition-all cursor-pointer flex flex-col justify-between gap-3 group"
               >
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between font-mono text-[11px] text-[#6b7280]">
@@ -458,7 +458,7 @@ export default function FeaturedProjects() {
                   {p.tags.slice(0, 3).map((t) => (
                     <span
                       key={t}
-                      className="px-1.5 py-0.5 bg-[#14171d] text-[#6b7280] font-mono text-[10px] rounded"
+                      className="px-1.5 py-0.5 bg-surface-container text-[#6b7280] font-mono text-[10px] rounded"
                     >
                       {t}
                     </span>
