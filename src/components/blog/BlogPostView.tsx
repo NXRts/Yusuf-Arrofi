@@ -30,22 +30,22 @@ export default function BlogPostView({ post }: Props) {
   };
 
   return (
-    <article className="w-full pt-28 sm:pt-36 pb-20 max-w-3xl mx-auto px-4 md:px-8 flex flex-col gap-10 bg-[#0c0d10] text-[#f4f4f6]">
+    <article className="w-full pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 max-w-3xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-8 sm:gap-10 bg-[#0c0d10] text-[#f4f4f6]">
       {/* Top Breadcrumb & Controls */}
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors"
+          className="py-1.5 inline-flex items-center gap-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
           <span className="truncate">{language === "en" ? "Back to All Articles" : "Kembali ke Indeks Blog"}</span>
         </Link>
 
         {/* Language Switch */}
-        <div className="flex items-center gap-1 p-1 bg-[#111317] border border-[#232732] rounded font-mono text-xs">
+        <div className="flex items-center gap-1 p-1 bg-surface-container-low border border-[#232732] rounded font-mono text-xs">
           <button
             onClick={() => setLanguage("en")}
-            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
               language === "en"
                 ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
                 : "text-[#9ca3af] hover:text-[#f4f4f6]"
@@ -55,7 +55,7 @@ export default function BlogPostView({ post }: Props) {
           </button>
           <button
             onClick={() => setLanguage("id")}
-            className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
               language === "id"
                 ? "bg-[#f4f4f6] text-[#0c0d10] font-medium"
                 : "text-[#9ca3af] hover:text-[#f4f4f6]"
@@ -69,22 +69,22 @@ export default function BlogPostView({ post }: Props) {
       {/* Article Header */}
       <header className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs text-[#6b7280]">
-          <span className="px-2 py-0.5 rounded bg-[#14171d] border border-[#232732] text-[#3b82f6] uppercase tracking-wider text-[11px]">
+          <span className="px-2 py-0.5 rounded bg-surface-container border border-[#232732] text-[#3b82f6] uppercase tracking-wider text-[11px]">
             {post.category}
           </span>
           <span>•</span>
           <span className="flex items-center gap-1 text-[#9ca3af]">
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5 shrink-0" />
             {post.date}
           </span>
           <span>•</span>
           <span className="flex items-center gap-1 text-[#9ca3af]">
-            <Clock className="w-3.5 h-3.5" />
+            <Clock className="w-3.5 h-3.5 shrink-0" />
             {post.readTime}
           </span>
         </div>
 
-        <h1 className="font-sans text-3xl sm:text-5xl font-bold text-[#f4f4f6] tracking-tight leading-[1.15]">
+        <h1 className="font-sans editorial-h1 font-bold text-[#f4f4f6] tracking-tight">
           {post.title[language]}
         </h1>
 
@@ -95,7 +95,7 @@ export default function BlogPostView({ post }: Props) {
         {/* Author metadata strip */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-[#232732]/60">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded bg-[#14171d] border border-[#232732] flex items-center justify-center font-mono text-xs font-bold text-[#3b82f6] shrink-0">
+            <div className="w-9 h-9 rounded bg-surface-container border border-[#232732] flex items-center justify-center font-mono text-xs font-bold text-[#3b82f6] shrink-0">
               NX
             </div>
             <div className="flex flex-col">
@@ -110,7 +110,7 @@ export default function BlogPostView({ post }: Props) {
 
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#14171d] hover:bg-[#1a1e26] border border-[#232732] text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container hover:bg-surface-container-high border border-[#232732] text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] transition-colors cursor-pointer"
           >
             {copied ? (
               <>
@@ -184,7 +184,7 @@ export default function BlogPostView({ post }: Props) {
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="px-2 py-0.5 rounded bg-[#14171d] border border-[#232732] text-xs font-mono text-[#9ca3af]"
+            className="px-2 py-0.5 rounded bg-surface-container border border-[#232732] text-xs font-mono text-[#9ca3af]"
           >
             {tag}
           </span>

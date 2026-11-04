@@ -41,17 +41,17 @@ export default function Capabilities() {
   ];
 
   return (
-    <section id="skills" className="w-full py-20 sm:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-12 sm:gap-16">
+    <section id="skills" className="w-full py-16 sm:py-22 lg:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-14 lg:gap-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 border-b border-[#232732]/60">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
               <span>03</span>
               <span className="w-8 h-px bg-[#3b82f6]" />
               <span>Technical Skills</span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+            <h2 className="font-sans editorial-h1 font-bold tracking-tight text-[#f4f4f6]">
               Toolchain & Competencies
             </h2>
           </div>
@@ -61,15 +61,15 @@ export default function Capabilities() {
         </div>
 
         {/* 4-Block Editorial Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
           {categories.map((cat, idx) => (
             <div
               key={cat.id}
-              className="p-6 sm:p-8 rounded border border-[#232732] bg-[#111317] flex flex-col justify-between gap-6"
+              className="p-5 sm:p-7 lg:p-8 rounded border border-[#232732] bg-surface-container-low flex flex-col justify-between gap-6 min-w-0"
             >
               <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between font-mono text-xs text-[#6b7280]">
-                  <span>CATEGORY 0{idx + 1}</span>
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#6b7280]">
+                  <span className="shrink-0">CATEGORY 0{idx + 1}</span>
                   <span className="text-[#3b82f6]">{cat.role}</span>
                 </div>
 
@@ -92,7 +92,7 @@ export default function Capabilities() {
                     {cat.primary.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded bg-[#14171d] border border-[#3b82f6]/40 text-[#f4f4f6] font-medium"
+                        className="px-2.5 py-1 rounded bg-surface-container border border-[#3b82f6]/40 text-[#f4f4f6] font-medium"
                       >
                         {tech}
                       </span>

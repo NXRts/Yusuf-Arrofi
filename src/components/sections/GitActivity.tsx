@@ -77,22 +77,22 @@ export default function GitActivity() {
         return "bg-[#0e4429]";
       case 0:
       default:
-        return "bg-[#181b22] border border-white/[0.04]";
+        return "bg-[#181b22] border border-white/4";
     }
   };
 
   return (
-    <section id="activity" className="w-full py-20 sm:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-12 sm:gap-16">
+    <section id="activity" className="w-full py-16 sm:py-22 lg:py-28 border-b border-[#232732] bg-[#0c0d10] text-[#f4f4f6]">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-14 lg:gap-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#232732]/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 border-b border-[#232732]/60">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3 font-mono text-xs text-[#3b82f6] uppercase tracking-widest">
               <span>05</span>
               <span className="w-8 h-px bg-[#3b82f6]" />
               <span>Open Source Activity</span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-5xl font-bold tracking-tight text-[#f4f4f6]">
+            <h2 className="font-sans editorial-h1 font-bold tracking-tight text-[#f4f4f6]">
               Developer Log & Commits
             </h2>
           </div>
@@ -110,23 +110,23 @@ export default function GitActivity() {
         </div>
 
         {/* Matrix + Profile Ledger Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Calendar Heatmap Container (Span 8) */}
-          <div className="lg:col-span-8 p-6 sm:p-8 rounded border border-[#232732] bg-[#111317] flex flex-col gap-6">
-            <div className="flex items-center justify-between pb-4 border-b border-[#232732]/60">
+          <div className="lg:col-span-8 p-5 sm:p-7 lg:p-8 rounded border border-[#232732] bg-surface-container-low flex flex-col gap-6 min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 pb-4 border-b border-[#232732]/60">
               <div className="flex items-center gap-2">
-                <GitHubIcon className="w-4 h-4 text-[#9ca3af]" />
+                <GitHubIcon className="w-4 h-4 text-[#9ca3af] shrink-0" />
                 <span className="font-sans font-semibold text-sm text-[#f4f4f6]">
                   GitHub Contribution Activity
                 </span>
               </div>
-              <span className="font-mono text-xs text-[#6b7280]">
+              <span className="font-mono text-xs text-[#6b7280] shrink-0">
                 Last 36 Weeks
               </span>
             </div>
 
             {/* Scrollable Heatmap Viewport */}
-            <div className="w-full overflow-x-auto pb-2">
+            <div className="w-full overflow-x-auto pb-2 overscroll-x-contain">
               <div className="min-w-[620px] flex flex-col gap-1.5">
                 {/* Month labels */}
                 <div className="flex pl-8 text-[11px] font-mono text-[#6b7280] select-none h-4">
@@ -165,6 +165,12 @@ export default function GitActivity() {
                                 contributions: day.tooltipText || `${day.count} contributions`,
                               })
                             }
+                            onClick={() =>
+                              setHoveredCell({
+                                date: formatReadableDate(day.date),
+                                contributions: day.tooltipText || `${day.count} contributions`,
+                              })
+                            }
                             onMouseLeave={() => setHoveredCell(null)}
                             className={`w-3 h-3 rounded-[2px] transition-colors cursor-pointer ${getCellColor(
                               day.level
@@ -180,20 +186,20 @@ export default function GitActivity() {
             </div>
 
             {/* Bottom Legend and Hover Status Bar */}
-            <div className="flex items-center justify-between pt-4 border-t border-[#232732]/60 font-mono text-xs text-[#6b7280]">
-              <div>
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 pt-4 border-t border-[#232732]/60 font-mono text-xs text-[#6b7280]">
+              <div className="min-w-0">
                 {hoveredCell ? (
                   <span className="text-[#f4f4f6]">
                     {hoveredCell.contributions}
                   </span>
                 ) : (
-                  <span>Hover a date for commit verification</span>
+                  <span>Hover or tap a cell for commit verification</span>
                 )}
               </div>
 
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span>Less</span>
-                <span className="w-2.5 h-2.5 rounded-[2px] bg-[#181b22] border border-white/[0.04]" />
+                <span className="w-2.5 h-2.5 rounded-[2px] bg-[#181b22] border border-white/4" />
                 <span className="w-2.5 h-2.5 rounded-[2px] bg-[#0e4429]" />
                 <span className="w-2.5 h-2.5 rounded-[2px] bg-[#006d32]" />
                 <span className="w-2.5 h-2.5 rounded-[2px] bg-[#26a641]" />
@@ -204,7 +210,7 @@ export default function GitActivity() {
           </div>
 
           {/* Right: GitHub Metadata & Direct Profile Link (Span 4) */}
-          <div className="lg:col-span-4 p-6 sm:p-8 rounded border border-[#232732] bg-[#111317] flex flex-col justify-between gap-6">
+          <div className="lg:col-span-4 p-5 sm:p-7 lg:p-8 rounded border border-[#232732] bg-surface-container-low flex flex-col justify-between gap-6 min-w-0">
             <div className="flex flex-col gap-4">
               <span className="font-mono text-xs uppercase tracking-widest text-[#6b7280]">
                 Repository Index
@@ -224,15 +230,15 @@ export default function GitActivity() {
               </p>
 
               <div className="flex flex-col gap-2 pt-3 border-t border-[#232732]/60 font-mono text-xs">
-                <div className="flex items-center justify-between text-[#9ca3af]">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[#9ca3af]">
                   <span>Primary Language</span>
                   <span className="text-[#f4f4f6]">Go & TypeScript</span>
                 </div>
-                <div className="flex items-center justify-between text-[#9ca3af]">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[#9ca3af]">
                   <span>Operating System</span>
                   <span className="text-[#f4f4f6]">Arch Linux / CachyOS</span>
                 </div>
-                <div className="flex items-center justify-between text-[#9ca3af]">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[#9ca3af]">
                   <span>Public Repositories</span>
                   <span className="text-[#f4f4f6] font-semibold">{profileData.stats.repos}</span>
                 </div>
@@ -244,10 +250,10 @@ export default function GitActivity() {
                 href={profileData.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded bg-[#14171d] hover:bg-[#1a1e26] text-[#f4f4f6] border border-[#232732] hover:border-[#3b82f6]/50 font-mono text-xs transition-colors"
+                className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded bg-surface-container hover:bg-surface-container-high text-[#f4f4f6] border border-[#232732] hover:border-[#3b82f6]/50 font-mono text-xs transition-colors"
               >
                 <span>View Profile @NXRts</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#9ca3af]" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#9ca3af] shrink-0" />
               </a>
             </div>
           </div>
