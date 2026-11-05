@@ -12,12 +12,13 @@ export default function FeaturedProjects() {
 
   const japanApp = projectsData.find((p) => p.id === "japan-app")!;
   const dataScry = projectsData.find((p) => p.id === "datascry")!;
+  const nxSora = projectsData.find((p) => p.id === "nxsora")!;
   const aria2App = projectsData.find((p) => p.id === "aria2-app")!;
   const prameswariEO = projectsData.find((p) => p.id === "prameswari-eo")!;
 
   // Additional projects for the curated index
   const archiveProjects = projectsData.filter(
-    (p) => !["japan-app", "datascry", "aria2-app", "prameswari-eo"].includes(p.id)
+    (p) => !["japan-app", "datascry", "nxsora", "aria2-app", "prameswari-eo"].includes(p.id)
   ).slice(0, 6);
 
   return (
@@ -269,14 +270,117 @@ export default function FeaturedProjects() {
         </article>
 
         {/* =========================================================================
-            FEATURED PROJECTS 03 & 04: ARIA2APP & PRAMESWARI EO (2-Column Grid)
+            FEATURED PROJECT 03: NXSORA (Living Desktop Notch Showcase)
+           ========================================================================= */}
+        <article className="border border-[#232732] bg-surface-container-low rounded-sm overflow-hidden flex flex-col lg:grid lg:grid-cols-12 gap-0">
+          {/* Left / Visual Showcase */}
+          <div className="lg:col-span-7 bg-[#0c0d10] p-4 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#232732] min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pb-4 font-mono text-xs text-[#6b7280]">
+              <span>PROJECT 03 / LIVING DESKTOP NOTCH</span>
+              <span className="text-[#3b82f6]">github.com/NXRts/NxSora</span>
+            </div>
+
+            <div className="relative w-full aspect-16/10 rounded border border-[#232732] overflow-hidden bg-[#08090b] shadow-lg group">
+              <img
+                src={nxSora.image}
+                alt="NxSora Dynamic Island Desktop Interface"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#9ca3af]">
+              <span>Environment: KDE Plasma 6 Wayland</span>
+              <span>Footprint: &lt;0.5% CPU · ~85MB RAM</span>
+            </div>
+          </div>
+
+          {/* Right / Technical Case Study */}
+          <div className="lg:col-span-5 p-5 sm:p-8 lg:p-10 flex flex-col justify-between gap-6 bg-surface-container-low min-w-0">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#3b82f6]">
+                  Desktop GUI &amp; Systems Architecture
+                </span>
+              </div>
+
+              <h3 className="font-sans text-2xl sm:text-3xl font-bold text-[#f4f4f6]">
+                {nxSora.title}
+              </h3>
+
+              <p className="font-sans text-sm text-[#9ca3af] leading-relaxed">
+                {nxSora.description}
+              </p>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  The Engineering Problem
+                </span>
+                <p className="font-sans text-xs text-[#d1d5db] leading-relaxed">
+                  {nxSora.problem}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-[#232732]/60 flex flex-col gap-2">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6b7280]">
+                  Key Technical Decisions
+                </span>
+                <ul className="flex flex-col gap-1.5 text-xs text-[#9ca3af]">
+                  {nxSora.technicalDecisions.slice(0, 3).map((decision, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#3b82f6] mt-0.5 shrink-0">•</span>
+                      <span>{decision}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {nxSora.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 bg-surface-container border border-[#232732] text-[#9ca3af] font-mono text-[11px] rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="pt-5 sm:pt-6 border-t border-[#232732] flex flex-wrap items-center gap-2.5 sm:gap-3">
+              {nxSora.github && (
+                <a
+                  href={nxSora.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[#f4f4f6] hover:bg-white text-[#0c0d10] font-sans font-medium text-xs transition-colors"
+                >
+                  <GitHubIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span>View Repository</span>
+                </a>
+              )}
+
+              <button
+                onClick={() => setSelectedProject(nxSora)}
+                className="inline-flex items-center gap-1 px-3 py-2 text-xs font-mono text-[#9ca3af] hover:text-[#f4f4f6] cursor-pointer"
+              >
+                <span>Read Full Spec</span>
+                <ArrowRight className="w-3 h-3 shrink-0" />
+              </button>
+            </div>
+          </div>
+        </article>
+
+        {/* =========================================================================
+            FEATURED PROJECTS 04 & 05: ARIA2APP & PRAMESWARI EO (2-Column Grid)
            ========================================================================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {/* Project 03: Aria2App */}
+          {/* Project 04: Aria2App */}
           <article className="border border-[#232732] bg-surface-container-low rounded-sm p-5 sm:p-7 lg:p-8 flex flex-col justify-between gap-6 min-w-0">
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#6b7280]">
-                <span>PROJECT 03 / DESKTOP GUI</span>
+                <span>PROJECT 04 / DESKTOP GUI</span>
                 <span className="text-[#3b82f6]">Python + PyQt6</span>
               </div>
 
@@ -343,11 +447,11 @@ export default function FeaturedProjects() {
             </div>
           </article>
 
-          {/* Project 04: Prameswari EO */}
+          {/* Project 05: Prameswari EO */}
           <article className="border border-[#232732] bg-surface-container-low rounded-sm p-5 sm:p-7 lg:p-8 flex flex-col justify-between gap-6 min-w-0">
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-[#6b7280]">
-                <span>PROJECT 04 / CLIENT PLATFORM</span>
+                <span>PROJECT 05 / CLIENT PLATFORM</span>
                 <span className="text-[#3b82f6]">Next.js + WhatsApp API</span>
               </div>
 

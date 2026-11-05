@@ -190,7 +190,7 @@ export default function ContactSection() {
                   <span>Support My Work</span>
                 </div>
                 <p className="font-sans text-xs text-[#9ca3af] leading-relaxed">
-                  If you appreciate my open-source tools (DataScry, JapanApp, Aria2App) and wish to back their independent maintenance:
+                  If you appreciate my open-source tools (DataScry, NxSora, JapanApp, Aria2App) and wish to back their independent maintenance:
                 </p>
               </div>
 
