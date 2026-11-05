@@ -29,6 +29,7 @@ export default function Footer() {
   const featuredProjects = [
     { name: "JapanApp (Language Platform)", href: "https://japan-mee.vercel.app/" },
     { name: "DataScry (Offline Document Suite)", href: "https://datascry.vercel.app/" },
+    { name: "NxSora (Living Desktop Notch)", href: "https://github.com/NXRts/NxSora" },
     { name: "Aria2App (Desktop Downloader GUI)", href: "https://github.com/NXRts/Aria2App" },
     { name: "Prameswari EO (Tourism Platform)", href: "https://prameswari-eo.vercel.app/" },
     { name: "Yusuf Expedition (DPSA)", href: "https://yuexp.vercel.app/" },

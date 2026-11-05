@@ -107,13 +107,56 @@ export const projectsData: Project[] = [
     github: "https://github.com/NXRts/DataScry",
   },
   {
+    id: "nxsora",
+    slug: "nxsora",
+    title: "NxSora (Nx空)",
+    subtitle: "Living Sky-Notch & Dynamic Island for KDE Plasma 6 Wayland",
+    category: "desktop",
+    featured: true,
+    featuredOrder: 3,
+    image: "/assets/website/NxSora.webp",
+    description:
+      "A native, fluid, and customizable Dynamic Island notch for KDE Plasma 6 on Wayland. Built with PyQt6, QtQuick QML, and Wayland Layer-Shell, featuring hardware TDP telemetry, MPRIS synced karaoke lyrics, BlueZ TWS animations, and a 100% click-through canvas at <0.5% CPU idle.",
+    fullDescription:
+      "NxSora (Nx空) is a modern, living desktop notch engineered natively for Linux KDE Plasma 6 Wayland. Resting flush beneath the top panel with concave ear curves and an organic 150x28px closed capsule, NxSora unifies 10 interactive productivity modules: Pomodoro focus timer, MPRIS media player with per-line synced LRCLIB karaoke lyrics, real-time CPU Package TDP wattage and thermal telemetry, BlueZ Bluetooth manager with floating TWS earbud animations, smart notification center with 1-click OTP verification copy, hydration tracker, and a Wayland drag-and-drop file shelf. Operating on the LayerOverlay shell layer, non-rendered areas pass clicks entirely through to underlying windows while consuming under 0.5% CPU and ~85MB RAM.",
+    problem:
+      "Desktop Linux users on modern Wayland compositors lack unified, non-intrusive heads-up status overlays comparable to modern mobile dynamic islands. Existing desktop widgets often incur high idle CPU overhead, struggle with strict Wayland window placement restrictions, or create invisible window boundaries that block mouse clicks to underlying application tabs and title bars.",
+    contribution:
+      "Architected and developed the complete native application from concept to deployment: built the asynchronous Python daemon managing PipeWire, BlueZ D-Bus, and Linux sysfs telemetry; authored 10 interactive QML modules with spring-physics easing curves; integrated Wayland Layer-Shell for 0-margin panel anchoring with 100% click-through transparency; and packaged the official Arch Linux AUR PKGBUILD.",
+    technicalDecisions: [
+      "Wayland Layer-Shell (LayerOverlay) integration anchoring the notch flush beneath KDE Plasma panels with 100% click-through transparency on non-rendered regions.",
+      "Decoupled architecture: Python asyncio daemon handles D-Bus, PipeWire, and kernel sysfs polling on background threads, streaming states into QML via Qt Signals.",
+      "Synchronized karaoke lyrics engine pulling per-line timestamps from LRCLIB over MPRIS with interactive click-to-seek playback in an expanded 520px split view.",
+      "Strict privacy and security model with 0600 file permissions for state logs and automated rejection of password managers (Bitwarden, 1Password, KeePassXC).",
+      "Extreme hardware efficiency: <0.5% CPU usage during idle state and ~85MB RAM footprint on CachyOS / Arch Linux."
+    ],
+    features: [
+      "10-in-1 unified interactive hub (Pomodoro, Music & Lyrics, Hardware TDP, Bluetooth TWS, Notification Center, Hydration, File Shelf, Settings)",
+      "Real-time CPU Package TDP (Watts), multi-sensor thermal monitoring (CPU/GPU/NVMe), and 1-click power profile switching (powerprofilesctl)",
+      "MPRIS media player with synchronized karaoke lyrics from LRCLIB and click-to-seek playback in expanded 520px split view",
+      "Smart Peek HUD overlays for volume, brightness, battery conic charge ring, and BlueZ TWS earbud connect/disconnect popups",
+      "1-click OTP verification code extraction and copying to Wayland clipboard with automated 48-hour expiration",
+      "Wayland drag-and-drop file shelf ('Island Gulp') with native QDrag text/uri-list integration",
+      "Resting mascot with cursor eye-tracking and PipeWire privacy dots (microphone & camera indicators)",
+      "Arch Linux / CachyOS PKGBUILD with full CLI daemon controls (nxsora --daemon, --toggle, --restart)"
+    ],
+    tags: ["Python", "PyQt6", "QML", "Wayland", "KDE Plasma 6", "Layer-Shell", "PipeWire", "BlueZ D-Bus", "CachyOS / Arch Linux"],
+    metrics: {
+      platform: "Desktop App (Linux Wayland)",
+      architecture: "PyQt6 + QML + Layer-Shell-Qt",
+      deployment: "Arch AUR (PKGBUILD) / Daemon",
+      stack: "Python 3.11+ & QtQuick 2"
+    },
+    github: "https://github.com/NXRts/NxSora",
+  },
+  {
     id: "aria2-app",
     slug: "aria2-app",
     title: "Aria2App",
     subtitle: "Desktop GUI for aria2 Multi-Connection Downloader",
     category: "desktop",
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 4,
     image: "/assets/website/Aria2App.webp",
     description:
       "A fast, modern desktop graphical user interface built with Python and PyQt6 for the high-performance aria2c multi-connection download utility, communicating seamlessly over JSON-RPC sockets.",
@@ -153,7 +196,7 @@ export const projectsData: Project[] = [
     subtitle: "Tourism & Adventure Event Organizer Platform",
     category: "fullstack",
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
     image: "/assets/website/PrameswariEO.webp",
     description:
       "Official web platform for an adventure tour operator in Kemuning, Karanganyar, featuring interactive tour package catalogs (Jeep Safari & River Tubing), responsive media galleries, and direct WhatsApp booking dispatch.",
