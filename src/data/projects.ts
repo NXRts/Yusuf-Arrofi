@@ -155,8 +155,7 @@ export const projectsData: Project[] = [
     title: "Aria2App",
     subtitle: "Desktop GUI for aria2 Multi-Connection Downloader",
     category: "desktop",
-    featured: true,
-    featuredOrder: 4,
+    featured: false,
     image: "/assets/website/Aria2App.webp",
     description:
       "A fast, modern desktop graphical user interface built with Python and PyQt6 for the high-performance aria2c multi-connection download utility, communicating seamlessly over JSON-RPC sockets.",
@@ -196,7 +195,7 @@ export const projectsData: Project[] = [
     subtitle: "Tourism & Adventure Event Organizer Platform",
     category: "fullstack",
     featured: true,
-    featuredOrder: 5,
+    featuredOrder: 4,
     image: "/assets/website/PrameswariEO.webp",
     description:
       "Official web platform for an adventure tour operator in Kemuning, Karanganyar, featuring interactive tour package catalogs (Jeep Safari & River Tubing), responsive media galleries, and direct WhatsApp booking dispatch.",
