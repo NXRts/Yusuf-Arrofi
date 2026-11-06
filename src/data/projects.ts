@@ -455,7 +455,7 @@ export const projectsData: Project[] = [
     subtitle: "Clean Architecture Microservice in Go",
     category: "backend",
     featured: false,
-    image: "/assets/website/JapanApp.webp",
+    image: "/assets/website/Simaku_Backend.webp",
     description:
       "Backend API service for an educational learning management system built with Go and PostgreSQL, following Clean Architecture and Domain-Driven Design.",
     fullDescription:
@@ -491,7 +491,7 @@ export const projectsData: Project[] = [
     subtitle: "High-Concurrency Guestbook Service in Go",
     category: "backend",
     featured: false,
-    image: "/assets/website/PrameswariEO.webp",
+    image: "/assets/website/BukuTamu_API.webp",
     description:
       "High-throughput event attendee registration service engineered in Go and PostgreSQL, built to withstand burst check-in traffic with sub-15ms response times.",
     fullDescription:
